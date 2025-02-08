@@ -49,10 +49,15 @@ const HeroSection = () => {
     window.location.href = whatsappUrl;
   };
 
+  // Nueva función para cerrar el menú al hacer clic en un enlace
+  const handleNavClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black">
+    <div className="relative h-screen w-full overflow-hidden bg-black" id="inicio">
       {/* Navigation Bar */}
-      <nav className="absolute top-0 left-0 right-0 z-50 bg-black/90 border-b border-[#FFD700]/30">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 border-b border-[#FFD700]/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="text-white text-2xl font-bold border-l-4 border-red-600 pl-4">
@@ -71,11 +76,10 @@ const HeroSection = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8 text-white">
-              <a href="#" className="text-red-500 font-medium hover:text-red-400" aria-label="Inicio">INICIO</a>
-              <a href="#" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Trabajos">TRABAJOS</a>
-              <a href="#" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Servicios">SERVICIOS</a>
-              <a href="#" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Testimonios">TESTIMONIOS</a>
-              <a href="#" className="text-red-500 hover:text-red-400 transition-colors" aria-label="Contacto">CONTACT</a>
+              <a href="#inicio" className="text-red-500 font-medium hover:text-red-400" aria-label="Inicio">INICIO</a>
+             <a href="#servicios" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Servicios">SERVICIOS</a>
+              <a href="#testimonios" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Testimonios">TESTIMONIOS</a>
+              <a href="#contacto" className="text-red-500 hover:text-red-400 transition-colors" aria-label="Contacto">CONTACTO</a>
             </div>
           </div>
         </div>
@@ -88,11 +92,10 @@ const HeroSection = () => {
           aria-hidden={!isMenuOpen}
         >
           <div className="container mx-auto px-4 flex flex-col space-y-4">
-            <a href="#" className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10" aria-label="Inicio">INICIO</a>
-            <a href="#" className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Trabajos">TRABAJOS</a>
-            <a href="#" className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Servicios">SERVICIOS</a>
-            <a href="#" className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Testimonios">TESTIMONIOS</a>
-            <a href="#" className="text-red-500 hover:text-red-400 px-4 py-2 hover:bg-red-500/10 transition-colors" aria-label="Contacto">CONTACT</a>
+            <a href="#inicio" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10" aria-label="Inicio">INICIO</a>
+            <a href="#servicios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Servicios">SERVICIOS</a>
+            <a href="#testimonios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Testimonios">TESTIMONIOS</a>
+            <a href="#contacto" onClick={handleNavClick} className="text-red-500 hover:text-red-400 px-4 py-2 hover:bg-red-500/10 transition-colors" aria-label="Contacto">CONTACTO</a>
           </div>
         </div>
       </nav>

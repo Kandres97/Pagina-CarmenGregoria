@@ -71,7 +71,7 @@ const ServiceSection = () => {
   ];
 
   return (
-    <div className="bg-black py-8 md:py-16">
+    <div className="bg-black py-8 md:py-16" id="servicios">
       {/* Barra de advertencia */}
       <div className="bg-red-600 w-full py-2">
         <p className="text-white text-center font-bold">
@@ -83,7 +83,7 @@ const ServiceSection = () => {
         {/* Título Principal */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
-            SERVICIOS Y TRABAJOS
+            SERVICIOS
           </h2>
         </div>
 
