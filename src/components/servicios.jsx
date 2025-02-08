@@ -11,7 +11,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738860485/amarres-de-amor-rituales_q62qjp.jpg"
+      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738878512/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5.jpg"
     },
     {
       title: "Amarres del Mismo Sexo",
@@ -22,7 +22,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738878512/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5.jpg"
+      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738974880/IMG4_dw0nmk.jpg"
     },
     {
       title: "Amarres Sexuales",
@@ -142,10 +142,10 @@ const ServiceSection = () => {
           ))}
         </div>
 
-        {/* Mensaje Final */}
-        <div className="mt-16 text-center">
+       {/* Mensaje Final */}
+       <div className="mt-16 text-center">
           <p className="text-white text-xl md:text-2xl mb-4 max-w-3xl mx-auto">
-            No dejes que el amor de tu vida se aleje. Aún hay esperanza para recuperar su amor y estar juntos de nuevo.<br /> ¡CONSULTANOS Y TE AYUDAREMOS!
+            No dejes que el amor de tu vida se aleje. Aún hay esperanza para recuperar su amor y estar juntos de nuevo.<br /> <span className="text-red-600">¡CONSULTANOS Y TE AYUDAREMOS!</span>
           </p>
         </div>
       </div>

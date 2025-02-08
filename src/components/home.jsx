@@ -16,10 +16,10 @@ const HeroSection = () => {
       image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738357330/descarga_1_m1zvfl.jpg",
       title: "Amarres Sexuales y del Mismo Sexo",
       subtitle: "Expertos en Amarres de toda clase",
-      description: "Especialistas en amarres y retorno de pareja"
+      description: "Especialistas en amarres, amarres sexuales y retorno de pareja "
     },
     {
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738357468/craneo-juguete-libro-decoraciones-halloween_23-2147905750_mbznom.jpg",
+      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738975031/inivideo_edl4wf.jpg",
       title: "Amarres Efectivos",
       subtitle: "Resultados Garantizados",
       description: "Recupera a Tu Ser Amado con Nuestros Rituales Ancestrales, recupera la felicidad"
