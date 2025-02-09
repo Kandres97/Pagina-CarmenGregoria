@@ -61,7 +61,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="text-white text-2xl font-bold border-l-4 border-red-600 pl-4">
-               EXPERTOS EN AMARRES<br /> DE AMOR
+               EXPERTOS EN AMARRES DE AMOR <br /> MAESTRA CARMEN
             </div>
             
             {/* Mobile Menu Button */}

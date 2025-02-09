@@ -71,11 +71,11 @@ const ServiceSection = () => {
   ];
 
   return (
-    <div className="bg-black py-8 md:py-16" id="servicios">
+    <div className="bg-black py-16 md:py-8" id="servicios">
       {/* Barra de advertencia */}
       <div className="bg-red-600 w-full py-2">
         <p className="text-white text-center font-bold">
-          SOLO MAYORES DE 18+
+          ESTE SITIO Y LAS CONSULTAS ESTAN DIRIJIDAS <br /> SOLO A MAYORES DE 18 AÑOS
         </p>
       </div>
 
@@ -143,7 +143,7 @@ const ServiceSection = () => {
         </div>
 
        {/* Mensaje Final */}
-       <div className="mt-16 text-center">
+       <div className="mt-4 text-center">
           <p className="text-white text-xl md:text-2xl mb-4 max-w-3xl mx-auto">
             No dejes que el amor de tu vida se aleje. Aún hay esperanza para recuperar su amor y estar juntos de nuevo.<br /> <span className="text-red-600">¡CONSULTANOS Y TE AYUDAREMOS!</span>
           </p>
