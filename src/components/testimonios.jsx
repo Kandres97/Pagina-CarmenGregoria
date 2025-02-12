@@ -21,7 +21,7 @@ const TestimonialsSection = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '526699201652';
-    const message = 'Hola, deseo realizar una consulta';
+    const message = 'Maestra Carmen, Quiero Consultar Con usted';
     window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 

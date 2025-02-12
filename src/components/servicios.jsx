@@ -117,7 +117,7 @@ const ServiceSection = () => {
               <button 
                 onClick={() => {
                   const phoneNumber = '+526699201652';
-                  const message = 'hola, quiero realizar una consulta';
+                  const message = 'Maestra Carmen, Quiero Consultar Con usted';
                   window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 }}
                 className="w-full sm:w-auto bg-transparent transition-all duration-300 text-center font-medium rounded-sm text-sm md:text-base px-6 md:px-8 py-2 md:py-3 hover:scale-105"
