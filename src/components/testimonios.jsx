@@ -5,10 +5,10 @@ const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonialImages = [
-    "https://res.cloudinary.com/dprtewqr8/image/upload/v1739060001/testimonio_1_yrauxg.jpg",
-    "https://res.cloudinary.com/dprtewqr8/image/upload/v1739060001/Testimonio_2_nfblmg.jpg",
-    "https://res.cloudinary.com/dprtewqr8/image/upload/v1739060001/testimonio_3_cm4qzk.jpg",
-    "https://res.cloudinary.com/dprtewqr8/image/upload/v1739060002/Testimonio_4_bvpuoh.jpg"
+    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/testimonio_1_yrauxg_dkfhoj.jpg",
+    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/Testimonio_2_nfblmg_i3gd4k.jpg",
+    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/testimonio_3_cm4qzk_dtwqf6.jpg",
+    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Testimonio_4_bvpuoh_blaq4c.jpg"
   ];
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const TestimonialsSection = () => {
               muted
               loop
             >
-              <source src="https://res.cloudinary.com/dprtewqr8/video/upload/v1739060020/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm.mp4" />
+              <source src="https://res.cloudinary.com/dhzqf1itl/video/upload/v1739325181/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva.mp4" />
               Tu navegador no soporta el elemento de video.
             </video>
           </div>

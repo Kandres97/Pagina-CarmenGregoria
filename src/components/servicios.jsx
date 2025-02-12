@@ -11,7 +11,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738878512/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5_cdyfi0.jpg"
     },
     {
       title: "Amarres del Mismo Sexo",
@@ -22,7 +22,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738974880/IMG4_dw0nmk.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/IMG4_dw0nmk_iu2mak.jpg"
     },
     {
       title: "Amarres Sexuales",
@@ -33,7 +33,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738861430/Imagen_de_WhatsApp_2025-02-06_a_las_12.03.01_f5ba203b_pjbco2.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen_de_WhatsApp_2025-02-06_a_las_12.03.01_f5ba203b_pjbco2_ywxlc6.jpg"
     },
     {
       title: "Endulzamientos",
@@ -44,7 +44,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738861441/cdd2b3bbef2b6cba35f85a10087e1340_wdzkj5.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/cdd2b3bbef2b6cba35f85a10087e1340_wdzkj5_gij8o0.jpg"
     },
     {
       title: "Alejamientos",
@@ -55,7 +55,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738878470/esposa-solitaria-sufriendo-despues-ruptura-casa_u70axu.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/esposa-solitaria-sufriendo-despues-ruptura-casa_u70axu_m0e41z.jpg"
     },
     {
       title: "Protecciones",
@@ -66,7 +66,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dprtewqr8/image/upload/v1738860505/Imagen-de-WhatsApp-2024-11-05-a-las-15.17.52_d17d9b73-768x1024_nweyob.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen-de-WhatsApp-2024-11-05-a-las-15.17.52_d17d9b73-768x1024_nweyob_bafjsi.jpg"
     }
   ];
 
