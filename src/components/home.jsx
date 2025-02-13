@@ -79,7 +79,7 @@ const HeroSection = () => {
               <a href="#inicio" className="text-red-500 font-medium hover:text-red-400" aria-current="page">INICIO</a>
               <a href="#servicios" className="text-[#FFD700] hover:text-yellow-400 transition-colors">SERVICIOS</a>
               <a href="#testimonios" className="text-[#FFD700] hover:text-yellow-400 transition-colors">TESTIMONIOS</a>
-              <a href="#contacto" className="text-red-500 hover:text-red-400 transition-colors">CONTACTO</a>
+              <a href="#contacto" className="text-red-500 font-medium hover:text-red-400">CONTACTO</a>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ const HeroSection = () => {
             <a href="#inicio" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10" role="menuitem" aria-current="page">INICIO</a>
             <a href="#servicios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" role="menuitem">SERVICIOS</a>
             <a href="#testimonios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" role="menuitem">TESTIMONIOS</a>
-            <a href="#contacto" onClick={handleNavClick} className="text-red-500 hover:text-red-400 px-4 py-2 hover:bg-red-500/10 transition-colors" role="menuitem">CONTACTO</a>
+            <a href="#contacto" onClick={handleNavClick} className="text-red-500 font-medium hover:text-red-400" role="menuitem">CONTACTO</a>
           </div>
         </div>
       </nav>
@@ -118,6 +118,13 @@ const HeroSection = () => {
               src={slide.image}
               alt={slide.title}
               className="w-full h-full object-cover"
+              draggable="false"
+              style={{ 
+                WebkitUserDrag: 'none', 
+                userSelect: 'none',
+                pointerEvents: 'none'
+              }}
+              onContextMenu={(e) => e.preventDefault()}
             />
             
             {/* Overlay */}
@@ -126,14 +133,17 @@ const HeroSection = () => {
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
               <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-7xl font-bold mb-4 text-white"
-      style={{ 
-        textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
-        contain: 'layout paint'
-      }}>
-    
-  </h1>
-                <h2 className="text-xl md:text-4xl mb-6 text-[#FFD700] font-medium">
+                <h1 
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 text-[#FFD700]"
+                  style={{ 
+                    textShadow: '3px 3px 6px rgba(0,0,0,0.5)',
+                    lineHeight: '1.2',
+                    letterSpacing: 'tight'
+                  }}
+                >
+                  {slide.title}
+                </h1>
+                <h2 className="text-2xl md:text-4xl mb-6 text-white font-medium">
                   {slide.subtitle}
                 </h2>
                 <p className="text-base md:text-xl max-w-3xl mx-auto mb-8 text-gray-100">
@@ -154,13 +164,13 @@ const HeroSection = () => {
 
         {/* Carousel Navigation */}
         <button
-  onClick={prevSlide}
-  aria-label="Ver diapositiva anterior"
-  name="previous-slide"
-  className="absolute left-0 top-1/2 -translate-y-1/2 p-4 bg-black/60 hover:bg-[#FFD700]/70 text-white rounded-full transition-colors min-w-[48px] min-h-[48px] touch-manipulation"
->
-  <ChevronLeft size={32} aria-hidden="true" />
-</button>
+          onClick={prevSlide}
+          aria-label="Ver diapositiva anterior"
+          name="previous-slide"
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-4 bg-black/60 hover:bg-[#FFD700]/70 text-white rounded-full transition-colors min-w-[48px] min-h-[48px] touch-manipulation"
+        >
+          <ChevronLeft size={32} aria-hidden="true" />
+        </button>
         <button
           onClick={nextSlide}
           aria-label="Ver siguiente diapositiva"

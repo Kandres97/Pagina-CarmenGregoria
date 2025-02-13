@@ -9,6 +9,47 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-XXX');
     </script>
+
+    <!-- Scripts de protección contra inspección -->
+    <script>
+      // Deshabilitar clic derecho
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+
+      // Deshabilitar atajos de teclado para herramientas de desarrollo
+      document.addEventListener('keydown', function(e) {
+        if (
+          e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+          (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      // Detector y cierre de herramientas de desarrollo
+      let devToolsTimeout;
+
+      const closeDevTools = () => {
+        window.close();
+        window.location.href = window.location.href;
+      };
+
+      const checkDevTools = () => {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
+        
+        if (widthThreshold || heightThreshold) {
+          clearTimeout(devToolsTimeout);
+          devToolsTimeout = setTimeout(closeDevTools, 100);
+        }
+      };
+
+      setInterval(checkDevTools, 1000);
+    </script>
     
     <meta charset="UTF-8" />
     <style>
@@ -18,9 +59,17 @@
         width: 100%;
         height: 100%;
       }
+
+      /* Deshabilitar selección de texto */
+      * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
     </style>
 
-    <!-- Favicon y logos -->
+    <!-- El resto de tu código HTML permanece exactamente igual -->
     <link rel="mask-icon" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" color="#FFD700" />
     <link rel="icon" type="image/webp" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

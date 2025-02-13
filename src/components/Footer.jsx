@@ -110,6 +110,7 @@ const Footer = () => {
 
   return (
     <footer 
+      id="contacto"  
       className="bg-black border-t border-[#FFD700]/20"
       role="contentinfo"
       aria-label="Pie de página"
@@ -120,6 +121,7 @@ const Footer = () => {
           {/* Contact Information */}
           <div className="text-center md:text-left">
             <h3 className="text-[#FFD700] text-xl font-bold">MAESTRA CARMEN</h3>
+            <p className="text-white text-sm mt-1">Tu consulta sera atendida con discreción.</p>
             <p className="text-white text-sm mt-1">Experta en Amarres de Amor</p>
             <p className="text-white text-sm">Catemaco, Veracruz - México</p>
             <button

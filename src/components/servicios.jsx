@@ -104,7 +104,14 @@ const ServiceSection = () => {
                   <img
                     src={service.image}
                     alt={`Imagen ilustrativa de ${service.title}`}
+                    draggable="false"
+                    style={{ 
+                      WebkitUserDrag: 'none', 
+                      userSelect: 'none',
+                      pointerEvents: 'none'
+                    }}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
               )}
@@ -155,34 +162,6 @@ const ServiceSection = () => {
               </button>
             </div>
           ))}
-        </div>
-
-        {/* Mensaje Final */}
-        <div className="bg-[#0a0014] py-12 px-4 mt-12">
-          <div className="max-w-3xl mx-auto text-center bg-black bg-opacity-50 p-6 rounded-lg">
-            <p className="text-xl md:text-2xl lg:text-3xl mb-4 font-light tracking-wide">
-              <span className="text-[#FFD700]">No dejes que el amor de tu vida se aleje.</span>
-            </p>
-            <p className="text-white text-lg md:text-xl lg:text-2xl mb-4 italic">
-              Aún hay esperanza para recuperar su amor y estar juntos de nuevo.
-            </p>
-            <button 
-              onClick={handleWhatsAppClick}
-              aria-label="Iniciar consulta gratuita inmediata"
-              name="cta-main-consultation"
-              className="text-2xl md:text-3xl lg:text-4xl font-light tracking-widest 
-                text-red-600 cursor-pointer 
-                hover:scale-105 transition-transform duration-300
-                min-h-[60px] min-w-[280px]
-                px-8 py-6 rounded-lg
-                touch-manipulation
-                focus:outline-none focus:ring-2 focus:ring-red-600
-                hover:bg-red-600/10
-                animate-pulse"
-            >
-              ¡CONSULTANOS Y TE AYUDAREMOS!
-            </button>
-          </div>
         </div>
       </div>
     </div>
