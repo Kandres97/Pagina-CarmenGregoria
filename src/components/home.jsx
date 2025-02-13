@@ -60,7 +60,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="text-white text-2xl font-bold border-l-4 border-red-600 pl-4">
-              EXPERTOS EN AMARRES DE AMOR <br /> MAESTRA CARMEN
+              MAESTRA CARMEN
             </div>
             
             {/* Mobile Menu Button */}
@@ -126,9 +126,13 @@ const HeroSection = () => {
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
               <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl md:text-7xl font-bold mb-4 text-white drop-shadow-lg">
-                  {slide.title}
-                </h1>
+              <h1 className="text-4xl md:text-7xl font-bold mb-4 text-white"
+      style={{ 
+        textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+        contain: 'layout paint'
+      }}>
+    
+  </h1>
                 <h2 className="text-xl md:text-4xl mb-6 text-[#FFD700] font-medium">
                   {slide.subtitle}
                 </h2>
