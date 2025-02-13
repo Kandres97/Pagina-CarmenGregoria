@@ -5,16 +5,25 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       <div className="bg-black border border-[#FFD700]/30 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-[#FFD700]">{title}</h2>
+            <h2 id="modal-title" className="text-2xl font-bold text-[#FFD700]">
+              {title}
+            </h2>
             <button 
               onClick={onClose}
-              className="text-white hover:text-[#FFD700] transition-colors"
+              aria-label="Cerrar ventana modal"
+              name="close-modal"
+              className="text-white hover:text-[#FFD700] transition-colors p-2 rounded-full hover:bg-white/10"
             >
-              <X size={24} />
+              <X size={24} aria-hidden="true" />
             </button>
           </div>
           <div className="text-white">
@@ -100,7 +109,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-black border-t border-[#FFD700]/20">
+    <footer 
+      className="bg-black border-t border-[#FFD700]/20"
+      role="contentinfo"
+      aria-label="Pie de página"
+    >
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -111,9 +124,11 @@ const Footer = () => {
             <p className="text-white text-sm">Catemaco, Veracruz - México</p>
             <button
               onClick={handleWhatsAppClick}
+              aria-label="Llamar por WhatsApp al número +52 669 920 1652"
+              name="footer-whatsapp"
               className="text-white hover:text-[#FFD700] transition-colors flex items-center gap-2 mt-2"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4" aria-hidden="true" />
               <span>+52 669 920 1652</span>
             </button>
           </div>
@@ -122,18 +137,24 @@ const Footer = () => {
           <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
             <button 
               onClick={() => setOpenModal('privacy')} 
+              aria-label="Ver política de privacidad"
+              name="privacy-policy"
               className="text-white hover:text-[#FFD700] transition-colors text-sm"
             >
               Política de Privacidad
             </button>
             <button 
               onClick={() => setOpenModal('terms')} 
+              aria-label="Ver términos de servicio"
+              name="terms-service"
               className="text-white hover:text-[#FFD700] transition-colors text-sm"
             >
               Términos de Servicio
             </button>
             <button 
               onClick={() => setOpenModal('legal')} 
+              aria-label="Ver aviso legal"
+              name="legal-notice"
               className="text-white hover:text-[#FFD700] transition-colors text-sm"
             >
               Aviso Legal

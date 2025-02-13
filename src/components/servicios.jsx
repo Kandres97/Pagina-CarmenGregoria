@@ -70,9 +70,20 @@ const ServiceSection = () => {
     }
   ];
 
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '+526699201652';
+    const message = 'Maestra Carmen, Quiero Consultar Con usted';
+    window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  };
+
   return (
-    <div className="bg-black py-16 md:py-8" id="servicios">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <div 
+      className="bg-black py-16 md:py-8" 
+      id="servicios"
+      role="region" 
+      aria-label="Servicios disponibles"
+    >
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Título Principal */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
@@ -82,12 +93,17 @@ const ServiceSection = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
           {services.map((service, index) => (
-            <div key={index} className="flex flex-col items-center p-4 md:p-6">
+            <div 
+              key={index} 
+              className="flex flex-col items-center p-4 md:p-6"
+              role="article"
+              aria-label={`Servicio de ${service.title}`}
+            >
               {service.image && (
                 <div className="w-full aspect-square mb-6 overflow-hidden rounded-lg">
                   <img
                     src={service.image}
-                    alt={service.title}
+                    alt={`Imagen ilustrativa de ${service.title}`}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                   />
                 </div>
@@ -108,16 +124,22 @@ const ServiceSection = () => {
               </p>
               
               <button 
-                onClick={() => {
-                  const phoneNumber = '+526699201652';
-                  const message = 'Maestra Carmen, Quiero Consultar Con usted';
-                  window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                }}
-                className="w-full sm:w-auto bg-transparent transition-all duration-300 text-center font-medium rounded-sm text-sm md:text-base px-6 md:px-8 py-2 md:py-3 hover:scale-105"
+                onClick={handleWhatsAppClick}
+                aria-label={`Consulta gratuita sobre ${service.title}`}
+                name={`service-consultation-${index + 1}`}
+                className="w-full sm:w-auto bg-transparent transition-all duration-300 
+                  text-center font-medium rounded-sm
+                  px-8 py-4 hover:scale-105 
+                  min-h-[48px] min-w-[200px] 
+                  text-base md:text-lg
+                  touch-manipulation 
+                  mx-2 my-2
+                  focus:outline-none focus:ring-2 focus:ring-[#FFD700]
+                  hover:shadow-lg"
                 style={{
                   color: service.buttonTextColor,
                   borderColor: service.buttonBorderColor,
-                  borderWidth: '1px',
+                  borderWidth: '2px',
                   borderStyle: 'solid'
                 }}
                 onMouseOver={(e) => {
@@ -135,27 +157,33 @@ const ServiceSection = () => {
           ))}
         </div>
 
-       {/* Mensaje Final */}
-<div className="bg-[#0a0014] py-12 px-4">
-  <div className="max-w-3xl mx-auto text-center bg-black bg-opacity-50 p-6 rounded-lg">
-    <p className="text-xl md:text-2xl lg:text-3xl mb-4 font-light tracking-wide">
-      <span className="text-[#FFD700]">No dejes que el amor de tu vida se aleje.</span>
-    </p>
-    <p className="text-white text-lg md:text-xl lg:text-2xl mb-4 italic">
-      Aún hay esperanza para recuperar su amor y estar juntos de nuevo.
-    </p>
-    <p 
-      onClick={() => {
-        const phoneNumber = '+526699201652';
-        const message = 'Maestra Carmen, Quiero Consultar Con usted';
-        window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      }}
-      className="text-2xl md:text-3xl lg:text-4xl font-light tracking-widest text-red-600 animate-pulse cursor-pointer hover:scale-105 transition-transform duration-300"
-    >
-      ¡CONSULTANOS Y TE AYUDAREMOS!
-    </p>
-  </div>
-</div>
+        {/* Mensaje Final */}
+        <div className="bg-[#0a0014] py-12 px-4 mt-12">
+          <div className="max-w-3xl mx-auto text-center bg-black bg-opacity-50 p-6 rounded-lg">
+            <p className="text-xl md:text-2xl lg:text-3xl mb-4 font-light tracking-wide">
+              <span className="text-[#FFD700]">No dejes que el amor de tu vida se aleje.</span>
+            </p>
+            <p className="text-white text-lg md:text-xl lg:text-2xl mb-4 italic">
+              Aún hay esperanza para recuperar su amor y estar juntos de nuevo.
+            </p>
+            <button 
+              onClick={handleWhatsAppClick}
+              aria-label="Iniciar consulta gratuita inmediata"
+              name="cta-main-consultation"
+              className="text-2xl md:text-3xl lg:text-4xl font-light tracking-widest 
+                text-red-600 cursor-pointer 
+                hover:scale-105 transition-transform duration-300
+                min-h-[60px] min-w-[280px]
+                px-8 py-6 rounded-lg
+                touch-manipulation
+                focus:outline-none focus:ring-2 focus:ring-red-600
+                hover:bg-red-600/10
+                animate-pulse"
+            >
+              ¡CONSULTANOS Y TE AYUDAREMOS!
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

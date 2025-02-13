@@ -56,29 +56,30 @@ const HeroSection = () => {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black" id="inicio">
       {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 border-b border-[#FFD700]/30">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 border-b border-[#FFD700]/30" role="navigation" aria-label="Menú principal">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="text-white text-2xl font-bold border-l-4 border-red-600 pl-4">
-               EXPERTOS EN AMARRES DE AMOR <br /> MAESTRA CARMEN
+              EXPERTOS EN AMARRES DE AMOR <br /> MAESTRA CARMEN
             </div>
             
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isMenuOpen}
+              name="toggle-menu"
               className="md:hidden text-white hover:text-red-500 transition-colors"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </button>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8 text-white">
-              <a href="#inicio" className="text-red-500 font-medium hover:text-red-400" aria-label="Inicio">INICIO</a>
-             <a href="#servicios" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Servicios">SERVICIOS</a>
-              <a href="#testimonios" className="text-[#FFD700] hover:text-yellow-400 transition-colors" aria-label="Testimonios">TESTIMONIOS</a>
-              <a href="#contacto" className="text-red-500 hover:text-red-400 transition-colors" aria-label="Contacto">CONTACTO</a>
+              <a href="#inicio" className="text-red-500 font-medium hover:text-red-400" aria-current="page">INICIO</a>
+              <a href="#servicios" className="text-[#FFD700] hover:text-yellow-400 transition-colors">SERVICIOS</a>
+              <a href="#testimonios" className="text-[#FFD700] hover:text-yellow-400 transition-colors">TESTIMONIOS</a>
+              <a href="#contacto" className="text-red-500 hover:text-red-400 transition-colors">CONTACTO</a>
             </div>
           </div>
         </div>
@@ -89,17 +90,19 @@ const HeroSection = () => {
             isMenuOpen ? 'max-h-screen py-4' : 'max-h-0 overflow-hidden'
           }`}
           aria-hidden={!isMenuOpen}
+          role="menu"
         >
           <div className="container mx-auto px-4 flex flex-col space-y-4">
-            <a href="#inicio" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10" aria-label="Inicio">INICIO</a>
-            <a href="#servicios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Servicios">SERVICIOS</a>
-            <a href="#testimonios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" aria-label="Testimonios">TESTIMONIOS</a>
-            <a href="#contacto" onClick={handleNavClick} className="text-red-500 hover:text-red-400 px-4 py-2 hover:bg-red-500/10 transition-colors" aria-label="Contacto">CONTACTO</a>
+            <a href="#inicio" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10" role="menuitem" aria-current="page">INICIO</a>
+            <a href="#servicios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" role="menuitem">SERVICIOS</a>
+            <a href="#testimonios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors" role="menuitem">TESTIMONIOS</a>
+            <a href="#contacto" onClick={handleNavClick} className="text-red-500 hover:text-red-400 px-4 py-2 hover:bg-red-500/10 transition-colors" role="menuitem">CONTACTO</a>
           </div>
         </div>
       </nav>
+
       {/* Carousel */}
-      <div className="relative h-full">
+      <div className="relative h-full" role="region" aria-roledescription="carrusel" aria-label="Galería de servicios">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -107,6 +110,8 @@ const HeroSection = () => {
               currentSlide === index ? 'opacity-100' : 'opacity-0'
             }`}
             aria-hidden={currentSlide !== index}
+            role="tabpanel"
+            aria-label={`Diapositiva ${index + 1} de ${slides.length}`}
           >
             {/* Background Image */}
             <img
@@ -116,7 +121,7 @@ const HeroSection = () => {
             />
             
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" aria-hidden="true" />
             
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
@@ -132,7 +137,8 @@ const HeroSection = () => {
                 </p>
                 <button
                   onClick={handleWhatsAppClick}
-                  aria-label="Iniciar consulta por WhatsApp"
+                  aria-label="Iniciar consulta gratuita por WhatsApp"
+                  name="main-consultation"
                   className="bg-red-600 hover:bg-red-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-sm text-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-red-600/50"
                 >
                   Consulta sin costo
@@ -144,28 +150,31 @@ const HeroSection = () => {
 
         {/* Carousel Navigation */}
         <button
-          onClick={prevSlide}
-          aria-label="Diapositiva anterior"
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 hover:bg-[#FFD700]/70 text-white rounded-full transition-colors"
-        >
-          <ChevronLeft size={24} />
-        </button>
+  onClick={prevSlide}
+  aria-label="Ver diapositiva anterior"
+  name="previous-slide"
+  className="absolute left-0 top-1/2 -translate-y-1/2 p-4 bg-black/60 hover:bg-[#FFD700]/70 text-white rounded-full transition-colors min-w-[48px] min-h-[48px] touch-manipulation"
+>
+  <ChevronLeft size={32} aria-hidden="true" />
+</button>
         <button
           onClick={nextSlide}
-          aria-label="Siguiente diapositiva"
+          aria-label="Ver siguiente diapositiva"
+          name="next-slide"
           className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 hover:bg-[#FFD700]/70 text-white rounded-full transition-colors"
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={24} aria-hidden="true" />
         </button>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3" role="tablist">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3" role="tablist" aria-label="Navegación de diapositivas">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               aria-label={`Ir a diapositiva ${index + 1}`}
               aria-selected={currentSlide === index}
+              name={`slide-indicator-${index + 1}`}
               role="tab"
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 currentSlide === index 
@@ -180,7 +189,8 @@ const HeroSection = () => {
       {/* WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
-        aria-label="Iniciar consulta por WhatsApp"
+        aria-label="Iniciar consulta gratuita por WhatsApp"
+        name="whatsapp-floating"
         className="fixed bottom-8 right-8 bg-green-700 hover:bg-green-800 px-6 py-3 rounded-full shadow-lg hover:shadow-green-800/50 transition-all duration-300 z-50 flex flex-col items-center"
       >
         <div className="flex items-center gap-3">
