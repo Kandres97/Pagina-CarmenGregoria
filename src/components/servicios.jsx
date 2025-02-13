@@ -72,14 +72,7 @@ const ServiceSection = () => {
 
   return (
     <div className="bg-black py-16 md:py-8" id="servicios">
-      {/* Barra de advertencia */}
-      <div className="bg-red-600 w-full py-2">
-        <p className="text-white text-center font-bold">
-          ESTE SITIO Y LAS CONSULTAS ESTAN DIRIJIDAS <br /> SOLO A MAYORES DE 18 AÑOS
-        </p>
-      </div>
-
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Título Principal */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
@@ -143,11 +136,19 @@ const ServiceSection = () => {
         </div>
 
        {/* Mensaje Final */}
-       <div className="mt-4 text-center">
-          <p className="text-white text-xl md:text-2xl mb-4 max-w-3xl mx-auto">
-            No dejes que el amor de tu vida se aleje. Aún hay esperanza para recuperar su amor y estar juntos de nuevo.<br /> <span className="text-red-600">¡CONSULTANOS Y TE AYUDAREMOS!</span>
-          </p>
-        </div>
+<div className="mt-16 text-center px-4">
+  <div className="max-w-4xl mx-auto bg-gradient-to-r from-black via-gray-900 to-black p-8 rounded-lg border border-[#FFD700]/30">
+    <p className="text-2xl md:text-3xl lg:text-4xl mb-6 font-light tracking-wide">
+      <span className="text-[#FFD700]">No dejes que el amor de tu vida se aleje.</span>
+    </p>
+    <p className="text-white text-xl md:text-2xl lg:text-3xl mb-6 italic">
+      Aún hay esperanza para recuperar su amor y estar juntos de nuevo.
+    </p>
+    <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-widest text-red-600 animate-pulse">
+      ¡CONSULTANOS Y TE AYUDAREMOS!
+    </p>
+  </div>
+</div>
       </div>
     </div>
   );
