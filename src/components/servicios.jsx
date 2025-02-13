@@ -136,15 +136,22 @@ const ServiceSection = () => {
         </div>
 
        {/* Mensaje Final */}
-<div className="mt-16 text-center px-4">
-  <div className="max-w-4xl mx-auto bg-gradient-to-r from-black via-gray-900 to-black p-8 rounded-lg border border-[#FFD700]/30">
-    <p className="text-2xl md:text-3xl lg:text-4xl mb-6 font-light tracking-wide">
+<div className="bg-[#0a0014] py-12 px-4">
+  <div className="max-w-3xl mx-auto text-center bg-black bg-opacity-50 p-6 rounded-lg">
+    <p className="text-xl md:text-2xl lg:text-3xl mb-4 font-light tracking-wide">
       <span className="text-[#FFD700]">No dejes que el amor de tu vida se aleje.</span>
     </p>
-    <p className="text-white text-xl md:text-2xl lg:text-3xl mb-6 italic">
+    <p className="text-white text-lg md:text-xl lg:text-2xl mb-4 italic">
       Aún hay esperanza para recuperar su amor y estar juntos de nuevo.
     </p>
-    <p className="text-3xl md:text-4xl lg:text-5xl font-light tracking-widest text-red-600 animate-pulse">
+    <p 
+      onClick={() => {
+        const phoneNumber = '+526699201652';
+        const message = 'Maestra Carmen, Quiero Consultar Con usted';
+        window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      }}
+      className="text-2xl md:text-3xl lg:text-4xl font-light tracking-widest text-red-600 animate-pulse cursor-pointer hover:scale-105 transition-transform duration-300"
+    >
       ¡CONSULTANOS Y TE AYUDAREMOS!
     </p>
   </div>
