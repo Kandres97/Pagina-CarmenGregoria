@@ -1,0 +1,37 @@
+# robots.txt para midominio.com
+User-agent: *
+Allow: /
+Allow: /servicios
+Allow: /testimonios
+Allow: /contacto
+
+# Archivos y directorios a no indexar
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*?*
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /search?
+Disallow: /search/
+Disallow: /*?s=
+Disallow: /*&s=
+
+# Permitir a los bots de redes sociales acceder a las imágenes
+User-agent: Twitterbot
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.png$
+Allow: /*.webp$
+
+# Velocidad de rastreo
+Crawl-delay: 10
+
+# Sitemap
+Sitemap: https://midominio.com/sitemap.xml
