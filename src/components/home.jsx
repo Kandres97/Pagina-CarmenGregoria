@@ -22,7 +22,7 @@ const HeroSection = () => {
       image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/inivideo_edl4wf_klxfge.jpg",
       title: "Amarres Efectivos",
       subtitle: "Resultados Garantizados",
-      description: "Recupera a Tu Ser Amado con Nuestros Rituales Ancestrales, recupera la felicidad"
+      description: "Recupera a Tu Ser Amado       con Nuestros Rituales Ancestrales, recupera la felicidad"
     }
   ];
 
@@ -53,8 +53,31 @@ const HeroSection = () => {
     setIsMenuOpen(false);
   };
 
+  const scrollToTestimonios = () => {
+    const testimoniosSection = document.getElementById('testimonios');
+    if (testimoniosSection) {
+      testimoniosSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black" id="inicio">
+       {/* Vertical "Ver Testimonios" Text */}
+       <div 
+  className="fixed left-4 top-[85%] z-50 flex items-center"
+>
+  <div className="bg-[#FFD700] py-1 px-3 rounded-lg shadow-xl transform -rotate-90 origin-left">
+    <button 
+      onClick={scrollToTestimonios}
+      className="text-black hover:text-red-700 transition-colors text-xs font-bold tracking-widest"
+      aria-label="Ver testimonios"
+    >
+      VER TESTIMONIOS
+    </button>
+  </div>
+</div>
+
+
       {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 border-b border-[#FFD700]/30" role="navigation" aria-label="Menú principal">
         <div className="container mx-auto px-4">
