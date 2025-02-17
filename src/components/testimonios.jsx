@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // URLs de las imágenes de testimonios
   const testimonialImages = [
@@ -12,8 +13,9 @@ const TestimonialsSection = () => {
     "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Testimonio_4_bvpuoh_blaq4c.jpg"
   ];
 
-  // URL del video de testimonio
+  // URL del video y su thumbnail
   const videoUrl = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1739325181/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva.mp4";
+  const videoThumbnail = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1739325181/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva.jpg"; // Thumbnail automático del video
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,6 +28,14 @@ const TestimonialsSection = () => {
     const phoneNumber = '526699201652';
     const message = 'Maestra Gregoria, Quiero Consultar Con usted';
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  const handleVideoClick = () => {
+    setIsPlaying(true);
+    const videoElement = document.getElementById('testimonialVideo');
+    if (videoElement) {
+      videoElement.play();
+    }
   };
 
   return (
@@ -43,19 +53,39 @@ const TestimonialsSection = () => {
 
         {/* Contenedor de Media */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16">
-          {/* Video */}
+          {/* Video con Thumbnail */}
           <div className="bg-black rounded-lg overflow-hidden shadow-xl">
             <div className="relative w-full" style={{ paddingTop: '100%' }}>
-              <video 
-                className="absolute inset-0 w-full h-full object-contain"
-                controls
-                controlsList="nodownload noplaybackrate"
-                disablePictureInPicture
-                playsInline
-              >
-                <source src={videoUrl} type="video/mp4" />
-                Tu navegador no soporta el elemento de video.
-              </video>
+              {!isPlaying ? (
+                <div 
+                  className="absolute inset-0 cursor-pointer group"
+                  onClick={handleVideoClick}
+                >
+                  <img 
+                    src={videoThumbnail}
+                    alt="Vista previa del video"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#FFD700] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-8 h-8 sm:w-10 sm:h-10 text-black ml-1" />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <video 
+                  id="testimonialVideo"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  controls
+                  controlsList="nodownload noplaybackrate"
+                  disablePictureInPicture
+                  playsInline
+                  poster={videoThumbnail}
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              )}
             </div>
           </div>
 

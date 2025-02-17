@@ -83,7 +83,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           {/* Información de Contacto */}
           <div className="text-center md:text-left space-y-2">
-            <h3 className="text-[#FFD700] text-lg sm:text-xl font-bold">MAESTRA Gregoria</h3>
+            <h3 className="text-[#FFD700] text-lg sm:text-xl font-bold">Maestra Gregoria</h3>
             <div className="space-y-1">
               <p className="text-white text-xs sm:text-sm">Tu consulta sera atendida con discreción.</p>
               <p className="text-white text-xs sm:text-sm">Experta en Amarres de Amor</p>
