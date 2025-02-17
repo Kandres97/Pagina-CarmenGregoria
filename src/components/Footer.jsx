@@ -40,7 +40,7 @@ const Footer = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '526699201652';
-    const message = 'Maestra Carmen, Quiero Consultar Con usted';
+    const message = 'Maestra Gregoria, Quiero Consultar Con usted';
     window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
@@ -51,7 +51,7 @@ const Footer = () => {
       title: "Política de Privacidad",
       content: (
         <div className="space-y-4">
-          <p>La presente Política de Privacidad establece los términos en que la Maestra Carmen usa y protege la información que es proporcionada por sus usuarios. Estamos comprometidos con la seguridad de los datos de nuestros usuarios.</p>
+          <p>La presente Política de Privacidad establece los términos en que la Maestra Gregoria usa y protege la información que es proporcionada por sus usuarios. Estamos comprometidos con la seguridad de los datos de nuestros usuarios.</p>
 
           <h3 className="text-lg font-semibold text-[#FFD700] mt-4">Información que es recogida</h3>
           <p>Nuestro sitio web podrá recoger información personal como: Nombre, información de contacto como su número de teléfono y correo electrónico.</p>
@@ -93,7 +93,7 @@ const Footer = () => {
       title: "Aviso Legal",
       content: (
         <div className="space-y-4">
-          <p>Este aviso legal regula el uso del servicio del sitio web de la Maestra Carmen.</p>
+          <p>Este aviso legal regula el uso del servicio del sitio web de la Maestra Gregoria.</p>
 
           <h3 className="text-lg font-semibold text-[#FFD700] mt-4">Información General</h3>
           <p>Los servicios ofrecidos son de naturaleza espiritual y de consultoría personal. Todos los servicios se proporcionan únicamente con fines de orientación y ayuda espiritual.</p>
@@ -120,7 +120,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Contact Information */}
           <div className="text-center md:text-left">
-            <h3 className="text-[#FFD700] text-xl font-bold">MAESTRA CARMEN</h3>
+            <h3 className="text-[#FFD700] text-xl font-bold">MAESTRA Gregoria</h3>
             <p className="text-white text-sm mt-1">Tu consulta sera atendida con discreción.</p>
             <p className="text-white text-sm mt-1">Experta en Amarres de Amor</p>
             <p className="text-white text-sm">Catemaco, Veracruz - México</p>
@@ -167,7 +167,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center mt-6 pt-6 border-t border-[#FFD700]/20">
           <p className="text-white text-sm">
-            © {currentYear} Maestra Carmen - Todos los derechos reservados
+            © {currentYear} Maestra Gregoria - Todos los derechos reservados
           </p>
         </div>
       </div>

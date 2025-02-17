@@ -14,7 +14,7 @@ const HeroSection = () => {
     },
     {
       image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/descarga_1_m1zvfl_qwf4rz.jpg",
-      title: "Amarres Sexuales y del Mismo Sexo",
+      title: "Amarres Sexuales y del Mismo Genero",
       subtitle: "Expertos en Amarres de toda clase",
       description: "Especialistas en amarres, amarres sexuales y retorno de pareja "
     },
@@ -44,7 +44,7 @@ const HeroSection = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '526699201652';
-    const message = 'Maestra Carmen, Quiero Consultar Con usted';
+    const message = 'Maestra Gregoria, Quiero Consultar Con usted';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.location.href = whatsappUrl;
   };
@@ -83,7 +83,7 @@ const HeroSection = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="text-white text-2xl font-bold border-l-4 border-red-600 pl-4">
-              MAESTRA CARMEN
+              MAESTRA GREGORIA
             </div>
             
             {/* Mobile Menu Button */}

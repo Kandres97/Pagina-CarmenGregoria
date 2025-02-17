@@ -11,18 +11,20 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5_cdyfi0.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5_cdyfi0.jpg",
+      message: "Maestra Gregoria, necesito ayuda con un amarre de amor."
     },
     {
-      title: "Amarres del Mismo Sexo",
-      description: "Rituales especializados para unir parejas del mismo sexo. Recupera y fortalece el amor con tu pareja ideal mediante rituales personalizados y prácticas espirituales.",
+      title: "Amarres del Mismo Genero",
+      description: "Rituales especializados para unir parejas del mismo genero. Recupera y fortalece el amor con tu pareja ideal mediante rituales personalizados y prácticas espirituales.",
       titleColor: "#FFD700",
       descriptionColor: "#FFFFFF",
       buttonTextColor: "#FFD700",
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/IMG4_dw0nmk_iu2mak.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/IMG4_dw0nmk_iu2mak.jpg",
+      message: "Maestra Gregoria, quiero un amarre para pareja del mismo genero."
     },
     {
       title: "Amarres Sexuales",
@@ -33,7 +35,8 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen_de_WhatsApp_2025-02-06_a_las_12.03.01_f5ba203b_pjbco2_ywxlc6.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen_de_WhatsApp_2025-02-06_a_las_12.03.01_f5ba203b_pjbco2_ywxlc6.jpg",
+      message: "Maestra Gregoria, quiero su ayuda con un amarre sexual "
     },
     {
       title: "Endulzamientos",
@@ -44,7 +47,8 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/cdd2b3bbef2b6cba35f85a10087e1340_wdzkj5_gij8o0.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/cdd2b3bbef2b6cba35f85a10087e1340_wdzkj5_gij8o0.jpg",
+      message: "Maestra Gregoria, deseo un endulzamiento de amor."
     },
     {
       title: "Alejamientos",
@@ -55,7 +59,8 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/esposa-solitaria-sufriendo-despues-ruptura-casa_u70axu_m0e41z.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/esposa-solitaria-sufriendo-despues-ruptura-casa_u70axu_m0e41z.jpg",
+      message: "Maestra Gregoria, necesito ayuda con un alejamiento."
     },
     {
       title: "Protecciones",
@@ -66,13 +71,13 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen-de-WhatsApp-2024-11-05-a-las-15.17.52_d17d9b73-768x1024_nweyob_bafjsi.jpg"
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen-de-WhatsApp-2024-11-05-a-las-15.17.52_d17d9b73-768x1024_nweyob_bafjsi.jpg",
+      message: "Maestra Gregoria, busco protección espiritual"
     }
   ];
 
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = (message) => {
     const phoneNumber = '+526699201652';
-    const message = 'Maestra Carmen, Quiero Consultar Con usted';
     window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
@@ -84,7 +89,6 @@ const ServiceSection = () => {
       aria-label="Servicios disponibles"
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        {/* Título Principal */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
             SERVICIOS
@@ -131,7 +135,7 @@ const ServiceSection = () => {
               </p>
               
               <button 
-                onClick={handleWhatsAppClick}
+                onClick={() => handleWhatsAppClick(service.message)}
                 aria-label={`Consulta gratuita sobre ${service.title}`}
                 name={`service-consultation-${index + 1}`}
                 className="w-full sm:w-auto bg-transparent transition-all duration-300 

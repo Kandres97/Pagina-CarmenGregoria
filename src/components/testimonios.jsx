@@ -20,7 +20,7 @@ const TestimonialsSection = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '526699201652';
-    const message = 'Maestra Carmen, Quiero Consultar Con usted';
+    const message = 'Maestra Gregoria, Quiero Consultar Con usted';
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -134,12 +134,9 @@ const TestimonialsSection = () => {
               </p>
 
               <p className="text-2xl font-bold text-[#FFD700]">
-                ¡ESTA ES SU OPORTUNIDAD PARA CAMBIAR SU DESTINO Y RECUPERAR SU FELICIDAD!
+                Haz que tu pareja regrese a ti y recupera el amor que nunca debio irse.
               </p>
 
-              <h3 className="text-3xl font-bold text-[#FFD700]">
-                SI HAS LLEGADO HASTA AQUÍ ES POR ALGO
-              </h3>
             </div>
 
             <button
