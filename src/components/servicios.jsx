@@ -83,28 +83,28 @@ const ServiceSection = () => {
 
   return (
     <div 
-      className="bg-black py-16 md:py-8" 
+      className="bg-black w-full py-8 sm:py-12 md:py-16" 
       id="servicios"
       role="region" 
       aria-label="Servicios disponibles"
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#FFD700]">
             SERVICIOS
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="flex flex-col items-center p-4 md:p-6"
+              className="flex flex-col items-center p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:scale-105"
               role="article"
               aria-label={`Servicio de ${service.title}`}
             >
               {service.image && (
-                <div className="w-full aspect-square mb-6 overflow-hidden rounded-lg">
+                <div className="w-full aspect-square mb-4 sm:mb-6 overflow-hidden rounded-lg">
                   <img
                     src={service.image}
                     alt={`Imagen ilustrativa de ${service.title}`}
@@ -121,14 +121,14 @@ const ServiceSection = () => {
               )}
               
               <h3 
-                className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 text-center px-2"
                 style={{ color: service.titleColor }}
               >
                 {service.title}
               </h3>
               
               <p 
-                className="text-base md:text-lg text-center mb-6 md:mb-8"
+                className="text-sm sm:text-base md:text-lg text-center mb-4 sm:mb-6 md:mb-8 px-2"
                 style={{ color: service.descriptionColor }}
               >
                 {service.description}
@@ -140,9 +140,10 @@ const ServiceSection = () => {
                 name={`service-consultation-${index + 1}`}
                 className="w-full sm:w-auto bg-transparent transition-all duration-300 
                   text-center font-medium rounded-sm
-                  px-8 py-4 hover:scale-105 
-                  min-h-[48px] min-w-[200px] 
-                  text-base md:text-lg
+                  px-4 sm:px-6 md:px-8 py-3 sm:py-4 
+                  min-h-[40px] sm:min-h-[48px] 
+                  min-w-[160px] sm:min-w-[200px] 
+                  text-sm sm:text-base md:text-lg
                   touch-manipulation 
                   mx-2 my-2
                   focus:outline-none focus:ring-2 focus:ring-[#FFD700]
