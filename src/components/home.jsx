@@ -29,7 +29,7 @@ const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 8000);
+    }, 4000); // Cambiado de 8000 a 4000 para que cambie cada 4 segundos
 
     return () => clearInterval(timer);
   }, []);
@@ -62,8 +62,8 @@ const HeroSection = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black" id="inicio">
-      {/* Botón Ver Testimonios - Adaptado para móvil */}
-      <div className="absolute left-2 sm:left-4 top-[85%] z-50 flex items-center scale-75 sm:scale-100">
+      {/* Botón Ver Testimonios - Movido más arriba */}
+      <div className="absolute left-2 sm:left-4 top-[30%] z-50 flex items-center scale-75 sm:scale-100">
         <div className="bg-[#FFD700] py-1 px-3 rounded-lg shadow-xl transform -rotate-90 origin-left hover:scale-105 transition-transform">
           <button 
             onClick={scrollToTestimonios}
@@ -75,7 +75,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Navigation Bar - Mejorada para responsive */}
+      {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 border-b border-[#FFD700]/30" role="navigation" aria-label="Menú principal">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-2 sm:py-4">
@@ -120,7 +120,7 @@ const HeroSection = () => {
         </div>
       </nav>
 
-      {/* Carousel - Mejorado para responsive */}
+      {/* Carousel */}
       <div className="relative h-full" role="region" aria-roledescription="carrusel" aria-label="Galería de servicios">
         {slides.map((slide, index) => (
           <div
@@ -178,7 +178,7 @@ const HeroSection = () => {
           </div>
         ))}
 
-        {/* Botones de navegación del carrusel - Adaptados para móvil */}
+        {/* Botones de navegación del carrusel */}
         <button
           onClick={prevSlide}
           aria-label="Ver diapositiva anterior"
@@ -196,7 +196,7 @@ const HeroSection = () => {
           <ChevronRight size={24} className="sm:w-8 sm:h-8" aria-hidden="true" />
         </button>
 
-        {/* Indicadores de diapositivas - Adaptados para móvil */}
+        {/* Indicadores de diapositivas */}
         <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 sm:space-x-3" role="tablist">
           {slides.map((_, index) => (
             <button

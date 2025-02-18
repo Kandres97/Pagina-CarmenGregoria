@@ -48,28 +48,67 @@ const Footer = () => {
 
   const policies = {
     privacy: {
-      title: "Política de Privacidad",
+      title: "Políticas",
       content: (
-        <div className="space-y-3 sm:space-y-4">
-          <p className="text-sm sm:text-base">La presente Política de Privacidad establece los términos en que la Maestra Gregoria usa y protege la información que es proporcionada por sus usuarios. Estamos comprometidos con la seguridad de los datos de nuestros usuarios.</p>
+        <div className="space-y-4">
+          {/* Información General */}
+          <div>
+            <h3 className="text-lg font-semibold text-[#FFD700] mb-2">Información General</h3>
+            <p>La presente política establece los términos en que la Maestra Gregoria usa y protege la información proporcionada por sus usuarios, así como las condiciones generales de uso del servicio.</p>
+          </div>
 
-          <h3 className="text-base sm:text-lg font-semibold text-[#FFD700] mt-3 sm:mt-4">Información que es recogida</h3>
-          <p className="text-sm sm:text-base">Nuestro sitio web podrá recoger información personal como: Nombre, información de contacto como su número de teléfono y correo electrónico.</p>
+          {/* Advertencias Importantes */}
+          <div className="p-4 border border-[#FFD700]/30 rounded">
+            <h3 className="text-lg font-semibold text-[#FFD700] mb-3">ADVERTENCIAS IMPORTANTES</h3>
+            <ul className="space-y-3">
+              <li>SERVICIO ESPIRITUAL: Nuestros servicios son de naturaleza espiritual y esotérica. No garantizamos resultados específicos.</li>
+              <li>SOLO MAYORES DE EDAD: Los servicios están destinados exclusivamente a personas mayores de 18 años.</li>
+              <li>NO SUSTITUYE CONSEJOS PROFESIONALES: Nuestros servicios no sustituyen consejos médicos, psicológicos, legales o financieros profesionales.</li>
+              <li>RESPONSABILIDAD: Las decisiones tomadas basadas en nuestras consultas son responsabilidad exclusiva del cliente.</li>
+              <li> CONFIDENCIALIDAD: Mantenemos la confidencialidad de las consultas, pero no nos hacemos responsables por información compartida voluntariamente por el cliente.</li>
+            </ul>
+          </div>
 
-          <h3 className="text-base sm:text-lg font-semibold text-[#FFD700] mt-3 sm:mt-4">Uso de la información recogida</h3>
-          <p className="text-sm sm:text-base">La información que recogemos se utiliza para:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Proporcionar el mejor servicio posible</li>
-            <li>Mantener un registro de usuarios y sus consultas</li>
-            <li>Mejorar nuestros productos y servicios</li>
-          </ul>
+          {/* Términos del Servicio */}
+          <div>
+            <h3 className="text-lg font-semibold text-[#FFD700] mb-2">Términos del Servicio</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Los resultados pueden variar según el caso particular.</li>
+              <li>Las consultas y servicios son de carácter personal y confidencial.</li>
+              <li>Los pagos realizados no son reembolsables una vez iniciado el servicio.</li>
+              <li>Los testimonios presentados son experiencias personales y los resultados pueden variar.</li>
+            </ul>
+          </div>
 
-          <h3 className="text-base sm:text-lg font-semibold text-[#FFD700] mt-3 sm:mt-4">Confidencialidad</h3>
-          <p className="text-sm sm:text-base">Nos comprometemos a mantener su información segura. No se compartirá ni venderá a terceros bajo ninguna circunstancia.</p>
+          {/* Privacidad */}
+          <div>
+            <h3 className="text-lg font-semibold text-[#FFD700] mb-2">Privacidad de Datos</h3>
+            <p>Información que recolectamos:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Nombre y datos de contacto</li>
+              <li>Número de teléfono y correo electrónico</li>
+              <li>Información proporcionada durante las consultas</li>
+            </ul>
+          </div>
+
+          {/* Uso de la Información */}
+          <div>
+            <h3 className="text-lg font-semibold text-[#FFD700] mb-2">Uso de la Información</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Proporcionar y mejorar nuestros servicios</li>
+              <li>Mantener un registro confidencial de consultas</li>
+              <li>Comunicarnos con usted sobre su servicio</li>
+              <li>Proteger la seguridad y privacidad de nuestros usuarios</li>
+            </ul>
+          </div>
+
+          {/* Acuerdo Final */}
+          <div className="mt-6 p-4 bg-[#FFD700]/10 rounded">
+            <p className="text-sm">Al utilizar nuestros servicios, usted reconoce haber leído, entendido y aceptado todas estas políticas y condiciones. Si no está de acuerdo con alguna de estas condiciones, por favor absténgase de utilizar nuestros servicios.</p>
+          </div>
         </div>
       )
-    },
-    // ... resto de las políticas similar al anterior ...
+    }
   };
 
   return (
@@ -101,18 +140,15 @@ const Footer = () => {
           </div>
 
           {/* Enlaces de Políticas */}
-          <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-4 sm:gap-6">
-            {Object.entries(policies).map(([key, policy]) => (
-              <button 
-                key={key}
-                onClick={() => setOpenModal(key)} 
-                aria-label={`Ver ${policy.title.toLowerCase()}`}
-                name={`${key}-policy`}
-                className="text-white hover:text-[#FFD700] transition-colors text-xs sm:text-sm"
-              >
-                {policy.title}
-              </button>
-            ))}
+          <div className="flex justify-center md:justify-end">
+            <button 
+              onClick={() => setOpenModal('privacy')} 
+              aria-label="Ver políticas"
+              name="privacy-policy"
+              className="text-white hover:text-[#FFD700] transition-colors text-xs sm:text-sm"
+            >
+              Políticas
+            </button>
           </div>
         </div>
 
@@ -124,17 +160,14 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Modales de Políticas */}
-      {Object.entries(policies).map(([key, policy]) => (
-        <Modal
-          key={key}
-          isOpen={openModal === key}
-          onClose={() => setOpenModal(null)}
-          title={policy.title}
-        >
-          {policy.content}
-        </Modal>
-      ))}
+      {/* Modal de Políticas */}
+      <Modal
+        isOpen={openModal === 'privacy'}
+        onClose={() => setOpenModal(null)}
+        title={policies.privacy.title}
+      >
+        {policies.privacy.content}
+      </Modal>
     </footer>
   );
 };
