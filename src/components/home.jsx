@@ -7,19 +7,19 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/tarot_bx0hbh_eb4wbc.jpg",
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844945/tarot_bx0hbh_eb4wbc_dbyabo.jpg",
       title: "Amarres de Amor",
       subtitle: "Recupera tu ser amado",
       description: "Brujos de catemaco, Expertos en Amarres de Amor, Endulzamiento de pareja"
     },
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/descarga_1_m1zvfl_qwf4rz.jpg",
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/inivideo_edl4wf_klxfge_c9zuy5.jpg ",
       title: "Amarres Sexuales y del Mismo Genero",
       subtitle: "Expertos en Amarres de toda clase",
       description: "Especialistas en amarres, amarres sexuales y retorno de pareja "
     },
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/inivideo_edl4wf_klxfge.jpg",
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/descarga_1_m1zvfl_qwf4rz_kv9en9.jpg ",
       title: "Amarres Efectivos",
       subtitle: "Resultados Garantizados",
       description: "Recupera a Tu Ser Amado con Nuestros Rituales Ancestrales, recupera la felicidad"
@@ -96,6 +96,7 @@ const HeroSection = () => {
             <div className="hidden md:flex items-center space-x-4 lg:space-x-8 text-white">
               <a href="#inicio" className="text-red-500 font-medium hover:text-red-400 text-sm lg:text-base" aria-current="page">INICIO</a>
               <a href="#servicios" className="text-[#FFD700] hover:text-yellow-400 transition-colors text-sm lg:text-base">SERVICIOS</a>
+              <a href="#retornos" className="text-[#FFD700] hover:text-yellow-400 transition-colors text-sm lg:text-base">RETORNOS</a>
               <a href="#testimonios" className="text-[#FFD700] hover:text-yellow-400 transition-colors text-sm lg:text-base">TESTIMONIOS</a>
               <a href="#contacto" className="text-red-500 font-medium hover:text-red-400 text-sm lg:text-base">CONTACTO</a>
             </div>
@@ -112,6 +113,7 @@ const HeroSection = () => {
           <div className="container mx-auto px-4 flex flex-col space-y-4">
             <a href="#inicio" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10 text-sm sm:text-base" role="menuitem">INICIO</a>
             <a href="#servicios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base" role="menuitem">SERVICIOS</a>
+            <a href="#retornos" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base" role="menuitem">RETORNOS</a>
             <a href="#testimonios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base" role="menuitem">TESTIMONIOS</a>
             <a href="#contacto" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:text-red-400 text-sm sm:text-base" role="menuitem">CONTACTO</a>
           </div>
