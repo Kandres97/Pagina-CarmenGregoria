@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
   <head>
     <!-- Google Tag Manager -->
     <script>
@@ -12,19 +12,52 @@
     
     <meta charset="UTF-8" />
     <style>
+      /* Estilos existentes */
       .circular-logo {
         border-radius: 50%;
         overflow: hidden;
         width: 100%;
         height: 100%;
       }
+
+      /* Protección de imágenes */
+      img {
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* Deshabilitar selección de texto */
+      body {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
     </style>
+
+    <!-- Script para protección adicional -->
+    <script>
+      document.addEventListener('keydown', function(e) {
+        // Deshabilitar tecla F12
+        if(e.keyCode == 123) {
+          e.preventDefault();
+        }
+        // Deshabilitar Ctrl+Shift+I y Ctrl+U
+        if(e.ctrlKey && (e.shiftKey && e.keyCode == 73 || e.keyCode == 85)) {
+          e.preventDefault();
+        }
+      });
+    </script>
 
     <!-- Favicon y logos -->
     <link rel="mask-icon" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" color="#FFD700" />
     <link rel="icon" type="image/webp" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Resto del head sin cambios -->
     <!-- SEO Meta Tags -->
     <title>Maestra Carmen | Experta en Amarres de Amor y Trabajos Espirituales</title>
     <meta name="description" content="Experta en amarres de amor, endulzamientos y retorno de pareja. Resultados garantizados con rituales ancestrales de Catemaco. Consulta sin costo." />
