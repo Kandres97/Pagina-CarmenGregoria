@@ -13,13 +13,13 @@ const HeroSection = () => {
       description: "Brujos de catemaco, Expertos en Amarres de Amor, Endulzamiento de pareja"
     },
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/inivideo_edl4wf_klxfge_c9zuy5.jpg ",
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/descarga_1_m1zvfl_qwf4rz_kv9en9.jpg ",
       title: "Amarres Sexuales y del Mismo Genero",
       subtitle: "Expertos en Amarres de toda clase",
       description: "Especialistas en amarres, amarres sexuales y retorno de pareja "
     },
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/descarga_1_m1zvfl_qwf4rz_kv9en9.jpg ",
+      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/inivideo_edl4wf_klxfge_c9zuy5.jpg ",
       title: "Amarres Efectivos",
       subtitle: "Resultados Garantizados",
       description: "Recupera a Tu Ser Amado con Nuestros Rituales Ancestrales, recupera la felicidad"
