@@ -9,47 +9,6 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-XXX');
     </script>
-
-    <!-- Scripts de protección contra inspección -->
-    <script>
-      // Deshabilitar clic derecho
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-        return false;
-      });
-
-      // Deshabilitar atajos de teclado para herramientas de desarrollo
-      document.addEventListener('keydown', function(e) {
-        if (
-          e.key === 'F12' || 
-          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
-          (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
-        ) {
-          e.preventDefault();
-          return false;
-        }
-      });
-
-      // Detector y cierre de herramientas de desarrollo
-      let devToolsTimeout;
-
-      const closeDevTools = () => {
-        window.close();
-        window.location.href = window.location.href;
-      };
-
-      const checkDevTools = () => {
-        const widthThreshold = window.outerWidth - window.innerWidth > 160;
-        const heightThreshold = window.outerHeight - window.innerHeight > 160;
-        
-        if (widthThreshold || heightThreshold) {
-          clearTimeout(devToolsTimeout);
-          devToolsTimeout = setTimeout(closeDevTools, 100);
-        }
-      };
-
-      setInterval(checkDevTools, 1000);
-    </script>
     
     <meta charset="UTF-8" />
     <style>
@@ -59,49 +18,41 @@
         width: 100%;
         height: 100%;
       }
-
-      /* Deshabilitar selección de texto */
-      * {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
     </style>
 
-    <!-- El resto de tu código HTML permanece exactamente igual -->
-    <link rel="mask-icon" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" color="#FFD700" />
-    <link rel="icon" type="image/webp" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" />
+    <!-- Favicon y logos -->
+    <link rel="mask-icon" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" color="#FFD700" />
+    <link rel="icon" type="image/webp" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- SEO Meta Tags -->
-    <title>Maestra Gregoria | Experta en Amarres de Amor y Trabajos Espirituales</title>
+    <title>Maestra Carmen | Experta en Amarres de Amor y Trabajos Espirituales</title>
     <meta name="description" content="Experta en amarres de amor, endulzamientos y retorno de pareja. Resultados garantizados con rituales ancestrales de Catemaco. Consulta sin costo." />
     <meta name="keywords" content="amarres de amor, amarres sexuales, endulzamientos, brujos catemaco, amarres efectivos, retorno de pareja, maestra carmen" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://midominio.com/" />
-    <meta property="og:title" content="Maestra Gregoria | Experta en Amarres de Amor" />
+    <meta property="og:title" content="Maestra Carmen | Experta en Amarres de Amor" />
     <meta property="og:description" content="Recupera a tu ser amado con amarres de amor efectivos y rituales ancestrales. Especialista en endulzamientos y retorno de pareja." />
-    <meta property="og:image" content="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" />
+    <meta property="og:image" content="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://midominio.com/" />
-    <meta property="twitter:title" content="Maestra Gregoria | Amarres de Amor Efectivos" />
+    <meta property="twitter:title" content="Maestra Carmen | Amarres de Amor Efectivos" />
     <meta property="twitter:description" content="Especialista en amarres de amor, endulzamientos y retorno de pareja. Resultados garantizados desde Catemaco." />
-    <meta property="twitter:image" content="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" />
+    <meta property="twitter:image" content="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
 
     <link rel="canonical" href="https://midominio.com/" />
-    <meta name="author" content="Maestra Gregoria" />
+    <meta name="author" content="Maestra Carmen" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="Spanish" />
     
     <!-- Favicons optimizados -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739818552/logo_Mesa_de_trabajo_1_Mesa_de_trabajo_1_zuu0u7.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1739417434/icono_pbhcvq.webp" />
     
     <meta name="theme-color" content="#FFD700" />
     
