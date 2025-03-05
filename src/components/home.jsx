@@ -26,6 +26,8 @@ const HeroSection = () => {
     }
   ];
 
+  const whatsappUrl = 'https://wa.me/526699201652?text=Maestra%20Gregoria%2C%20Quiero%20Consultar%20Con%20usted';
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -40,13 +42,6 @@ const HeroSection = () => {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const handleWhatsAppClick = () => {
-    const phoneNumber = '526699201652';
-    const message = 'Maestra Gregoria, Quiero Consultar Con usted';
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.location.href = whatsappUrl;
   };
 
   const handleNavClick = () => {
@@ -165,14 +160,15 @@ const HeroSection = () => {
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto mb-4 sm:mb-8 text-gray-100">
                   {slide.description}
                 </p>
-                <button
-                  onClick={handleWhatsAppClick}
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Iniciar consulta gratuita por WhatsApp"
-                  name="main-consultation"
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-sm text-base sm:text-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-red-600/50"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-sm text-base sm:text-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-red-600/50 inline-block"
                 >
                   Consulta sin costo
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -216,11 +212,12 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Botón de WhatsApp - Adaptado para móvil */}
-      <button
-        onClick={handleWhatsAppClick}
+      {/* Botón flotante de WhatsApp - Ahora con etiqueta <a> */}
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label="Iniciar consulta gratuita por WhatsApp"
-        name="whatsapp-floating"
         className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-green-700 hover:bg-green-800 px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg hover:shadow-green-800/50 transition-all duration-300 z-50 flex flex-col items-center scale-90 sm:scale-100"
       >
         <div className="flex items-center gap-2 sm:gap-3">
@@ -234,7 +231,7 @@ const HeroSection = () => {
           <span className="text-white font-bold text-base sm:text-lg">Consulta Ahora</span>
         </div>
         <span className="text-white text-xs mt-1">SOLO MAYORES DE EDAD</span>
-      </button>
+      </a>
     </div>
   );
 };

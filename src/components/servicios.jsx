@@ -76,10 +76,11 @@ const ServiceSection = () => {
     }
   ];
 
-  const handleWhatsAppClick = (message) => {
-    const phoneNumber = '+526699201652';
-    window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-  };
+  // Ya no necesitamos esta función
+  // const handleWhatsAppClick = (message) => {
+  //   const phoneNumber = '+526699201652';
+  //   window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  // };
 
   return (
     <div 
@@ -134,8 +135,10 @@ const ServiceSection = () => {
                 {service.description}
               </p>
               
-              <button 
-                onClick={() => handleWhatsAppClick(service.message)}
+              <a 
+                href={`https://wa.me/+526699201652?text=${encodeURIComponent(service.message)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={`Consulta gratuita sobre ${service.title}`}
                 name={`service-consultation-${index + 1}`}
                 className="w-full sm:w-auto bg-transparent transition-all duration-300 
@@ -152,7 +155,9 @@ const ServiceSection = () => {
                   color: service.buttonTextColor,
                   borderColor: service.buttonBorderColor,
                   borderWidth: '2px',
-                  borderStyle: 'solid'
+                  borderStyle: 'solid',
+                  textDecoration: 'none',
+                  display: 'inline-block'
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.backgroundColor = service.buttonHoverBg;
@@ -164,7 +169,7 @@ const ServiceSection = () => {
                 }}
               >
                 Consulta Gratuita
-              </button>
+              </a>
             </div>
           ))}
         </div>

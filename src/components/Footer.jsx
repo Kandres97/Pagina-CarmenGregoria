@@ -37,12 +37,10 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 
 const Footer = () => {
   const [openModal, setOpenModal] = useState(null);
-
-  const handleWhatsAppClick = () => {
-    const phoneNumber = '526699201652';
-    const message = 'Maestra Gregoria, Quiero Consultar Con usted';
-    window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-  };
+  
+  const phoneNumber = '526699201652';
+  const message = 'Maestra Gregoria, Quiero Consultar Con usted';
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   const currentYear = new Date().getFullYear();
 
@@ -128,15 +126,17 @@ const Footer = () => {
               <p className="text-white text-xs sm:text-sm">Experta en Amarres de Amor</p>
               <p className="text-white text-xs sm:text-sm">Catemaco, Veracruz - México</p>
             </div>
-            <button
-              onClick={handleWhatsAppClick}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Llamar por WhatsApp al número +52 669 920 1652"
               name="footer-whatsapp"
               className="inline-flex items-center gap-2 text-white hover:text-[#FFD700] transition-colors text-xs sm:text-sm mt-2"
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
               <span>+52 669 920 1652</span>
-            </button>
+            </a>
           </div>
 
           {/* Enlaces de Políticas */}
