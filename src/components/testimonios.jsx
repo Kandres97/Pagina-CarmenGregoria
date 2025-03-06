@@ -7,15 +7,15 @@ const TestimonialsSection = () => {
 
   // URLs de las imágenes de testimonios
   const testimonialImages = [
-    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/testimonio_1_yrauxg_dkfhoj.jpg",
-    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/Testimonio_2_nfblmg_i3gd4k.jpg",
-    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/testimonio_3_cm4qzk_dtwqf6.jpg",
-    "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Testimonio_4_bvpuoh_blaq4c.jpg"
+    "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296534/testimonio_1_yrauxg_dkfhoj_ikwihb.jpg",
+    "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296535/Testimonio_2_nfblmg_i3gd4k_wqozch.jpg",
+    "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296526/testimonio_3_cm4qzk_dtwqf6_e4kkoi.jpg",
+    "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296527/Testimonio_4_bvpuoh_blaq4c_xwvizf.jpg"
   ];
 
   // URL del video y su thumbnail
-  const videoUrl = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1739325181/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva.mp4";
-  const videoThumbnail = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1739325181/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva.jpg"; // Thumbnail automático del video
+  const videoUrl = "https://res.cloudinary.com/de6hbvxm2/video/upload/v1741296527/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f.mp4";
+  const videoThumbnail = "https://res.cloudinary.com/de6hbvxm2/video/upload/v1741296527/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f.jpg"; // Thumbnail automático del video
 
   // Información de WhatsApp
   const phoneNumber = '526699201652';

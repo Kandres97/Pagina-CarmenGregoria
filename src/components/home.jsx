@@ -4,22 +4,23 @@ import { ChevronLeft, ChevronRight, Menu, X } from 'lucide-react';
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
 
   const slides = [
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844945/tarot_bx0hbh_eb4wbc_dbyabo.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296534/tarot_bx0hbh_eb4wbc_dbyabo_sl2xaa.jpg",
       title: "Amarres de Amor",
       subtitle: "Recupera tu ser amado",
       description: "Brujos de catemaco, Expertos en Amarres de Amor, Endulzamiento de pareja"
     },
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/descarga_1_m1zvfl_qwf4rz_kv9en9.jpg ",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296528/descarga_1_m1zvfl_qwf4rz_kv9en9_useo6d.jpg ",
       title: "Amarres Sexuales y del Mismo Genero",
       subtitle: "Expertos en Amarres de toda clase",
       description: "Especialistas en amarres, amarres sexuales y retorno de pareja "
     },
     {
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739844944/inivideo_edl4wf_klxfge_c9zuy5.jpg ",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296532/inivideo_edl4wf_klxfge_c9zuy5_q4fn3q.jpg ",
       title: "Amarres Efectivos",
       subtitle: "Resultados Garantizados",
       description: "Recupera a Tu Ser Amado con Nuestros Rituales Ancestrales, recupera la felicidad"
@@ -31,9 +32,66 @@ const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000); // Cambiado de 8000 a 4000 para que cambie cada 4 segundos
+    }, 4000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  // Handle hash navigation
+  useEffect(() => {
+    // Check for hash in URL on initial load
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        // Scroll to the element with this ID
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setActiveSection(hash);
+        }
+      }
+    };
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // Check hash on initial load
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
+  // Setup intersection observer to update active section based on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+            // Update URL hash without scrolling
+            const newUrl = `${window.location.pathname}${window.location.search}#${entry.target.id}`;
+            window.history.replaceState(null, '', newUrl);
+          }
+        });
+      },
+      { threshold: 0.3 } // At least 30% of the element must be visible
+    );
+
+    // Observe all sections
+    const sections = ['inicio', 'servicios', 'retornos', 'testimonios', 'contacto'];
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => {
+      sections.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) observer.unobserve(element);
+      });
+    };
   }, []);
 
   const nextSlide = () => {
@@ -44,24 +102,24 @@ const HeroSection = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const handleNavClick = () => {
+  const handleNavClick = (sectionId) => {
     setIsMenuOpen(false);
-  };
-
-  const scrollToTestimonios = () => {
-    const testimoniosSection = document.getElementById('testimonios');
-    if (testimoniosSection) {
-      testimoniosSection.scrollIntoView({ behavior: 'smooth' });
+    setActiveSection(sectionId);
+    
+    // Smooth scroll to section
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black" id="inicio">
-      {/* Botón Ver Testimonios - Movido más arriba */}
+      {/* Botón Ver Testimonios */}
       <div className="absolute left-2 sm:left-4 top-[30%] z-50 flex items-center scale-75 sm:scale-100">
         <div className="bg-[#FFD700] py-1 px-3 rounded-lg shadow-xl transform -rotate-90 origin-left hover:scale-105 transition-transform">
           <button 
-            onClick={scrollToTestimonios}
+            onClick={() => handleNavClick('testimonios')}
             className="text-black hover:text-red-700 transition-colors text-xs font-bold tracking-widest whitespace-nowrap"
             aria-label="Ver testimonios"
           >
@@ -89,11 +147,46 @@ const HeroSection = () => {
             </button>
 
             <div className="hidden md:flex items-center space-x-4 lg:space-x-8 text-white">
-              <a href="#inicio" className="text-red-500 font-medium hover:text-red-400 text-sm lg:text-base" aria-current="page">INICIO</a>
-              <a href="#servicios" className="text-[#FFD700] hover:text-yellow-400 transition-colors text-sm lg:text-base">SERVICIOS</a>
-              <a href="#retornos" className="text-[#FFD700] hover:text-yellow-400 transition-colors text-sm lg:text-base">RETORNOS</a>
-              <a href="#testimonios" className="text-[#FFD700] hover:text-yellow-400 transition-colors text-sm lg:text-base">TESTIMONIOS</a>
-              <a href="#contacto" className="text-red-500 font-medium hover:text-red-400 text-sm lg:text-base">CONTACTO</a>
+              <a 
+                href="#inicio" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('inicio'); }}
+                className={`${activeSection === 'inicio' ? 'text-red-500' : 'text-[#FFD700]'} font-medium hover:text-red-400 text-sm lg:text-base`}
+                aria-current={activeSection === 'inicio' ? 'page' : undefined}
+              >
+                INICIO
+              </a>
+              <a 
+                href="#servicios" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('servicios'); }}
+                className={`${activeSection === 'servicios' ? 'text-red-500' : 'text-[#FFD700]'} hover:text-yellow-400 transition-colors text-sm lg:text-base`}
+                aria-current={activeSection === 'servicios' ? 'page' : undefined}
+              >
+                SERVICIOS
+              </a>
+              <a 
+                href="#retornos" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('retornos'); }}
+                className={`${activeSection === 'retornos' ? 'text-red-500' : 'text-[#FFD700]'} hover:text-yellow-400 transition-colors text-sm lg:text-base`}
+                aria-current={activeSection === 'retornos' ? 'page' : undefined}
+              >
+                RETORNOS
+              </a>
+              <a 
+                href="#testimonios" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('testimonios'); }}
+                className={`${activeSection === 'testimonios' ? 'text-red-500' : 'text-[#FFD700]'} hover:text-yellow-400 transition-colors text-sm lg:text-base`}
+                aria-current={activeSection === 'testimonios' ? 'page' : undefined}
+              >
+                TESTIMONIOS
+              </a>
+              <a 
+                href="#contacto" 
+                onClick={(e) => { e.preventDefault(); handleNavClick('contacto'); }}
+                className={`${activeSection === 'contacto' ? 'text-red-500' : 'text-[#FFD700]'} font-medium hover:text-red-400 text-sm lg:text-base`}
+                aria-current={activeSection === 'contacto' ? 'page' : undefined}
+              >
+                CONTACTO
+              </a>
             </div>
           </div>
         </div>
@@ -106,11 +199,51 @@ const HeroSection = () => {
           role="menu"
         >
           <div className="container mx-auto px-4 flex flex-col space-y-4">
-            <a href="#inicio" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:bg-red-500/10 text-sm sm:text-base" role="menuitem">INICIO</a>
-            <a href="#servicios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base" role="menuitem">SERVICIOS</a>
-            <a href="#retornos" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base" role="menuitem">RETORNOS</a>
-            <a href="#testimonios" onClick={handleNavClick} className="text-[#FFD700] hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base" role="menuitem">TESTIMONIOS</a>
-            <a href="#contacto" onClick={handleNavClick} className="text-red-500 font-medium px-4 py-2 hover:text-red-400 text-sm sm:text-base" role="menuitem">CONTACTO</a>
+            <a 
+              href="#inicio" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('inicio'); }}
+              className={`${activeSection === 'inicio' ? 'text-red-500' : 'text-[#FFD700]'} font-medium px-4 py-2 hover:bg-red-500/10 text-sm sm:text-base`} 
+              role="menuitem"
+              aria-current={activeSection === 'inicio' ? 'page' : undefined}
+            >
+              INICIO
+            </a>
+            <a 
+              href="#servicios" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('servicios'); }}
+              className={`${activeSection === 'servicios' ? 'text-red-500' : 'text-[#FFD700]'} hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base`} 
+              role="menuitem"
+              aria-current={activeSection === 'servicios' ? 'page' : undefined}
+            >
+              SERVICIOS
+            </a>
+            <a 
+              href="#retornos" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('retornos'); }}
+              className={`${activeSection === 'retornos' ? 'text-red-500' : 'text-[#FFD700]'} hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base`} 
+              role="menuitem"
+              aria-current={activeSection === 'retornos' ? 'page' : undefined}
+            >
+              RETORNOS
+            </a>
+            <a 
+              href="#testimonios" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('testimonios'); }}
+              className={`${activeSection === 'testimonios' ? 'text-red-500' : 'text-[#FFD700]'} hover:text-yellow-400 px-4 py-2 hover:bg-[#FFD700]/10 transition-colors text-sm sm:text-base`} 
+              role="menuitem"
+              aria-current={activeSection === 'testimonios' ? 'page' : undefined}
+            >
+              TESTIMONIOS
+            </a>
+            <a 
+              href="#contacto" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('contacto'); }}
+              className={`${activeSection === 'contacto' ? 'text-red-500' : 'text-[#FFD700]'} font-medium px-4 py-2 hover:text-red-400 text-sm sm:text-base`} 
+              role="menuitem"
+              aria-current={activeSection === 'contacto' ? 'page' : undefined}
+            >
+              CONTACTO
+            </a>
           </div>
         </div>
       </nav>
@@ -212,7 +345,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Botón flotante de WhatsApp - Ahora con etiqueta <a> */}
+      {/* Botón flotante de WhatsApp */}
       <a
         href={whatsappUrl}
         target="_blank"

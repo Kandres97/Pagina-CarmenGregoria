@@ -11,7 +11,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5_cdyfi0.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296527/voodoo-doll-black-magic-esoteric-ritual-2022-10-03-18-35-30-utc_qdtmj5_cdyfi0_gjilsz.jpg",
       message: "Maestra Gregoria, necesito ayuda con un amarre de amor."
     },
     {
@@ -23,7 +23,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/IMG4_dw0nmk_iu2mak.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296531/IMG4_dw0nmk_iu2mak_b93pxq.jpg",
       message: "Maestra Gregoria, quiero un amarre para pareja del mismo genero."
     },
     {
@@ -35,7 +35,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen_de_WhatsApp_2025-02-06_a_las_12.03.01_f5ba203b_pjbco2_ywxlc6.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296530/Imagen_de_WhatsApp_2025-02-06_a_las_12.03.01_f5ba203b_pjbco2_ywxlc6_zje5ph.jpg",
       message: "Maestra Gregoria, quiero su ayuda con un amarre sexual "
     },
     {
@@ -47,7 +47,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325180/cdd2b3bbef2b6cba35f85a10087e1340_wdzkj5_gij8o0.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296528/cdd2b3bbef2b6cba35f85a10087e1340_wdzkj5_gij8o0_ilguae.jpg",
       message: "Maestra Gregoria, deseo un endulzamiento de amor."
     },
     {
@@ -59,7 +59,7 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/esposa-solitaria-sufriendo-despues-ruptura-casa_u70axu_m0e41z.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296529/esposa-solitaria-sufriendo-despues-ruptura-casa_u70axu_m0e41z_tzk0sd.jpg",
       message: "Maestra Gregoria, necesito ayuda con un alejamiento."
     },
     {
@@ -71,16 +71,10 @@ const ServiceSection = () => {
       buttonBorderColor: "#FFD700",
       buttonHoverBg: "#FFD700",
       buttonHoverText: "#000000",
-      image: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1739325181/Imagen-de-WhatsApp-2024-11-05-a-las-15.17.52_d17d9b73-768x1024_nweyob_bafjsi.jpg",
+      image: "https://res.cloudinary.com/de6hbvxm2/image/upload/v1741296530/Imagen-de-WhatsApp-2024-11-05-a-las-15.17.52_d17d9b73-768x1024_nweyob_bafjsi_iuvpbr.jpg",
       message: "Maestra Gregoria, busco protección espiritual"
     }
   ];
-
-  // Ya no necesitamos esta función
-  // const handleWhatsAppClick = (message) => {
-  //   const phoneNumber = '+526699201652';
-  //   window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-  // };
 
   return (
     <div 
