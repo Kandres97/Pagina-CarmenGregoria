@@ -1,30 +1,82 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// URLs constantes 
+const URLS = {
+  backgroundVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747350488/video2142_jfshob.mp4",
+  testimonialVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
+  whatsapp: "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor"
+};
+
+// Componentes reutilizables
+const PlayButton = ({ onClick, isPlaying }) => (
+  <div className="play-button" onClick={onClick} style={{ opacity: isPlaying ? 0 : 1 }}>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 5.14v14l11-7-11-7z" />
+    </svg>
+  </div>
+);
+
+const MysticalElements = () => (
+  <div className="mystical-elements">
+    {[1, 2, 3].map(num => (
+      <div key={num} className={`mystical-element element-${num}`}></div>
+    ))}
+  </div>
+);
+
+const WhatsAppButton = () => (
+  <a 
+    href={URLS.whatsapp}
+    className="whatsapp-button" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+  >
+    <svg className="whatsapp-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path fill="#ffffff" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+  </a>
+);
+
+const NavMenu = ({ menuItems, isMenuOpen, closeMenu }) => (
+  <div className={`menu-container ${isMenuOpen ? 'open' : ''}`}>
+    <ul className="menu">
+      {menuItems.map((item, index) => (
+        <li key={index}>
+          <a 
+            href={index === 0 ? '#' : `#${item.toLowerCase().replace(/\s+/g, '')}`} 
+            className="menu-link" 
+            onClick={closeMenu}
+          >
+            {item}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 const Home = () => {
-  // Estados consolidados
+  // Estados con useReducer para optimizar
   const [state, setState] = useState({
     menuOpen: false,
     isMobile: false,
     isPlaying: false
   });
-  const videoRef = useRef(null);
   
-  // URLs y enlaces constantes
-  const URLS = {
-    backgroundVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747350488/video2142_jfshob.mp4",
-    testimonialVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
-    whatsapp: "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor"
-  };
-
-  // Detección de dispositivo móvil
+  const videoRef = useRef(null);
+  const menuItems = ['Inicio', 'Rituales', 'Amarres de Amor', 'Testimonios', 'Contacto'];
+  
+  // Detección de dispositivo móvil - optimizado
   useEffect(() => {
     const checkIfMobile = () => setState(prev => ({ ...prev, isMobile: window.innerWidth <= 768 }));
+    
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  // Control de video
+  // Control de video - optimizado
   useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
@@ -41,7 +93,7 @@ const Home = () => {
     };
   }, []);
 
-  // Manejadores de eventos
+  // Funciones manejadoras optimizadas
   const toggleMenu = () => setState(prev => ({ ...prev, menuOpen: !prev.menuOpen }));
   const closeMenu = () => state.isMobile && setState(prev => ({ ...prev, menuOpen: false }));
   const togglePlayPause = () => {
@@ -78,7 +130,15 @@ const Home = () => {
           backdrop-filter: blur(5px);
           text-align: left;
         }
+
+        .restriction-header {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
         
+        .restriction-content {
+          line-height: 1.3;
+        }
         .header {
           position: fixed;
           width: 100%;
@@ -217,23 +277,29 @@ const Home = () => {
           margin: 0 auto;
           border-radius: 16px;
           overflow: hidden;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(230, 198, 25, 0.2);
+          border: 2px solid rgba(230, 198, 25, 0.7);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 15px rgba(230, 198, 25, 0.4);
           transform: perspective(800px) rotateY(-5deg);
           transition: all 0.4s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         
         .video-wrapper:hover {
           transform: perspective(800px) rotateY(0deg);
-          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(230, 198, 25, 0.3);
+          border: 2px solid rgba(230, 198, 25, 0.9);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 20px rgba(230, 198, 25, 0.6);
         }
         
         .testimonial-video {
           width: 100%;
+          height: 100%;
           display: block;
           background-color: #000;
           aspect-ratio: 9/16;
           object-fit: cover;
-          border-radius: 16px;
+          border-radius: 14px;
         }
         
         .video-controls {
@@ -266,7 +332,6 @@ const Home = () => {
           border: 2px solid rgba(230, 198, 25, 0.5);
           transition: all 0.3s ease;
           z-index: 2;
-          opacity: ${state.isPlaying ? 0 : 1};
         }
         
         .video-wrapper:hover .play-button {
@@ -302,7 +367,7 @@ const Home = () => {
           bottom: -40px;
           background: radial-gradient(
             circle at center,
-            rgba(230, 198, 25, 0.4) 0%,
+            rgba(230, 198, 25, 0.6) 0%,
             rgba(230, 198, 25, 0) 70%
           );
           z-index: -1;
@@ -470,7 +535,7 @@ const Home = () => {
           50% { transform: translate(15px, -15px); }
         }
         
-        /* Media queries condensados */
+        /* Media queries optimizados */
         @media (max-width: 768px) {
           .header { padding: 1rem; }
           .hamburger { display: flex; }
@@ -553,8 +618,13 @@ const Home = () => {
             top: 70px;
             right: 10px;
             font-size: 0.75rem;
-            max-width: 150px;
             padding: 6px 10px;
+            /* Mantenemos el mismo ancho que en PC */
+            max-width: 250px;
+          }
+
+          .restriction-header {
+            margin-bottom: 5px; /* Igual que en PC */
           }
         }
         
@@ -574,33 +644,21 @@ const Home = () => {
     
       <header className="header">
         <nav className="nav">
-          <a href="#" className="logo">Santuario <span>Saberes Ocultos </span></a>
+          <a href="#" className="logo">Santuario <span>Saberes Ocultos</span></a>
           
           <button 
             className={`hamburger ${state.menuOpen ? 'open' : ''}`} 
             onClick={toggleMenu}
             aria-label="Menú"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            {[...Array(3)].map((_, i) => <span key={i}></span>)}
           </button>
           
-          <div className={`menu-container ${state.menuOpen ? 'open' : ''}`}>
-            <ul className="menu">
-              {['Inicio', 'Rituales', 'Amarres de Amor', 'Testimonios', 'Contacto'].map((item, index) => (
-                <li key={index}>
-                  <a 
-                    href={index === 0 ? '#' : `#${item.toLowerCase().replace(/\s+/g, '')}`} 
-                    className="menu-link" 
-                    onClick={closeMenu}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <NavMenu 
+            menuItems={menuItems} 
+            isMenuOpen={state.menuOpen} 
+            closeMenu={closeMenu} 
+          />
         </nav>
       </header>
       
@@ -617,12 +675,7 @@ const Home = () => {
         </video>
         
         <div className="video-overlay"></div>
-        
-        <div className="mystical-elements">
-          {[1, 2, 3].map(num => (
-            <div key={num} className={`mystical-element element-${num}`}></div>
-          ))}
-        </div>
+        <MysticalElements />
         
         <div className="hero-container">
           <div className="hero-layout">
@@ -639,12 +692,7 @@ const Home = () => {
                 </video>
                 
                 <div className="video-glow"></div>
-                
-                <div className="play-button" onClick={togglePlayPause}>
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5.14v14l11-7-11-7z" />
-                  </svg>
-                </div>
+                <PlayButton onClick={togglePlayPause} isPlaying={state.isPlaying} />
               </div>
             </div>
             
@@ -671,17 +719,7 @@ const Home = () => {
         </div>
       </section>
       
-      <a 
-        href={URLS.whatsapp}
-        className="whatsapp-button" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        aria-label="Contactar por WhatsApp"
-      >
-        <svg className="whatsapp-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <path fill="#ffffff" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
-      </a>
+      <WhatsAppButton />
       
       <div className="age-restriction">
         <strong>⚠️ Aviso:</strong> Servicios exclusivos para mayores de 18 años
