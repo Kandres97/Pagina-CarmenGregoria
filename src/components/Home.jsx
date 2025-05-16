@@ -284,6 +284,10 @@ const Home = () => {
           display: flex;
           align-items: center;
           justify-content: center;
+          /* Ajustamos la altura máxima */
+          max-height: 300px;
+          /* Aseguramos que la proporción se mantiene */
+          aspect-ratio: 9/12;
         }
         
         .video-wrapper:hover {
@@ -297,9 +301,16 @@ const Home = () => {
           height: 100%;
           display: block;
           background-color: #000;
-          aspect-ratio: 9/16;
+          /* Cambiamos el aspect-ratio para hacerlo menos alto */
+          aspect-ratio: 9/12;
           object-fit: cover;
           border-radius: 14px;
+          /* Aseguramos que el video llegue hasta el borde del recuadro */
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
         }
         
         .video-controls {
@@ -567,7 +578,18 @@ const Home = () => {
             margin: 0 auto;
           }
           
-          .video-wrapper { max-width: 100%; width: 100%; }
+          .video-wrapper { 
+            max-width: 100%; 
+            width: 100%; 
+            /* Ajustamos la altura máxima en móvil */
+            max-height: 250px;
+          }
+          
+          .testimonial-video {
+            /* Mantenemos la misma proporción en móvil */
+            aspect-ratio: 9/12;
+          }
+          
           .hero-content { text-align: center; width: 100%; }
           .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
           .hero-subtitle { font-size: 1.3rem; margin-bottom: 0.8rem; }
@@ -605,6 +627,10 @@ const Home = () => {
         @media (max-width: 400px) {
           .hero-container { padding: 1.5rem 1rem; }
           .testimonial-section { max-width: 160px; }
+          .video-wrapper { 
+            /* Ajustamos la altura máxima en dispositivos muy pequeños */
+            max-height: 220px;
+          }
           .hero-title { font-size: 2.2rem; }
           .hero-subtitle { font-size: 1.2rem; }
           .hero-description { font-size: 1rem; }
@@ -634,11 +660,19 @@ const Home = () => {
           .hero-title { font-size: 2.8rem; }
           .hero-subtitle { font-size: 1.3rem; }
           .hero-description { font-size: 1.1rem; }
-          .video-wrapper { max-width: 200px; }
+          .video-wrapper { 
+            max-width: 200px; 
+            /* Ajustamos la altura máxima en tablet */
+            max-height: 280px;
+          }
         }
         
         @media (min-width: 1024px) {
-          .video-wrapper { max-width: 250px; }
+          .video-wrapper { 
+            max-width: 250px; 
+            /* Mantenemos la altura máxima en escritorio */
+            max-height: 300px;
+          }
         }
       `}</style>
     
