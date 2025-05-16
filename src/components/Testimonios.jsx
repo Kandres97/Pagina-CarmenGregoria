@@ -3,81 +3,161 @@ import React, { useState, useRef } from 'react';
 const Testimonios = () => {
   const [activeTab, setActiveTab] = useState('videos');
   const [playingVideo, setPlayingVideo] = useState(null);
+  const [currentFotoIndex, setCurrentFotoIndex] = useState(0);
   const videoRefs = useRef({});
+  const fotosRowRef = useRef(null);
   
-  // Datos de testimonios en video (solo 2 videos)
-  const videosTestimonios = [
-    {
-      id: 'video1',
-      nombre: "María Fernanda",
-      ubicacion: "Ciudad de México",
-      texto: "Después de 3 años de separación, mi ex regresó en tan solo 6 días gracias al Amarre de Amor Eterno. Estoy inmensamente agradecida con la Maestra Carmen.",
-      videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
-      thumbnail: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio1_l6imae.jpg"
-    },
-    {
-      id: 'video2',
-      nombre: "Roberto Méndez",
-      ubicacion: "Guadalajara",
-      texto: "Mi pareja me había dejado por otra persona. Con el Amarre de Dominación, regresó totalmente entregada a nuestra relación, eliminando a la otra persona de su vida.",
-      videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
-      thumbnail: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio2_zcj2op.jpg"
-    }
-  ];
-  
-  // Datos de testimonios con foto (4 fotos)
-  const fotosTestimonios = [
-    {
-      id: 'foto1',
-      nombre: "Carlos Jiménez",
-      ubicacion: "Puebla",
-      texto: "Mi novia me había bloqueado de todas sus redes. En solo 4 días después del ritual, me buscó desesperadamente. Ahora estamos comprometidos y más enamorados que nunca.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio4_mjvhwe.jpg"
-    },
-    {
-      id: 'foto2',
-      nombre: "Diana Ramírez",
-      ubicacion: "Veracruz",
-      texto: "Había probado con otros servicios sin éxito. El amarre que realizó la Maestra Carmen logró que mi ex dejara a su nueva pareja y volviera conmigo en menos de una semana.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio5_pqszfa.jpg"
-    },
-    {
-      id: 'foto3',
-      nombre: "Miguel Ángel",
-      ubicacion: "Querétaro",
-      texto: "Mi esposa había pedido el divorcio. Gracias al ritual especializado, no solo desistió del divorcio sino que nuestra relación mejoró enormemente. Eternamente agradecido.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio6_xulr81.jpg"
-    },
-    {
-      id: 'foto4',
-      nombre: "Laura Herrera",
-      ubicacion: "Cancún",
-      texto: "Tenía dudas al principio, pero los resultados fueron increíbles. Mi pareja cambió completamente su actitud, está más atenta y cariñosa que nunca. El ritual funcionó perfectamente.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio7_zqwdxr.jpg"
-    }
-  ];
-  
-  // Manejar reproducción de video
-  const handleVideoPlay = (videoId) => {
-    if (playingVideo && playingVideo !== videoId && videoRefs.current[playingVideo]) {
-      videoRefs.current[playingVideo].pause();
-    }
-    setPlayingVideo(videoId);
+  // Datos consolidados de testimonios
+  const testimonios = {
+    videos: [
+      {
+        id: 'video1',
+        nombre: "María Fernanda",
+        ubicacion: "Ciudad de México",
+        texto: "Después de 3 años de separación, mi ex regresó en tan solo 6 días gracias al Amarre de Amor Eterno. Estoy inmensamente agradecida con la Maestra Carmen.",
+        videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
+        thumbnail: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio1_l6imae.jpg"
+      },
+      {
+        id: 'video2',
+        nombre: "Roberto Méndez",
+        ubicacion: "Guadalajara",
+        texto: "Mi pareja me había dejado por otra persona. Con el Amarre de Dominación, regresó totalmente entregada a nuestra relación, eliminando a la otra persona de su vida.",
+        videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
+        thumbnail: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio2_zcj2op.jpg"
+      }
+    ],
+    fotos: [
+      {
+        id: 'foto1',
+        nombre: "Carlos Jiménez",
+        ubicacion: "Puebla",
+        texto: "Mi novia me había bloqueado de todas sus redes. En solo 4 días después del ritual, me buscó desesperadamente. Ahora estamos comprometidos y más enamorados que nunca.",
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio4_mjvhwe.jpg"
+      },
+      {
+        id: 'foto2',
+        nombre: "Diana Ramírez",
+        ubicacion: "Veracruz",
+        texto: "Había probado con otros servicios sin éxito. El amarre que realizó la Maestra Carmen logró que mi ex dejara a su nueva pareja y volviera conmigo en menos de una semana.",
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio5_pqszfa.jpg"
+      },
+      {
+        id: 'foto3',
+        nombre: "Miguel Ángel",
+        ubicacion: "Querétaro",
+        texto: "Mi esposa había pedido el divorcio. Gracias al ritual especializado, no solo desistió del divorcio sino que nuestra relación mejoró enormemente. Eternamente agradecido.",
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio6_xulr81.jpg"
+      },
+      {
+        id: 'foto4',
+        nombre: "Laura Herrera",
+        ubicacion: "Cancún",
+        texto: "Tenía dudas al principio, pero los resultados fueron increíbles. Mi pareja cambió completamente su actitud, está más atenta y cariñosa que nunca. El ritual funcionó perfectamente.",
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio7_zqwdxr.jpg"
+      }
+    ]
   };
   
-  // Reproducir o pausar video
+  // Función para desplazarse a una foto específica
+  const scrollToPhoto = (index) => {
+    if (fotosRowRef.current) {
+      const cards = fotosRowRef.current.querySelectorAll('.foto-card');
+      if (cards[index]) {
+        cards[index].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest', 
+          inline: 'center'
+        });
+      }
+    }
+  };
+  
+  // Función para reproducir/pausar videos
   const togglePlayPause = (videoId) => {
     const videoElement = videoRefs.current[videoId];
-    
-    if (!videoElement) return;
-    
-    if (videoElement.paused) {
-      videoElement.play();
-      handleVideoPlay(videoId);
-    } else {
-      videoElement.pause();
-      setPlayingVideo(null);
+    if (videoElement) {
+      if (videoElement.paused) {
+        // Pausar todos los videos primero
+        Object.values(videoRefs.current).forEach(vid => {
+          if (vid && !vid.paused) {
+            vid.pause();
+          }
+        });
+        // Reproducir el video seleccionado
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
     }
+  };
+  
+  // Componente de tarjeta de video
+  const VideoCard = ({ testimonio }) => (
+    <div className="video-card">
+      <div className="video-wrapper">
+        <video 
+          ref={el => videoRefs.current[testimonio.id] = el}
+          className="testimonio-video"
+          playsInline
+          poster={testimonio.thumbnail}
+          onPlay={() => setPlayingVideo(testimonio.id)}
+          onPause={() => playingVideo === testimonio.id && setPlayingVideo(null)}
+        >
+          <source src={testimonio.videoUrl} type="video/mp4" />
+          Tu navegador no soporta videos HTML5.
+        </video>
+        
+        <div className="video-overlay"></div>
+        
+        <div 
+          className={`play-button ${playingVideo === testimonio.id ? 'hidden' : ''}`}
+          onClick={() => togglePlayPause(testimonio.id)}
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5.14v14l11-7-11-7z" />
+          </svg>
+        </div>
+      </div>
+      
+      <div className="testimonio-info">
+        <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
+        <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
+        <p className="testimonio-texto">"{testimonio.texto}"</p>
+      </div>
+    </div>
+  );
+  
+  // Componente de tarjeta de foto con hooks para el carrusel
+  const FotoCard = ({ testimonio, index }) => {
+    const cardRef = useRef(null);
+    
+    return (
+      <div 
+        ref={cardRef} 
+        className={`foto-card ${currentFotoIndex === index ? 'in-view' : ''}`}
+      >
+        <div className="foto-wrapper">
+          <img 
+            src={testimonio.imagen} 
+            alt={testimonio.nombre} 
+            className="testimonio-foto" 
+          />
+          <div className="foto-overlay"></div>
+        </div>
+        
+        <div className="testimonio-info">
+          <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
+          <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
+          <div className="testimonio-estrellas">
+            {[...Array(5)].map((_, i) => (
+              <i key={i} className="fas fa-star"></i>
+            ))}
+          </div>
+          <p className="testimonio-texto">"{testimonio.texto}"</p>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -85,9 +165,9 @@ const Testimonios = () => {
       <div className="testimonios-overlay"></div>
       
       <div className="mystical-elements">
-        <div className="mystical-element testimonio-element-1"></div>
-        <div className="mystical-element testimonio-element-2"></div>
-        <div className="mystical-element testimonio-element-3"></div>
+        {[1, 2, 3].map((num) => (
+          <div key={num} className={`mystical-element testimonio-element-${num}`}></div>
+        ))}
       </div>
       
       <div className="testimonios-container">
@@ -99,96 +179,54 @@ const Testimonios = () => {
           </p>
         </div>
         
-        {/* Tabs para navegar entre videos y fotos */}
         <div className="testimonios-tabs">
-          <button 
-            className={`tab-button ${activeTab === 'videos' ? 'active' : ''}`}
-            onClick={() => setActiveTab('videos')}
-          >
-            <i className="fas fa-video"></i> Videos
-          </button>
-          <button 
-            className={`tab-button ${activeTab === 'fotos' ? 'active' : ''}`}
-            onClick={() => setActiveTab('fotos')}
-          >
-            <i className="fas fa-camera"></i> Fotografías
-          </button>
+          {[
+            { id: 'videos', icon: 'fas fa-video', label: 'Videos' },
+            { id: 'fotos', icon: 'fas fa-camera', label: 'Fotografías' }
+          ].map((tab) => (
+            <button 
+              key={tab.id}
+              className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              <i className={tab.icon}></i> {tab.label}
+            </button>
+          ))}
         </div>
         
-        {/* Contenido de la tab de Videos - AHORA EN FILA */}
         <div className={`tab-content ${activeTab === 'videos' ? 'active' : ''}`}>
           <div className="videos-row">
-            {videosTestimonios.map((testimonio) => (
-              <div key={testimonio.id} className="video-card">
-                <div className="video-wrapper">
-                  <video 
-                    ref={el => videoRefs.current[testimonio.id] = el}
-                    className="testimonio-video"
-                    playsInline
-                    poster={testimonio.thumbnail}
-                    onPlay={() => handleVideoPlay(testimonio.id)}
-                    onPause={() => setPlayingVideo(null)}
-                  >
-                    <source src={testimonio.videoUrl} type="video/mp4" />
-                    Tu navegador no soporta videos HTML5.
-                  </video>
-                  
-                  {/* Overlay de video */}
-                  <div className="video-overlay"></div>
-                  
-                  {/* Botón de play */}
-                  <div 
-                    className={`play-button ${playingVideo === testimonio.id ? 'hidden' : ''}`}
-                    onClick={() => togglePlayPause(testimonio.id)}
-                  >
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 5.14v14l11-7-11-7z" />
-                    </svg>
-                  </div>
-                </div>
-                
-                <div className="testimonio-info">
-                  <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
-                  <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
-                  <p className="testimonio-texto">"{testimonio.texto}"</p>
-                </div>
-              </div>
+            {testimonios.videos.map((testimonio) => (
+              <VideoCard key={testimonio.id} testimonio={testimonio} />
             ))}
           </div>
         </div>
         
-        {/* Contenido de la tab de Fotos - AHORA EN FILA */}
         <div className={`tab-content ${activeTab === 'fotos' ? 'active' : ''}`}>
-          <div className="fotos-row">
-            {fotosTestimonios.map((testimonio) => (
-              <div key={testimonio.id} className="foto-card">
-                <div className="foto-wrapper">
-                  <img 
-                    src={testimonio.imagen} 
-                    alt={testimonio.nombre} 
-                    className="testimonio-foto" 
-                  />
-                  <div className="foto-overlay"></div>
-                </div>
-                
-                <div className="testimonio-info">
-                  <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
-                  <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
-                  <div className="testimonio-estrellas">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <p className="testimonio-texto">"{testimonio.texto}"</p>
-                </div>
-              </div>
+          <div 
+            className="fotos-row" 
+            ref={fotosRowRef}
+          >
+            {testimonios.fotos.map((testimonio, index) => (
+              <FotoCard key={testimonio.id} testimonio={testimonio} index={index} />
             ))}
+          </div>
+          <div className="carrusel-indicador">
+            <div className="carrusel-dots">
+              {testimonios.fotos.map((testimonio, index) => (
+                <span 
+                  key={index} 
+                  className={`carrusel-dot ${currentFotoIndex === index ? 'active' : ''}`}
+                  onClick={() => {
+                    scrollToPhoto(index);
+                    setCurrentFotoIndex(index);
+                  }}
+                ></span>
+              ))}
+            </div>
           </div>
         </div>
         
-        {/* CTA final */}
         <div className="testimonios-cta">
           <p>Usted también puede transformar su vida amorosa con nuestros poderosos rituales</p>
           <a 
@@ -377,8 +415,8 @@ const Testimonios = () => {
           }
         }
         
-        /* Estilos para los videos EN FILA */
-        .videos-row {
+        /* Estilos para los videos en fila (escritorio) */
+        .videos-row, .fotos-row {
           display: flex;
           gap: 1.5rem;
           margin-bottom: 3rem;
@@ -397,7 +435,7 @@ const Testimonios = () => {
           backdrop-filter: blur(10px);
         }
         
-        .video-card:hover {
+        .video-card:hover, .foto-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(230, 198, 25, 0.2);
           border-color: rgba(230, 198, 25, 0.3);
@@ -419,7 +457,7 @@ const Testimonios = () => {
           object-fit: cover;
         }
         
-        .video-overlay {
+        .video-overlay, .foto-overlay {
           position: absolute;
           top: 0;
           left: 0;
@@ -495,15 +533,7 @@ const Testimonios = () => {
           opacity: 0.9;
         }
         
-        /* Estilos para las fotos EN FILA */
-        .fotos-row {
-          display: flex;
-          gap: 1.5rem;
-          margin-bottom: 3rem;
-          overflow-x: auto;
-          padding-bottom: 1rem;
-        }
-        
+        /* Estilos para las fotos */
         .foto-card {
           flex: 0 0 calc(25% - 1.125rem);
           background: rgba(15, 15, 15, 0.7);
@@ -515,10 +545,22 @@ const Testimonios = () => {
           backdrop-filter: blur(10px);
         }
         
-        .foto-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(230, 198, 25, 0.2);
-          border-color: rgba(230, 198, 25, 0.3);
+        /* Animación para destacar la foto actual */
+        @keyframes fadeInScale {
+          from {
+            opacity: 0.7;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .foto-card.in-view {
+          border-color: rgba(230, 198, 25, 0.5);
+          box-shadow: 0 10px 30px rgba(230, 198, 25, 0.2);
+          animation: fadeInScale 0.5s ease forwards;
         }
         
         .foto-wrapper {
@@ -537,15 +579,6 @@ const Testimonios = () => {
         
         .foto-card:hover .testimonio-foto {
           transform: scale(1.05);
-        }
-        
-        .foto-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to bottom, transparent 50%, rgba(12, 12, 12, 0.7));
         }
         
         .testimonio-estrellas {
@@ -597,6 +630,34 @@ const Testimonios = () => {
           margin-left: 8px;
         }
         
+        /* Estilo para los indicadores del carrusel */
+        .carrusel-indicador {
+          display: none;
+          margin-top: 0.5rem;
+          text-align: center;
+        }
+        
+        .carrusel-dots {
+          display: inline-flex;
+          gap: 8px;
+        }
+        
+        .carrusel-dot {
+          width: 8px;
+          height: 8px;
+          background-color: rgba(255, 255, 255, 0.4);
+          border-radius: 50%;
+          display: inline-block;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .carrusel-dot.active {
+          background-color: #e6c619;
+          transform: scale(1.3);
+          box-shadow: 0 0 10px rgba(230, 198, 25, 0.6);
+        }
+        
         /* Estilos responsive */
         @media (max-width: 1024px) {
           .video-card {
@@ -636,12 +697,48 @@ const Testimonios = () => {
             max-width: 300px;
           }
           
+          /* Cambio para móviles: videos en vertical, fotos en carrusel */
+          .videos-row {
+            flex-direction: column;
+            overflow-x: visible;
+            gap: 1.5rem;
+          }
+          
+          .fotos-row {
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 1rem;
+            padding-bottom: 1.5rem;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 0 15px;
+          }
+          
+          .fotos-row::-webkit-scrollbar {
+            height: 6px;
+          }
+          
+          .fotos-row::-webkit-scrollbar-thumb {
+            background-color: rgba(168, 63, 103, 0.6);
+            border-radius: 20px;
+          }
+          
+          .fotos-row::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+          }
+          
           .video-card {
-            flex: 0 0 300px;
+            flex: 0 0 auto;
+            width: 100%;
+            margin-bottom: 1.5rem;
           }
           
           .foto-card {
-            flex: 0 0 220px;
+            flex: 0 0 80%;
+            scroll-snap-align: center;
+            margin-bottom: 0.5rem;
           }
           
           .video-wrapper {
@@ -697,12 +794,9 @@ const Testimonios = () => {
             font-size: 1rem;
           }
           
-          .video-card {
-            flex: 0 0 280px;
-          }
-          
-          .foto-card {
-            flex: 0 0 200px;
+          /* Mostrar indicadores de carrusel en móvil */
+          .carrusel-indicador {
+            display: block;
           }
           
           .foto-wrapper {

@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Rituales from './components/Rituales'
 import Amarres from './components/Amarres'
 import Testimonios from './components/Testimonios'
+import ContactSection from './components/ContactSection';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -12,5 +13,6 @@ createRoot(document.getElementById('root')).render(
     <Rituales />
     <Amarres />
     <Testimonios />
+    <ContactSection />
   </StrictMode>,
 );

@@ -7,6 +7,15 @@ const URLS = {
   whatsapp: "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor"
 };
 
+// Mapa de IDs para las secciones - aseguramos que coincidan con los IDs de las secciones
+const SECTION_IDS = {
+  'Inicio': '',
+  'Rituales': 'Rituales',
+  'Amarres de Amor': 'amarres',
+  'Testimonios': 'testimonios',
+  'Contacto': 'contacto'
+};
+
 // Componentes reutilizables
 const PlayButton = ({ onClick, isPlaying }) => (
   <div className="play-button" onClick={onClick} style={{ opacity: isPlaying ? 0 : 1 }}>
@@ -38,13 +47,14 @@ const WhatsAppButton = () => (
   </a>
 );
 
+// Componente de NavMenu mejorado para usar los IDs de sección correctos
 const NavMenu = ({ menuItems, isMenuOpen, closeMenu }) => (
   <div className={`menu-container ${isMenuOpen ? 'open' : ''}`}>
     <ul className="menu">
       {menuItems.map((item, index) => (
         <li key={index}>
           <a 
-            href={index === 0 ? '#' : `#${item.toLowerCase().replace(/\s+/g, '')}`} 
+            href={`#${SECTION_IDS[item]}`} 
             className="menu-link" 
             onClick={closeMenu}
           >
@@ -54,6 +64,61 @@ const NavMenu = ({ menuItems, isMenuOpen, closeMenu }) => (
       ))}
     </ul>
   </div>
+);
+
+// Componentes de sección
+const RitualesSection = () => (
+  <section id="rituales" className="section rituales-section">
+    <div className="section-container">
+      <h2 className="section-title">Rituales Poderosos</h2>
+      <p className="section-description">
+        Descubra los rituales ancestrales que han atravesado generaciones. 
+        Cada ritual está diseñado para manifestar energías específicas y 
+        producir cambios profundos en su realidad.
+      </p>
+      {/* Aquí iría el contenido específico de la sección de Rituales */}
+    </div>
+  </section>
+);
+
+const AmarresSection = () => (
+  <section id="amarres" className="section amarres-section">
+    <div className="section-container">
+      <h2 className="section-title">Amarres de Amor</h2>
+      <p className="section-description">
+        Nuestros amarres de amor son realizados con la mayor responsabilidad y respeto
+        por las energías universales. Recupere ese amor perdido o fortalezca
+        su relación actual con nuestros poderosos rituales.
+      </p>
+      {/* Aquí iría el contenido específico de la sección de Amarres de Amor */}
+    </div>
+  </section>
+);
+
+const TestimoniosSection = () => (
+  <section id="testimonios" className="section testimonios-section">
+    <div className="section-container">
+      <h2 className="section-title">Testimonios</h2>
+      <p className="section-description">
+        Conozca las historias de quienes han experimentado transformaciones
+        profundas gracias a nuestros rituales y servicios espirituales.
+      </p>
+      {/* Aquí irían los testimonios */}
+    </div>
+  </section>
+);
+
+const ContactoSection = () => (
+  <section id="contacto" className="section contacto-section">
+    <div className="section-container">
+      <h2 className="section-title">Contacto</h2>
+      <p className="section-description">
+        Estamos disponibles para responder a todas sus inquietudes y guiarle
+        en su camino espiritual. No dude en contactarnos para una consulta gratuita.
+      </p>
+      {/* Aquí iría el formulario de contacto o información de contacto */}
+    </div>
+  </section>
 );
 
 const Home = () => {
@@ -90,6 +155,41 @@ const Home = () => {
     return () => {
       videoElement.removeEventListener('play', handlePlay);
       videoElement.removeEventListener('pause', handlePause);
+    };
+  }, []);
+
+  // Navegación por hash cuando la página carga o cambia el hash
+  useEffect(() => {
+    // Función para manejar cambios en el hash
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        // Removemos el "#" del inicio
+        const sectionId = hash.substring(1);
+        const section = document.getElementById(sectionId);
+        
+        if (section) {
+          // Desplazamos a la sección con un pequeño desplazamiento para el header fijo
+          const headerHeight = document.querySelector('.header').offsetHeight;
+          const yOffset = -headerHeight; 
+          const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    };
+
+    // Verificamos el hash cuando la página carga
+    if (window.location.hash) {
+      // Usamos setTimeout para asegurar que los elementos están renderizados
+      setTimeout(handleHashChange, 100);
+    }
+
+    // Escuchamos cambios en el hash
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
     };
   }, []);
 
@@ -139,6 +239,7 @@ const Home = () => {
         .restriction-content {
           line-height: 1.3;
         }
+        
         .header {
           position: fixed;
           width: 100%;
@@ -204,11 +305,64 @@ const Home = () => {
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
         
+        /* Sección Hero - ahora con ID */
         .hero {
           min-height: 100vh;
           position: relative;
           overflow: hidden;
           padding-top: 70px;
+        }
+        
+        /* Estilos generales para las secciones */
+        .section {
+          min-height: 100vh;
+          padding: 100px 20px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .section-container {
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+          text-align: center;
+        }
+
+        .section-title {
+          font-size: 3rem;
+          margin-bottom: 1.5rem;
+          color: #e6c619;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-description {
+          font-size: 1.3rem;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+          line-height: 1.6;
+        }
+
+        /* Estilos específicos para cada sección */
+        .rituales-section {
+          background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                      url('https://res.cloudinary.com/sample/image/upload/rituales-bg.jpg') center/cover no-repeat;
+        }
+
+        .amarres-section {
+          background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                      url('https://res.cloudinary.com/sample/image/upload/amarres-bg.jpg') center/cover no-repeat;
+        }
+
+        .testimonios-section {
+          background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                      url('https://res.cloudinary.com/sample/image/upload/testimonios-bg.jpg') center/cover no-repeat;
+        }
+
+        .contacto-section {
+          background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                      url('https://res.cloudinary.com/sample/image/upload/contacto-bg.jpg') center/cover no-repeat;
         }
         
         .video-background {
