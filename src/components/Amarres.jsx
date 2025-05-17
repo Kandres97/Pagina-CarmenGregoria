@@ -10,19 +10,19 @@ const Amarres = () => {
   const tiposAmarres = [
     {
       id: 1,
-      titulo: "Amarre del Amor Eterno",
+      titulo: "Amarre de Amor Eterno",
       descripcion: "Ritual poderoso para recuperar y unir almas destinadas. Ideal para casos difíciles donde la persona amada está distante.",
       imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarre-eterno_jtclwr.jpg"
     },
     {
       id: 2,
-      titulo: "Amarre de Pasión",
+      titulo: "Amarres Sexuales",
       descripcion: "Ritual para despertar el deseo y la pasión más intensa, creando una conexión física y emocional irresistible.",
       imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarre-pasion_ftf9zw.jpg"
     },
     {
       id: 3,
-      titulo: "Amarre de Dominación",
+      titulo: "Amarres Del Mismo Genero",
       descripcion: "El ritual más potente para casos extremos donde se necesita dominar la voluntad y eliminar terceras personas.",
       imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarre-dominacion_olsfbr.jpg"
     }
@@ -67,10 +67,10 @@ const Amarres = () => {
       
       <div className="amarres-container">
         <div className="amarres-header">
-          <h2 className="section-subtitle">Rituales de Amor</h2>
+          
           <h3 className="section-title">Poderosos <span>Amarres de Amor</span></h3>
           <p className="section-description">
-            Recupere el amor perdido y cree un vínculo inquebrantable mediante nuestros rituales ancestrales adaptados a cada situación.
+            Recupere el amor perdido y cree un vínculo inquebrantable mediante nuestros rituales adaptados a cada situación.
           </p>
         </div>
         
@@ -109,22 +109,11 @@ const Amarres = () => {
         </div>
         
         <div className="proceso-container">
-          <h4 className="proceso-title">Nuestro Proceso de Amarres</h4>
           
-          <div className="proceso-steps">
-            {pasos.map((paso, index) => (
-              <div key={index} className="proceso-step">
-                <div className="paso-numero">{index + 1}</div>
-                <div className="paso-contenido">
-                  <h5 className="paso-titulo">{paso.titulo}</h5>
-                  <p className="paso-descripcion">{paso.descripcion}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        
           
           <div className="proceso-info">
-            <p>Cada caso es único y requiere un tratamiento personalizado. Los resultados son visibles entre 1-7 días, dependiendo de la complejidad de su situación.</p>
+            <p>Cada caso es único y requiere un tratamiento personalizado. Los resultados son efectivos, dependiendo de la complejidad de su situación.</p>
             <a 
               href={whatsappUrl}
               className="proceso-button"

@@ -174,9 +174,6 @@ const Testimonios = () => {
         <div className="testimonios-header">
           <h2 className="section-subtitle">Historias Reales</h2>
           <h3 className="section-title">Testimonios de <span>Éxito</span></h3>
-          <p className="section-description">
-            Descubra las transformaciones y milagros que han experimentado nuestros clientes gracias a los poderosos rituales realizados por la Maestra Carmen Gregoria.
-          </p>
         </div>
         
         <div className="testimonios-tabs">

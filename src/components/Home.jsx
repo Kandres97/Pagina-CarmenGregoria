@@ -890,7 +890,7 @@ const Home = () => {
               <p className="hero-description">
                 Amarres inquebrantables, retornos inmediatos, magia blanca, negra y roja. 
                 Protecciones impenetrables, alejamientos definitivos y revelaciones del 
-                tarot que transformarán su destino.
+                TAROT que transformarán su destino.
               </p>
               
               <div className="button-container">
@@ -899,7 +899,7 @@ const Home = () => {
                 </a>
                 
                 <a href="#testimonios" className="testimonials-button">
-                  Ver más testimonios <i className="fas fa-star" style={{ marginLeft: '8px' }}></i>
+                  Ver Más Testimonios <i className="fas fa-star" style={{ marginLeft: '8px' }}></i>
                 </a>
               </div>
             </div>
