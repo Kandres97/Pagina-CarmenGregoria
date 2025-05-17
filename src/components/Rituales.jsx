@@ -6,38 +6,38 @@ const Rituales = () => {
     {
       id: 1,
       titulo: "Amarres De Amor",
-      descripcion: "Poderoso ritual realizado bajo la influencia de la luna llena para amplificar intenciones, atraer abundancia y manifestar deseos del corazón.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/luna-llena_kf5f7r.jpg",
+      descripcion: "Ritual especializado para unir corazones, fortaleciendo el vínculo amoroso y atrayendo la energía romántica de manera intensa y profunda.",
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747514377/IMG_4170_HEIC_b1cuk6.png",
     },
     {
       id: 2,
       titulo: "Retorno De Amor",
-      descripcion: "Ritual ancestral para unir almas gemelas, fortalecer vínculos amorosos y encender la pasión que trasciende dimensiones.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/amor-eterno_cdfbwl.jpg",
+      descripcion: "Poderoso ritual diseñado para reconectar con la pareja perdida, reavivando sentimientos dormidos y sanando heridas emocionales.",
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747515538/beautiful-passionate-couple-having-romantic-260nw-1287012067_whpecj.webp",
     },
     {
       id: 3,
       titulo: "Magia Blanca",
-      descripcion: "Poderosa barrera energética que repele toda negatividad, envidias, hechizos malignos y atrae la luz divina para su protección absoluta.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/proteccion_ylz0fs.jpg",
+      descripcion: "Ritual de protección celestial que crea un escudo energético para repeler toda influencia negativa y atraer bendiciones divinas.",
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747514546/candlelight-2826332_1920_hi3hif.jpg",
     },
     {
       id: 4,
       titulo: "Magia Negra",
-      descripcion: "Atrae la prosperidad material y espiritual, eliminando bloqueos económicos y abriendo caminos hacia la riqueza y el éxito.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/abundancia_mjqtip.jpg",
+      descripcion: "Ritual intenso para transformar bloqueos energéticos, desatando poder interior y manifestando cambios radicales en la vida.",
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747514605/d74417cf1f96d30e26a48e1e62fa1f62_ikt43e.jpg",
     },
     {
       id: 5,
       titulo: "Alejamientos",
-      descripcion: "Purificación profunda del aura y los chakras, liberando cargas negativas, entidades y bloqueos espirituales acumulados.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/limpieza_pgwsun.jpg",
+      descripcion: "Ritual especializado para eliminar presencias negativas, cortar lazos tóxicos y liberar el espacio personal de influencias nocivas.",
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747515037/illustration-concept-remove-negative-energy-260nw-2249272073_bdhiyo.webp",
     },
     {
       id: 6,
       titulo: "Limpias Espirituales",
-      descripcion: "Liberación definitiva de vínculos tóxicos, dependencias emocionales y energías parasitarias que drenan su fuerza vital.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/corte-ataduras_rnfxxx.jpg",
+      descripcion: "Ceremonia profunda de purificación energética que renueva el aura, equilibra los chakras y restaura la armonía interior.",
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747515630/minerals-candle-on-moss-forest-260nw-2273752425_d3wzsn.webp",
     }
   ];
 
@@ -77,12 +77,12 @@ const Rituales = () => {
                   <p className="ritual-description">{ritual.descripcion}</p>
                   
                   <a 
-                    href={`https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20estoy%20interesado%20en%20el%20ritual%20de%20${encodeURIComponent(ritual.titulo)}`}
+                    href={`https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20estoy%20interesado%20en%20una%20Consulta%20Gratis%20para%20el%20ritual%20de%20${encodeURIComponent(ritual.titulo)}`}
                     className="ritual-button"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Solicitar Ritual <i className="fas fa-magic"></i>
+                    Consulta Gratis <i className="fas fa-magic"></i>
                   </a>
                 </div>
               </div>
