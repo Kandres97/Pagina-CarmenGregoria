@@ -12,6 +12,7 @@ const SECTION_IDS = {
   'Inicio': '',
   'Rituales': 'Rituales',
   'Amarres de Amor': 'amarres',
+  'TAROT': 'tarot',
   'Testimonios': 'testimonios',
   'Contacto': 'contacto'
 };
@@ -95,6 +96,21 @@ const AmarresSection = () => (
   </section>
 );
 
+// Nueva sección de TAROT
+const TarotSection = () => (
+  <section id="tarot" className="section tarot-section">
+    <div className="section-container">
+      <h2 className="section-title">Lecturas de TAROT</h2>
+      <p className="section-description">
+        Descubra los secretos que el universo tiene reservados para usted a través de nuestras 
+        lecturas de TAROT. Revelaciones precisas sobre amor, dinero, trabajo y espiritualidad 
+        que le guiarán en su camino.
+      </p>
+      {/* Aquí iría el contenido específico de la sección de TAROT */}
+    </div>
+  </section>
+);
+
 const TestimoniosSection = () => (
   <section id="testimonios" className="section testimonios-section">
     <div className="section-container">
@@ -130,7 +146,7 @@ const Home = () => {
   });
   
   const videoRef = useRef(null);
-  const menuItems = ['Inicio', 'Rituales', 'Amarres de Amor', 'Testimonios', 'Contacto'];
+  const menuItems = ['Inicio', 'Rituales', 'Amarres de Amor', 'TAROT', 'Testimonios', 'Contacto'];
   
   // Detección de dispositivo móvil - optimizado
   useEffect(() => {
@@ -353,6 +369,12 @@ const Home = () => {
         .amarres-section {
           background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
                       url('https://res.cloudinary.com/sample/image/upload/amarres-bg.jpg') center/cover no-repeat;
+        }
+
+        /* Estilos para la nueva sección de TAROT */
+        .tarot-section {
+          background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                      url('https://res.cloudinary.com/sample/image/upload/tarot-bg.jpg') center/cover no-repeat;
         }
 
         .testimonios-section {

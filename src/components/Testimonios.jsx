@@ -7,24 +7,22 @@ const Testimonios = () => {
   const videoRefs = useRef({});
   const fotosRowRef = useRef(null);
   
-  // Datos consolidados de testimonios
+  // Datos consolidados de testimonios (sin texto)
   const testimonios = {
     videos: [
       {
         id: 'video1',
         nombre: "María Fernanda",
         ubicacion: "Ciudad de México",
-        texto: "Después de 3 años de separación, mi ex regresó en tan solo 6 días gracias al Amarre de Amor Eterno. Estoy inmensamente agradecida con la Maestra Carmen.",
-        videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
-        thumbnail: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio1_l6imae.jpg"
+        videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747518981/8_ccu21c.mp4",
+        thumbnail: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747518981/8_ccu21c.jpg"
       },
       {
         id: 'video2',
         nombre: "Roberto Méndez",
         ubicacion: "Guadalajara",
-        texto: "Mi pareja me había dejado por otra persona. Con el Amarre de Dominación, regresó totalmente entregada a nuestra relación, eliminando a la otra persona de su vida.",
-        videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
-        thumbnail: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio2_zcj2op.jpg"
+        videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747519038/videoplayback_vnip2j.mp4",
+        thumbnail: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747519038/videoplayback_vnip2j.jpg"
       }
     ],
     fotos: [
@@ -32,29 +30,25 @@ const Testimonios = () => {
         id: 'foto1',
         nombre: "Carlos Jiménez",
         ubicacion: "Puebla",
-        texto: "Mi novia me había bloqueado de todas sus redes. En solo 4 días después del ritual, me buscó desesperadamente. Ahora estamos comprometidos y más enamorados que nunca.",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio4_mjvhwe.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519099/testimonio_1_yrauxg_dkfhoj_ikwihb_souaip.jpg"
       },
       {
         id: 'foto2',
         nombre: "Diana Ramírez",
         ubicacion: "Veracruz",
-        texto: "Había probado con otros servicios sin éxito. El amarre que realizó la Maestra Carmen logró que mi ex dejara a su nueva pareja y volviera conmigo en menos de una semana.",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio5_pqszfa.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519100/testimonio_3_cm4qzk_dtwqf6_e4kkoi_tfunrj.jpg"
       },
       {
         id: 'foto3',
         nombre: "Miguel Ángel",
         ubicacion: "Querétaro",
-        texto: "Mi esposa había pedido el divorcio. Gracias al ritual especializado, no solo desistió del divorcio sino que nuestra relación mejoró enormemente. Eternamente agradecido.",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio6_xulr81.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519102/Testimonio_4_bvpuoh_blaq4c_xwvizf_rbdngs.jpg"
       },
       {
         id: 'foto4',
         nombre: "Laura Herrera",
         ubicacion: "Cancún",
-        texto: "Tenía dudas al principio, pero los resultados fueron increíbles. Mi pareja cambió completamente su actitud, está más atenta y cariñosa que nunca. El ritual funcionó perfectamente.",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566288/testimonio7_zqwdxr.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519105/Testimonio_2_nfblmg_i3gd4k_wqozch_e7au8y.jpg"
       }
     ]
   };
@@ -123,7 +117,6 @@ const Testimonios = () => {
       <div className="testimonio-info">
         <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
         <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
-        <p className="testimonio-texto">"{testimonio.texto}"</p>
       </div>
     </div>
   );
@@ -154,7 +147,6 @@ const Testimonios = () => {
               <i key={i} className="fas fa-star"></i>
             ))}
           </div>
-          <p className="testimonio-texto">"{testimonio.texto}"</p>
         </div>
       </div>
     );
@@ -189,6 +181,15 @@ const Testimonios = () => {
               <i className={tab.icon}></i> {tab.label}
             </button>
           ))}
+          
+          <a 
+            href="https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información"
+            className="consulta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consulta Ahora <i className="fas fa-arrow-right"></i>
+          </a>
         </div>
         
         <div className={`tab-content ${activeTab === 'videos' ? 'active' : ''}`}>
@@ -224,16 +225,7 @@ const Testimonios = () => {
           </div>
         </div>
         
-        <div className="testimonios-cta">
-          <p>Usted también puede transformar su vida amorosa con nuestros poderosos rituales</p>
-          <a 
-            href="https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor" 
-            className="testimonios-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Consulta Sin Costo <i className="fas fa-heart"></i>
-          </a>
+        <div className="consulta-button-container">
         </div>
       </div>
       
@@ -360,6 +352,7 @@ const Testimonios = () => {
           justify-content: center;
           gap: 1rem;
           margin-bottom: 2.5rem;
+          flex-wrap: wrap;
         }
         
         .tab-button {
@@ -389,6 +382,29 @@ const Testimonios = () => {
           border-color: transparent;
           box-shadow: 0 5px 15px rgba(168, 63, 103, 0.4);
           transform: translateY(-3px);
+        }
+        
+        .consulta-button {
+          display: inline-block;
+          background: linear-gradient(135deg, #e6c619, #b39915);
+          color: white;
+          padding: 0.8rem 2rem;
+          border-radius: 50px;
+          font-size: 1.1rem;
+          text-decoration: none;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 5px 15px rgba(230, 198, 25, 0.4);
+          text-align: center;
+          font-family: 'Playfair Display', serif;
+        }
+        
+        .consulta-button i {
+          margin-left: 8px;
+        }
+        
+        .consulta-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(230, 198, 25, 0.6);
         }
         
         /* Contenido de las tabs */
@@ -523,13 +539,6 @@ const Testimonios = () => {
           color: #a83f67;
         }
         
-        .testimonio-texto {
-          color: #fff;
-          line-height: 1.6;
-          font-style: italic;
-          opacity: 0.9;
-        }
-        
         /* Estilos para las fotos */
         .foto-card {
           flex: 0 0 calc(25% - 1.125rem);
@@ -588,43 +597,34 @@ const Testimonios = () => {
           color: #e6c619;
         }
         
-        /* CTA final */
-        .testimonios-cta {
-          background: rgba(15, 15, 15, 0.7);
-          border-radius: 16px;
-          padding: 2.5rem;
-          text-align: center;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-          border: 1px solid rgba(168, 63, 103, 0.2);
-          backdrop-filter: blur(10px);
-          margin-top: 2rem;
-        }
-        
-        .testimonios-cta p {
-          color: #fff;
-          font-size: 1.2rem;
+        /* Estilos para el botón de consulta */
+        .consulta-button-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 2.5rem;
           margin-bottom: 1.5rem;
         }
         
-        .testimonios-button {
+        .consulta-button {
           display: inline-block;
           background: linear-gradient(135deg, #e6c619, #b39915);
           color: white;
-          padding: 1rem 2rem;
+          padding: 1rem 2.5rem;
           border-radius: 50px;
           font-size: 1.2rem;
           text-decoration: none;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           box-shadow: 0 5px 15px rgba(230, 198, 25, 0.4);
+          text-align: center;
         }
         
-        .testimonios-button:hover {
+        .consulta-button i {
+          margin-left: 8px;
+        }
+        
+        .consulta-button:hover {
           transform: translateY(-3px);
           box-shadow: 0 8px 20px rgba(230, 198, 25, 0.6);
-        }
-        
-        .testimonios-button i {
-          margin-left: 8px;
         }
         
         /* Estilo para los indicadores del carrusel */
@@ -760,17 +760,11 @@ const Testimonios = () => {
             font-size: 1.2rem;
           }
           
-          .testimonios-cta {
-            padding: 2rem;
-          }
-          
-          .testimonios-cta p {
-            font-size: 1.1rem;
-          }
-          
-          .testimonios-button {
+          .consulta-button {
             padding: 0.9rem 1.8rem;
             font-size: 1.1rem;
+            width: 80%;
+            max-width: 300px;
           }
         }
         
@@ -810,15 +804,7 @@ const Testimonios = () => {
             height: 18px;
           }
           
-          .testimonios-cta {
-            padding: 1.5rem;
-          }
-          
-          .testimonios-cta p {
-            font-size: 1rem;
-          }
-          
-          .testimonios-button {
+          .consulta-button {
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
           }

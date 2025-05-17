@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Amarres = () => {
   const [expandedAmarre, setExpandedAmarre] = useState(null);
@@ -6,44 +6,29 @@ const Amarres = () => {
   // URL para WhatsApp
   const whatsappUrl = "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor";
   
+  // URL del video de fondo
+  const videoUrl = "https://res.cloudinary.com/tu-cuenta-cloudinary/video/upload/v1234567890/tu-video-de-fondo.mp4";
+  // Nota: Debes reemplazar la URL anterior con la URL real de tu video
+  
   // Datos de los tipos de amarres
   const tiposAmarres = [
     {
       id: 1,
       titulo: "Amarre de Amor Eterno",
       descripcion: "Ritual poderoso para recuperar y unir almas destinadas. Ideal para casos difíciles donde la persona amada está distante.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarre-eterno_jtclwr.jpg"
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517636/newlywed-couple-holding-golden-padlock-260nw-2381416521_trtwcn.webp"
     },
     {
       id: 2,
       titulo: "Amarres Sexuales",
       descripcion: "Ritual para despertar el deseo y la pasión más intensa, creando una conexión física y emocional irresistible.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarre-pasion_ftf9zw.jpg"
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517975/blurred-background-silhouettes-couple-love-260nw-2520439475_fvtzet.webp"
     },
     {
       id: 3,
       titulo: "Amarres Del Mismo Genero",
       descripcion: "El ritual más potente para casos extremos donde se necesita dominar la voluntad y eliminar terceras personas.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarre-dominacion_olsfbr.jpg"
-    }
-  ];
-  
-  // Pasos del proceso
-  const pasos = [
-    {
-      titulo: "Consulta Personalizada",
-      descripcion: "Evaluación gratuita de su caso para determinar el tipo de amarre más efectivo para su situación particular.",
-      icono: "fas fa-search"
-    },
-    {
-      titulo: "Ritual Especializado",
-      descripcion: "Realización del ritual seleccionado utilizando elementos de alta vibración energética y siguiendo los ciclos lunares apropiados.",
-      icono: "fas fa-magic"
-    },
-    {
-      titulo: "Seguimiento Continuo",
-      descripcion: "Monitoreo diario de la evolución energética, con ajustes y refuerzos para garantizar resultados óptimos.",
-      icono: "fas fa-chart-line"
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517894/closeup-young-adult-queer-transgender-260nw-2192258039-01_hznwgr.webp"
     }
   ];
   
@@ -58,6 +43,15 @@ const Amarres = () => {
 
   return (
     <section id="amarres" className="amarres-section">
+      {/* Video de fondo */}
+      <div className="video-background">
+        <video autoPlay loop muted playsInline className="video-element">
+          <source src={videoUrl} type="video/mp4" />
+          Tu navegador no soporta videos HTML5.
+        </video>
+      </div>
+      
+      {/* Overlay para dar transparencia */}
       <div className="amarres-overlay"></div>
       
       <div className="mystical-elements">
@@ -67,7 +61,6 @@ const Amarres = () => {
       
       <div className="amarres-container">
         <div className="amarres-header">
-          
           <h3 className="section-title">Poderosos <span>Amarres de Amor</span></h3>
           <p className="section-description">
             Recupere el amor perdido y cree un vínculo inquebrantable mediante nuestros rituales adaptados a cada situación.
@@ -109,9 +102,6 @@ const Amarres = () => {
         </div>
         
         <div className="proceso-container">
-          
-        
-          
           <div className="proceso-info">
             <p>Cada caso es único y requiere un tratamiento personalizado. Los resultados son efectivos, dependiendo de la complejidad de su situación.</p>
             <a 
@@ -129,14 +119,32 @@ const Amarres = () => {
       <style jsx>{`
         .amarres-section {
           min-height: 100vh;
-          background-color: #0c0c0c;
-          background-image: url('https://res.cloudinary.com/dhzqf1itl/image/upload/v1717566287/amarres-bg_kcufdg.jpg');
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
           position: relative;
           padding: 120px 0 80px;
           overflow: hidden;
+        }
+        
+        /* Estilos para el video de fondo */
+        .video-background {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -2;
+          overflow: hidden;
+        }
+        
+        .video-element {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          transform: translateX(-50%) translateY(-50%);
+          object-fit: cover;
         }
         
         .amarres-overlay {
@@ -145,8 +153,8 @@ const Amarres = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(rgba(12, 12, 12, 0.85), rgba(12, 12, 12, 0.9));
-          z-index: 0;
+          background: linear-gradient(rgba(12, 12, 12, 0.3), rgba(12, 12, 12, 0.4));
+          z-index: -1;
         }
         
         .mystical-elements {
