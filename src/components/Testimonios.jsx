@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const Testimonios = () => {
   const [activeTab, setActiveTab] = useState('videos');
   const [playingVideo, setPlayingVideo] = useState(null);
   const [currentFotoIndex, setCurrentFotoIndex] = useState(0);
   const videoRefs = useRef({});
-  const fotosRowRef = useRef(null);
+  const fotosCarouselRef = useRef(null);
   
   // Datos consolidados de testimonios (sin texto)
   const testimonios = {
@@ -53,104 +53,85 @@ const Testimonios = () => {
     ]
   };
   
-  // Función para desplazarse a una foto específica
-  const scrollToPhoto = (index) => {
-    if (fotosRowRef.current) {
-      const cards = fotosRowRef.current.querySelectorAll('.foto-card');
-      if (cards[index]) {
-        cards[index].scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest', 
-          inline: 'center'
-        });
-      }
-    }
+  // Función para ir a la siguiente foto en el carrusel
+  const nextFoto = () => {
+    setCurrentFotoIndex((prevIndex) => 
+      prevIndex === testimonios.fotos.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Función para ir a la foto anterior en el carrusel
+  const prevFoto = () => {
+    setCurrentFotoIndex((prevIndex) => 
+      prevIndex === 0 ? testimonios.fotos.length - 1 : prevIndex - 1
+    );
   };
   
-  // Función para reproducir/pausar videos
-  const togglePlayPause = (videoId) => {
-    const videoElement = videoRefs.current[videoId];
-    if (videoElement) {
-      if (videoElement.paused) {
-        // Pausar todos los videos primero
-        Object.values(videoRefs.current).forEach(vid => {
-          if (vid && !vid.paused) {
-            vid.pause();
-          }
-        });
-        // Reproducir el video seleccionado
-        videoElement.play();
-      } else {
-        videoElement.pause();
-      }
+  // Efecto para actualizar el carrusel cuando cambia el índice
+  useEffect(() => {
+    if (fotosCarouselRef.current) {
+      fotosCarouselRef.current.style.transform = `translateX(-${currentFotoIndex * 100}%)`;
     }
+  }, [currentFotoIndex]);
+  
+  // Función para reproducir videos con un solo clic
+  const playVideo = (videoId) => {
+    // La función ya no es necesaria porque usamos los controles
+    // nativos del video, pero la mantenemos por compatibilidad
+    console.log("Click en video:", videoId);
   };
   
-  // Componente de tarjeta de video
+  // Componente de tarjeta de video muy simplificado
   const VideoCard = ({ testimonio }) => (
-    <div className="video-card">
-      <div className="video-wrapper">
+    <div className="video-card-simple">
+      <div className="video-simple-wrapper">
         <video 
           ref={el => videoRefs.current[testimonio.id] = el}
-          className="testimonio-video"
+          className="testimonio-video-simple"
           playsInline
+          controls
           poster={testimonio.thumbnail}
-          onPlay={() => setPlayingVideo(testimonio.id)}
-          onPause={() => playingVideo === testimonio.id && setPlayingVideo(null)}
+          onClick={() => playVideo(testimonio.id)}
         >
           <source src={testimonio.videoUrl} type="video/mp4" />
           Tu navegador no soporta videos HTML5.
         </video>
-        
-        <div className="video-overlay"></div>
-        
-        <div 
-          className={`play-button ${playingVideo === testimonio.id ? 'hidden' : ''}`}
-          onClick={() => togglePlayPause(testimonio.id)}
-        >
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5.14v14l11-7-11-7z" />
-          </svg>
-        </div>
+      </div>
+      
+      <div className="video-info-simple">
+        <h4 className="testimonio-nombre-simple">{testimonio.nombre} 
+          <span className="verified-badge">
+            <i className="fas fa-check-circle"></i>
+          </span>
+        </h4>
+        <p className="testimonio-ubicacion-simple"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
+      </div>
+    </div>
+  );
+  
+  // Componente de tarjeta de foto
+  const FotoCard = ({ testimonio }) => (
+    <div className="foto-card">
+      <div className="foto-wrapper">
+        <img 
+          src={testimonio.imagen} 
+          alt={testimonio.nombre} 
+          className="testimonio-foto" 
+        />
+        <div className="foto-overlay"></div>
       </div>
       
       <div className="testimonio-info">
         <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
         <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
+        <div className="testimonio-estrellas">
+          {[...Array(5)].map((_, i) => (
+            <i key={i} className="fas fa-star"></i>
+          ))}
+        </div>
       </div>
     </div>
   );
-  
-  // Componente de tarjeta de foto con hooks para el carrusel
-  const FotoCard = ({ testimonio, index }) => {
-    const cardRef = useRef(null);
-    
-    return (
-      <div 
-        ref={cardRef} 
-        className={`foto-card ${currentFotoIndex === index ? 'in-view' : ''}`}
-      >
-        <div className="foto-wrapper">
-          <img 
-            src={testimonio.imagen} 
-            alt={testimonio.nombre} 
-            className="testimonio-foto" 
-          />
-          <div className="foto-overlay"></div>
-        </div>
-        
-        <div className="testimonio-info">
-          <h4 className="testimonio-nombre">{testimonio.nombre}</h4>
-          <p className="testimonio-ubicacion"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
-          <div className="testimonio-estrellas">
-            {[...Array(5)].map((_, i) => (
-              <i key={i} className="fas fa-star"></i>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <section id="testimonios" className="testimonios-section">
@@ -192,40 +173,52 @@ const Testimonios = () => {
           </a>
         </div>
         
+        {/* Contenido de la tab de Videos - Extremadamente simple */}
         <div className={`tab-content ${activeTab === 'videos' ? 'active' : ''}`}>
-          <div className="videos-row">
+          <div className="videos-simple">
             {testimonios.videos.map((testimonio) => (
               <VideoCard key={testimonio.id} testimonio={testimonio} />
             ))}
           </div>
         </div>
         
+        {/* Contenido de la tab de Fotos - Carrusel */}
         <div className={`tab-content ${activeTab === 'fotos' ? 'active' : ''}`}>
-          <div 
-            className="fotos-row" 
-            ref={fotosRowRef}
-          >
-            {testimonios.fotos.map((testimonio, index) => (
-              <FotoCard key={testimonio.id} testimonio={testimonio} index={index} />
-            ))}
-          </div>
-          <div className="carrusel-indicador">
-            <div className="carrusel-dots">
-              {testimonios.fotos.map((testimonio, index) => (
-                <span 
-                  key={index} 
-                  className={`carrusel-dot ${currentFotoIndex === index ? 'active' : ''}`}
-                  onClick={() => {
-                    scrollToPhoto(index);
-                    setCurrentFotoIndex(index);
-                  }}
-                ></span>
-              ))}
+          <div className="carousel-container">
+            <button className="carousel-arrow prev-arrow" onClick={prevFoto}>
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            
+            <div className="carousel-viewport">
+              <div className="carousel-track" ref={fotosCarouselRef}>
+                {testimonios.fotos.map((testimonio) => (
+                  <div className="carousel-slide" key={testimonio.id}>
+                    <FotoCard testimonio={testimonio} />
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <button className="carousel-arrow next-arrow" onClick={nextFoto}>
+              <i className="fas fa-chevron-right"></i>
+            </button>
+            
+            {/* Indicadores de navegación con texto */}
+            <div className="carousel-navigation-hint">
+              <span>Desliza para ver más testimonios</span>
+              <i className="fas fa-long-arrow-alt-right"></i>
             </div>
           </div>
-        </div>
-        
-        <div className="consulta-button-container">
+          
+          <div className="carousel-indicators">
+            {testimonios.fotos.map((_, index) => (
+              <span 
+                key={index} 
+                className={`carousel-indicator ${currentFotoIndex === index ? 'active' : ''}`} 
+                onClick={() => setCurrentFotoIndex(index)}
+              ></span>
+            ))}
+          </div>
         </div>
       </div>
       
@@ -337,15 +330,6 @@ const Testimonios = () => {
           color: #a83f67;
         }
         
-        .section-description {
-          font-size: 1.2rem;
-          max-width: 800px;
-          margin: 0 auto;
-          line-height: 1.6;
-          opacity: 0.9;
-          color: #fff;
-        }
-        
         /* Tabs de navegación */
         .testimonios-tabs {
           display: flex;
@@ -428,158 +412,181 @@ const Testimonios = () => {
           }
         }
         
-        /* Estilos para los videos en fila (escritorio) */
-        .videos-row, .fotos-row {
+        /* ESTILOS MODIFICADOS PARA VIDEOS - MÁS PEQUEÑOS */
+        .videos-simple {
           display: flex;
-          gap: 1.5rem;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 2rem;
           margin-bottom: 3rem;
-          overflow-x: auto;
-          padding-bottom: 1rem;
         }
         
-        .video-card {
-          flex: 0 0 calc(50% - 0.75rem);
-          background: rgba(15, 15, 15, 0.7);
-          border-radius: 16px;
-          overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-          transition: all 0.4s ease;
+        .video-card-simple {
+          width: 100%;
+          max-width: 400px; /* Reducido de 500px */
+          padding: 15px;
+          background: rgba(15, 15, 15, 0.5);
+          border-radius: 8px;
           border: 1px solid rgba(168, 63, 103, 0.2);
-          backdrop-filter: blur(10px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .video-card:hover, .foto-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(230, 198, 25, 0.2);
-          border-color: rgba(230, 198, 25, 0.3);
-        }
-        
-        .video-wrapper {
-          position: relative;
+        .video-simple-wrapper {
           width: 100%;
+          margin-bottom: 0.5rem;
+          border-radius: 6px;
           overflow: hidden;
-          padding-top: 56.25%; /* Ratio 16:9 */
         }
         
-        .testimonio-video {
-          position: absolute;
-          top: 0;
-          left: 0;
+        .testimonio-video-simple {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          border-radius: 6px;
+          max-height: 225px; /* Limitando la altura */
         }
         
-        .video-overlay, .foto-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to bottom, transparent 50%, rgba(12, 12, 12, 0.6));
-          pointer-events: none;
+        .video-info-simple {
+          padding: 0.8rem 0;
         }
         
-        .play-button {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 60px;
-          height: 60px;
-          background: rgba(168, 63, 103, 0.7);
+        .testimonio-nombre-simple {
+          font-size: 1.1rem;
+          color: #e6c619;
+          margin-bottom: 0.3rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        
+        .verified-badge {
+          color: #4CAF50;
+          font-size: 0.9rem;
+        }
+        
+        .testimonio-ubicacion-simple {
+          color: #fff;
+          opacity: 0.7;
+          font-size: 0.9rem;
+        }
+        
+        .testimonio-ubicacion-simple i {
+          margin-right: 5px;
+          color: #a83f67;
+        }
+        
+        /* ESTILOS MODIFICADOS PARA CARRUSEL DE FOTOS - FLECHAS MÁS VISIBLES */
+        .carousel-container {
+          position: relative;
+          max-width: 850px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        /* Flechas modificadas - más pequeñas y más visibles */
+        .carousel-arrow {
+          background: rgba(230, 198, 25, 0.8); /* Fondo más visible en amarillo */
+          border: 1px solid #e6c619;
+          color: #0c0c0c; /* Color de flecha oscuro para contraste */
+          width: 40px; /* Reducido de 50px */
+          height: 40px; /* Reducido de 50px */
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          border: 2px solid rgba(230, 198, 25, 0.5);
           transition: all 0.3s ease;
-          z-index: 2;
+          position: absolute;
+          z-index: 10;
+          font-size: 0.9rem; /* Reduciendo tamaño de icono */
+          box-shadow: 0 0 10px rgba(230, 198, 25, 0.5); /* Sombra para destacar */
+          animation: pulse 2s infinite; /* Animación pulsante para llamar la atención */
         }
         
-        .play-button.hidden {
-          opacity: 0;
-          pointer-events: none;
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(230, 198, 25, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 10px rgba(230, 198, 25, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(230, 198, 25, 0);
+          }
         }
         
-        .play-button svg {
-          width: 25px;
-          height: 25px;
-          fill: #fff;
-          margin-left: 5px;
+        .prev-arrow {
+          left: -15px; /* Ajustado de -25px */
         }
         
-        .play-button:hover {
-          transform: translate(-50%, -50%) scale(1.1);
-          background: rgba(168, 63, 103, 0.9);
-          box-shadow: 0 0 20px rgba(230, 198, 25, 0.3);
+        .next-arrow {
+          right: -15px; /* Ajustado de -25px */
         }
         
-        .testimonio-info {
-          padding: 1.5rem;
+        .carousel-arrow:hover {
+          background: rgba(230, 198, 25, 1);
+          transform: scale(1.1);
         }
         
-        .testimonio-nombre {
-          font-size: 1.3rem;
+        /* Texto de indicación para el carrusel */
+        .carousel-navigation-hint {
+          position: absolute;
+          bottom: -30px;
+          right: 20px;
           color: #e6c619;
-          margin-bottom: 0.5rem;
-          font-weight: 600;
-        }
-        
-        .testimonio-ubicacion {
-          color: #fff;
-          opacity: 0.7;
           font-size: 0.9rem;
-          margin-bottom: 1rem;
+          opacity: 0.8;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          animation: fadeInOut 3s infinite;
         }
         
-        .testimonio-ubicacion i {
-          margin-right: 5px;
-          color: #a83f67;
+        @keyframes fadeInOut {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
         }
         
-        /* Estilos para las fotos */
+        .carousel-viewport {
+          width: 100%;
+          overflow: hidden;
+          border-radius: 16px;
+          margin: 0 2rem;
+        }
+        
+        .carousel-track {
+          display: flex;
+          transition: transform 0.5s ease-in-out;
+          width: 100%;
+        }
+        
+        .carousel-slide {
+          flex: 0 0 100%;
+          min-width: 100%;
+        }
+        
         .foto-card {
-          flex: 0 0 calc(25% - 1.125rem);
           background: rgba(15, 15, 15, 0.7);
           border-radius: 16px;
           overflow: hidden;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-          transition: all 0.4s ease;
           border: 1px solid rgba(168, 63, 103, 0.2);
           backdrop-filter: blur(10px);
-        }
-        
-        /* Animación para destacar la foto actual */
-        @keyframes fadeInScale {
-          from {
-            opacity: 0.7;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        .foto-card.in-view {
-          border-color: rgba(230, 198, 25, 0.5);
-          box-shadow: 0 10px 30px rgba(230, 198, 25, 0.2);
-          animation: fadeInScale 0.5s ease forwards;
+          height: 100%;
         }
         
         .foto-wrapper {
           position: relative;
           width: 100%;
-          height: 200px;
+          height: 500px;
           overflow: hidden;
+          background-color: rgba(0, 0, 0, 0.2);
         }
         
         .testimonio-foto {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           transition: transform 0.5s ease;
         }
         
@@ -587,82 +594,65 @@ const Testimonios = () => {
           transform: scale(1.05);
         }
         
+        .foto-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to bottom, transparent 50%, rgba(12, 12, 12, 0.6));
+          pointer-events: none;
+          z-index: 2;
+        }
+        
         .testimonio-estrellas {
           display: flex;
           gap: 3px;
-          margin-bottom: 1rem;
+          margin-top: auto;
         }
         
         .testimonio-estrellas i {
           color: #e6c619;
         }
         
-        /* Estilos para el botón de consulta */
-        .consulta-button-container {
+        .carousel-indicators {
           display: flex;
           justify-content: center;
-          margin-top: 2.5rem;
-          margin-bottom: 1.5rem;
+          gap: 10px;
+          margin-top: 40px; /* Aumentado para dar espacio al texto de navegación */
         }
         
-        .consulta-button {
-          display: inline-block;
-          background: linear-gradient(135deg, #e6c619, #b39915);
-          color: white;
-          padding: 1rem 2.5rem;
-          border-radius: 50px;
-          font-size: 1.2rem;
-          text-decoration: none;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          box-shadow: 0 5px 15px rgba(230, 198, 25, 0.4);
-          text-align: center;
-        }
-        
-        .consulta-button i {
-          margin-left: 8px;
-        }
-        
-        .consulta-button:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba(230, 198, 25, 0.6);
-        }
-        
-        /* Estilo para los indicadores del carrusel */
-        .carrusel-indicador {
-          display: none;
-          margin-top: 0.5rem;
-          text-align: center;
-        }
-        
-        .carrusel-dots {
-          display: inline-flex;
-          gap: 8px;
-        }
-        
-        .carrusel-dot {
-          width: 8px;
-          height: 8px;
-          background-color: rgba(255, 255, 255, 0.4);
+        .carousel-indicator {
+          width: 12px;
+          height: 12px;
+          background-color: rgba(255, 255, 255, 0.3);
           border-radius: 50%;
-          display: inline-block;
           cursor: pointer;
           transition: all 0.3s ease;
         }
         
-        .carrusel-dot.active {
+        .carousel-indicator.active {
           background-color: #e6c619;
-          transform: scale(1.3);
+          transform: scale(1.2);
           box-shadow: 0 0 10px rgba(230, 198, 25, 0.6);
         }
         
-        /* Estilos responsive */
+        /* ESTILOS RESPONSIVE */
         @media (max-width: 1024px) {
-          .video-card {
-            flex: 0 0 450px;
+          .videos-simple {
+            gap: 1.5rem;
           }
           
-          .foto-card {
-            flex: 0 0 280px;
+          .video-card-simple {
+            max-width: 350px; /* Reducido de 450px */
+          }
+          
+          .carousel-container {
+            max-width: 700px;
+          }
+          
+          .foto-wrapper {
+            height: 450px;
           }
         }
         
@@ -679,92 +669,34 @@ const Testimonios = () => {
             font-size: 2.5rem;
           }
           
-          .section-description {
-            font-size: 1.1rem;
-          }
-          
-          .testimonios-tabs {
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-          }
-          
-          .tab-button {
-            width: 100%;
-            max-width: 300px;
-          }
-          
-          /* Cambio para móviles: videos en vertical, fotos en carrusel */
-          .videos-row {
-            flex-direction: column;
-            overflow-x: visible;
+          .videos-simple {
             gap: 1.5rem;
           }
           
-          .fotos-row {
-            flex-direction: row;
-            overflow-x: auto;
-            gap: 1rem;
-            padding-bottom: 1.5rem;
-            scrollbar-width: thin;
-            -webkit-overflow-scrolling: touch;
-            scroll-snap-type: x mandatory;
-            scroll-padding: 0 15px;
+          .video-card-simple {
+            max-width: 90%; /* En lugar de 100% para dar margen */
           }
           
-          .fotos-row::-webkit-scrollbar {
-            height: 6px;
+          .carousel-container {
+            max-width: 100%;
           }
           
-          .fotos-row::-webkit-scrollbar-thumb {
-            background-color: rgba(168, 63, 103, 0.6);
-            border-radius: 20px;
+          .foto-wrapper {
+            height: 350px;
           }
           
-          .fotos-row::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
+          .prev-arrow {
+            left: -10px;
           }
           
-          .video-card {
-            flex: 0 0 auto;
-            width: 100%;
-            margin-bottom: 1.5rem;
+          .next-arrow {
+            right: -10px;
           }
           
-          .foto-card {
-            flex: 0 0 80%;
-            scroll-snap-align: center;
-            margin-bottom: 0.5rem;
-          }
-          
-          .video-wrapper {
-            padding-top: 75%; /* Ratio 4:3 para móviles */
-          }
-          
-          .play-button {
-            width: 50px;
-            height: 50px;
-          }
-          
-          .play-button svg {
-            width: 20px;
-            height: 20px;
-          }
-          
-          .testimonio-info {
-            padding: 1.2rem;
-          }
-          
-          .testimonio-nombre {
-            font-size: 1.2rem;
-          }
-          
-          .consulta-button {
-            padding: 0.9rem 1.8rem;
-            font-size: 1.1rem;
-            width: 80%;
-            max-width: 300px;
+          .carousel-navigation-hint {
+            bottom: -25px;
+            right: 10px;
+            font-size: 0.8rem;
           }
         }
         
@@ -781,32 +713,51 @@ const Testimonios = () => {
             font-size: 2.2rem;
           }
           
-          .section-description {
-            font-size: 1rem;
+          .testimonios-tabs {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
           }
           
-          /* Mostrar indicadores de carrusel en móvil */
-          .carrusel-indicador {
-            display: block;
-          }
-          
-          .foto-wrapper {
-            height: 180px;
-          }
-          
-          .play-button {
-            width: 45px;
-            height: 45px;
-          }
-          
-          .play-button svg {
-            width: 18px;
-            height: 18px;
+          .tab-button {
+            width: 100%;
+            max-width: 300px;
           }
           
           .consulta-button {
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+          }
+          
+          .carousel-arrow {
+            width: 35px; /* Reducido para móviles */
+            height: 35px; /* Reducido para móviles */
+            font-size: 0.8rem;
+          }
+          
+          .prev-arrow {
+            left: -5px;
+          }
+          
+          .next-arrow {
+            right: -5px;
+          }
+          
+          .foto-wrapper {
+            height: 250px;
+          }
+          
+          .testimonio-nombre-simple {
+            font-size: 1rem;
+          }
+          
+          .carousel-navigation-hint {
+            position: static;
+            text-align: center;
+            margin: 10px auto 0;
+            justify-content: center;
           }
         }
       `}</style>

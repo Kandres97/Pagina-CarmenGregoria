@@ -7,7 +7,7 @@ const Amarres = () => {
   const whatsappUrl = "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor";
   
   // URL del video de fondo
-  const videoUrl = "https://res.cloudinary.com/tu-cuenta-cloudinary/video/upload/v1234567890/tu-video-de-fondo.mp4";
+  const videoUrl = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747514270/6_w3j0cp.mp4";
   // Nota: Debes reemplazar la URL anterior con la URL real de tu video
   
   // Datos de los tipos de amarres
