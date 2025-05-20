@@ -20,28 +20,11 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Construir el mensaje para WhatsApp
-    const message = `Hola deseo realizar una consulta? Mi nombre es ${formData.name}. Me interesa el servicio de ${formData.service}.`;
+  // Construir la URL de WhatsApp basada en el formulario actual
+  const getWhatsAppUrl = () => {
+    const message = `Hola, Mi nombre es ${formData.name}. Me interesa el servicio de ${formData.service}.`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/526699201652?text=${encodedMessage}`;
-    
-    // Redireccionar a WhatsApp
-    window.open(whatsappURL, '_blank');
-    
-    // Resetear el formulario
-    setFormData({
-      name: '',
-      service: 'amarre'
-    });
-  };
-
-  // Función para abrir WhatsApp directamente con mensaje predefinido
-  const openWhatsApp = () => {
-    const message = encodeURIComponent('Hola deseo realizar una consulta?');
-    window.open(`https://wa.me/526699201652?text=${message}`, '_blank');
+    return `https://wa.me/526699201652?text=${encodedMessage}`;
   };
 
   return (
@@ -96,12 +79,10 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Testimonio eliminado */}
           </div>
           
           <div className="contact-form-container">
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form">
               <h3 className="form-title">Solicitar Consulta Gratuita</h3>
               
               {formStatus.submitted && (
@@ -141,9 +122,11 @@ const ContactSection = () => {
                 </select>
               </div>
               
+              {/* El botón ahora es un enlace <a> directamente con href dinámico */}
               <a 
-                href="#" 
-                onClick={handleSubmit}
+                href={getWhatsAppUrl()}
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="submit-button"
               >
                 Enviar Consulta por WhatsApp
@@ -161,8 +144,6 @@ const ContactSection = () => {
           </div>
         </div>
       </section>
-      
-      {/* Footer eliminado */}
       
       <style jsx>{`
         .contact-section {
@@ -293,58 +274,6 @@ const ContactSection = () => {
           opacity: 0.7 !important;
           margin-top: 0.5rem !important;
           font-style: italic;
-        }
-        
-        .testimonial-highlight {
-          margin-top: 1.5rem;
-          background: rgba(25, 25, 25, 0.8);
-          border-radius: 15px;
-          padding: 2rem;
-          position: relative;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-          border-left: 3px solid #e6c619;
-        }
-        
-        .quote-icon {
-          position: absolute;
-          top: -15px;
-          left: 20px;
-          width: 30px;
-          height: 30px;
-          background: #e6c619;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        
-        .quote-icon svg {
-          width: 16px;
-          height: 16px;
-          stroke: #0c0c0c;
-        }
-        
-        blockquote {
-          margin: 0 0 1.5rem 0;
-          font-size: 1.1rem;
-          line-height: 1.6;
-          font-style: italic;
-        }
-        
-        .testimonial-author {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        
-        .author-name {
-          font-weight: bold;
-          color: #e6c619;
-        }
-        
-        .star-rating {
-          color: #e6c619;
-          letter-spacing: 2px;
         }
         
         .contact-form-container {
@@ -577,8 +506,7 @@ const ContactSection = () => {
           animation: float 9s infinite ease-in-out 2s;
         }
         
-        /* Estilos para los footer eliminados */
-        
+        /* Estilos responsive */
         @media (max-width: 768px) {
           .section-title {
             font-size: 2.2rem;
@@ -620,34 +548,6 @@ const ContactSection = () => {
           
           .icon-container {
             margin-bottom: 0.8rem;
-          }
-          
-          .testimonial-highlight {
-            padding: 1.5rem;
-          }
-          
-          .quote-icon {
-            left: 50%;
-            transform: translateX(-50%);
-          }
-          
-          blockquote {
-            font-size: 1rem;
-            text-align: center;
-          }
-          
-          .testimonial-author {
-            flex-direction: column;
-            gap: 0.5rem;
-            text-align: center;
-          }
-          
-          .disclaimer-box {
-            padding: 1rem;
-          }
-          
-          .disclaimer-box h3 {
-            font-size: 1.1rem;
           }
         }
       `}</style>

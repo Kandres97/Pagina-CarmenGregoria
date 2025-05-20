@@ -77,7 +77,7 @@ const Rituales = () => {
                   <p className="ritual-description">{ritual.descripcion}</p>
                   
                   <a 
-                    href={`https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20estoy%20interesado%20en%20una%20Consulta%20Gratis%20para%20el%20ritual%20de%20${encodeURIComponent(ritual.titulo)}`}
+                    href={`https://wa.me/526699201652?text=Hola%20,%20estoy%20interesado%20en%20el%20ritual%20de%20${encodeURIComponent(ritual.titulo)}`}
                     className="ritual-button"
                     target="_blank"
                     rel="noopener noreferrer"

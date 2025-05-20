@@ -1,36 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Amarres = () => {
   const [expandedAmarre, setExpandedAmarre] = useState(null);
   
-  // URL para WhatsApp
-  const whatsappUrl = "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor";
+  // URL base para WhatsApp
+  const whatsappBaseUrl = "https://wa.me/526699201652?text=";
   
   // URL del video de fondo
   const videoUrl = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747514270/6_w3j0cp.mp4";
-  // Nota: Debes reemplazar la URL anterior con la URL real de tu video
   
-  // Datos de los tipos de amarres
+  // Datos de los tipos de amarres con mensajes personalizados
   const tiposAmarres = [
     {
       id: 1,
       titulo: "Amarre de Amor Eterno",
       descripcion: "Ritual poderoso para recuperar y unir almas destinadas. Ideal para casos difíciles donde la persona amada está distante.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517636/newlywed-couple-holding-golden-padlock-260nw-2381416521_trtwcn.webp"
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517636/newlywed-couple-holding-golden-padlock-260nw-2381416521_trtwcn.webp",
+      mensaje: "Hola, estoy interesado/a en el Amarre de Amor Eterno."
     },
     {
       id: 2,
       titulo: "Amarres Sexuales",
       descripcion: "Ritual para despertar el deseo y la pasión más intensa, creando una conexión física y emocional irresistible.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517975/blurred-background-silhouettes-couple-love-260nw-2520439475_fvtzet.webp"
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517975/blurred-background-silhouettes-couple-love-260nw-2520439475_fvtzet.webp",
+      mensaje: "Hola, me gustaría obtener información sobre los Amarres Sexuales.?"
     },
     {
       id: 3,
-      titulo: "Amarres Del Mismo Genero",
+      titulo: "Amarres Del Mismo Género",
       descripcion: "El ritual más potente para casos extremos donde se necesita dominar la voluntad y eliminar terceras personas.",
-      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517894/closeup-young-adult-queer-transgender-260nw-2192258039-01_hznwgr.webp"
+      imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747517894/closeup-young-adult-queer-transgender-260nw-2192258039-01_hznwgr.webp",
+      mensaje: "Hola, quisiera información sobre los Amarres Del Mismo Género."
     }
   ];
+  
+  // Generar URL de WhatsApp con mensaje personalizado
+  const getWhatsAppUrl = (mensaje) => {
+    return whatsappBaseUrl + encodeURIComponent(mensaje);
+  };
   
   // Manejador para expandir/contraer detalles de un amarre
   const toggleAmarre = (id) => {
@@ -88,7 +95,7 @@ const Amarres = () => {
                 <p className="amarre-description">{amarre.descripcion}</p>
                 
                 <a 
-                  href={whatsappUrl}
+                  href={getWhatsAppUrl(amarre.mensaje)}
                   className="amarre-button"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -105,7 +112,7 @@ const Amarres = () => {
           <div className="proceso-info">
             <p>Cada caso es único y requiere un tratamiento personalizado. Los resultados son efectivos, dependiendo de la complejidad de su situación.</p>
             <a 
-              href={whatsappUrl}
+              href={getWhatsAppUrl("Hola, estoy interesado/a en iniciar mi proceso de amarre.")}
               className="proceso-button"
               target="_blank"
               rel="noopener noreferrer"

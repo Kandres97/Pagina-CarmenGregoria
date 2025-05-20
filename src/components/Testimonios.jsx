@@ -164,7 +164,7 @@ const Testimonios = () => {
           ))}
           
           <a 
-            href="https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información"
+            href="https://wa.me/526699201652?text=Hola,%20Deseo%20Una%20Consulta"
             className="consulta-button"
             target="_blank"
             rel="noopener noreferrer"

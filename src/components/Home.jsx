@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const URLS = {
   backgroundVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747350488/video2142_jfshob.mp4",
   testimonialVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
-  whatsapp: "https://wa.me/526699201652?text=Hola%20Maestra%20Carmen%20Gregoria,%20quiero%20información%20sobre%20los%20amarres%20de%20amor"
+  whatsapp: "https://wa.me/526699201652?text=Hola,%20Deseo%20Una%20Consulta.%20"
 };
 
 // Mapa de IDs para las secciones - aseguramos que coincidan con los IDs de las secciones
@@ -12,7 +12,7 @@ const SECTION_IDS = {
   'Inicio': '',
   'Rituales': 'Rituales',
   'Amarres de Amor': 'amarres',
-  'TAROT': 'tarot',
+  'Tarot': 'Tarot',
   'Testimonios': 'testimonios',
   'Contacto': 'contacto'
 };
@@ -67,76 +67,6 @@ const NavMenu = ({ menuItems, isMenuOpen, closeMenu }) => (
   </div>
 );
 
-// Componentes de sección
-const RitualesSection = () => (
-  <section id="rituales" className="section rituales-section">
-    <div className="section-container">
-      <h2 className="section-title">Rituales Poderosos</h2>
-      <p className="section-description">
-        Descubra los rituales ancestrales que han atravesado generaciones. 
-        Cada ritual está diseñado para manifestar energías específicas y 
-        producir cambios profundos en su realidad.
-      </p>
-      {/* Aquí iría el contenido específico de la sección de Rituales */}
-    </div>
-  </section>
-);
-
-const AmarresSection = () => (
-  <section id="amarres" className="section amarres-section">
-    <div className="section-container">
-      <h2 className="section-title">Amarres de Amor</h2>
-      <p className="section-description">
-        Nuestros amarres de amor son realizados con la mayor responsabilidad y respeto
-        por las energías universales. Recupere ese amor perdido o fortalezca
-        su relación actual con nuestros poderosos rituales.
-      </p>
-      {/* Aquí iría el contenido específico de la sección de Amarres de Amor */}
-    </div>
-  </section>
-);
-
-// Nueva sección de TAROT
-const TarotSection = () => (
-  <section id="tarot" className="section tarot-section">
-    <div className="section-container">
-      <h2 className="section-title">Lecturas de TAROT</h2>
-      <p className="section-description">
-        Descubra los secretos que el universo tiene reservados para usted a través de nuestras 
-        lecturas de TAROT. Revelaciones precisas sobre amor, dinero, trabajo y espiritualidad 
-        que le guiarán en su camino.
-      </p>
-      {/* Aquí iría el contenido específico de la sección de TAROT */}
-    </div>
-  </section>
-);
-
-const TestimoniosSection = () => (
-  <section id="testimonios" className="section testimonios-section">
-    <div className="section-container">
-      <h2 className="section-title">Testimonios</h2>
-      <p className="section-description">
-        Conozca las historias de quienes han experimentado transformaciones
-        profundas gracias a nuestros rituales y servicios espirituales.
-      </p>
-      {/* Aquí irían los testimonios */}
-    </div>
-  </section>
-);
-
-const ContactoSection = () => (
-  <section id="contacto" className="section contacto-section">
-    <div className="section-container">
-      <h2 className="section-title">Contacto</h2>
-      <p className="section-description">
-        Estamos disponibles para responder a todas sus inquietudes y guiarle
-        en su camino espiritual. No dude en contactarnos para una consulta gratuita.
-      </p>
-      {/* Aquí iría el formulario de contacto o información de contacto */}
-    </div>
-  </section>
-);
-
 const Home = () => {
   // Estados con useReducer para optimizar
   const [state, setState] = useState({
@@ -146,7 +76,7 @@ const Home = () => {
   });
   
   const videoRef = useRef(null);
-  const menuItems = ['Inicio', 'Rituales', 'Amarres de Amor', 'TAROT', 'Testimonios', 'Contacto'];
+  const menuItems = ['Inicio', 'Rituales', 'Amarres de Amor', 'Tarot', 'Testimonios', 'Contacto'];
   
   // Detección de dispositivo móvil - optimizado
   useEffect(() => {

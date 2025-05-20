@@ -105,7 +105,7 @@ const Footer = () => {
         )}
         
         <div className="footer-bottom">
-          <p className="copyright">&copy; {currentYear} Santuario Saberes Ocultos. Todos los derechos reservados.</p>
+          <p className="copyright">&copy; {currentYear} Santuario Saberes Ocultos. <br></br>Todos los derechos reservados.</p>
         </div>
       </div>
       
