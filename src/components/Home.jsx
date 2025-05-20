@@ -207,9 +207,12 @@ const Home = () => {
           color: #e6c619;
           text-decoration: none;
           z-index: 110;
+          white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
         }
         
-        .logo span { color: #a83f67; }
+        .logo-highlight { 
+          color: #a83f67; 
+        }
         
         .menu {
           display: flex;
@@ -728,6 +731,11 @@ const Home = () => {
           .whatsapp-logo { width: 28px; height: 28px; }
           .play-button { width: 40px; height: 40px; }
           .play-button svg { width: 18px; height: 18px; }
+          
+          /* Ajustes para dispositivos móviles para mantener el logo en una línea */
+          .logo {
+            font-size: 1.4rem; /* Reducimos el tamaño en móviles */
+          }
         }
         
         @media (max-width: 400px) {
@@ -758,6 +766,11 @@ const Home = () => {
           .restriction-header {
             margin-bottom: 5px; /* Igual que en PC */
           }
+          
+          /* Reducir aún más el tamaño del logo en pantallas muy pequeñas */
+          .logo {
+            font-size: 1.2rem;
+          }
         }
         
         @media (min-width: 769px) and (max-width: 1023px) {
@@ -784,7 +797,7 @@ const Home = () => {
     
       <header className="header">
         <nav className="nav">
-          <a href="#" className="logo">Santuario <span>Saberes Ocultos</span></a>
+          <a href="#" className="logo">Santuario <span className="logo-highlight">Saberes Ocultos</span></a>
           
           <button 
             className={`hamburger ${state.menuOpen ? 'open' : ''}`} 
