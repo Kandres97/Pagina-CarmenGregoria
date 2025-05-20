@@ -81,36 +81,139 @@ const Testimonios = () => {
     console.log("Click en video:", videoId);
   };
   
-  // Componente de tarjeta de video simplificado con controles limitados
-  const VideoCard = ({ testimonio }) => (
-    <div className="video-card-simple">
-      <div className="video-simple-wrapper">
-        <video 
-          ref={el => videoRefs.current[testimonio.id] = el}
-          className="testimonio-video-simple custom-video-player"
-          playsInline
-          controls
-          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
-          disablePictureInPicture
-          onContextMenu={(e) => e.preventDefault()}
-          poster={testimonio.thumbnail}
-          onClick={() => playVideo(testimonio.id)}
-        >
-          <source src={testimonio.videoUrl} type="video/mp4" />
-          Tu navegador no soporta videos HTML5.
-        </video>
+  // Componente de tarjeta de video con controles personalizados para mayor compatibilidad
+  const VideoCard = ({ testimonio }) => {
+    // Crear una referencia al reproductor de video
+    const videoRef = useRef(null);
+    
+    // Estados para el reproductor personalizado
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    
+    // Manejadores de eventos para el reproductor personalizado
+    const togglePlay = () => {
+      if (videoRef.current) {
+        if (isPlaying) {
+          videoRef.current.pause();
+        } else {
+          videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+      }
+    };
+    
+    const handleTimeUpdate = () => {
+      if (videoRef.current) {
+        setCurrentTime(videoRef.current.currentTime);
+      }
+    };
+    
+    const handleLoadedMetadata = () => {
+      if (videoRef.current) {
+        setDuration(videoRef.current.duration);
+      }
+    };
+    
+    const handleVideoEnded = () => {
+      setIsPlaying(false);
+    };
+    
+    const handleSliderChange = (e) => {
+      const newTime = e.target.value;
+      if (videoRef.current) {
+        videoRef.current.currentTime = newTime;
+        setCurrentTime(newTime);
+      }
+    };
+    
+    // Formatear tiempo para mostrar en el reproductor
+    const formatTime = (time) => {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
+    
+    return (
+      <div className="video-card-simple">
+        <div className="video-simple-wrapper">
+          {/* Video oculto que se controla mediante nuestra interfaz personalizada */}
+          <video 
+            ref={videoRef}
+            className="testimonio-video-simple"
+            playsInline
+            preload="metadata"
+            poster={testimonio.thumbnail}
+            onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={handleLoadedMetadata}
+            onEnded={handleVideoEnded}
+            onContextMenu={(e) => e.preventDefault()}
+            controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+            disablePictureInPicture
+            webkit-playsinline="true"
+            x-webkit-airplay="deny"
+          >
+            <source src={testimonio.videoUrl} type="video/mp4" />
+            Tu navegador no soporta videos HTML5.
+          </video>
+          
+          {/* Superposición para evitar comportamientos no deseados */}
+          <div className="video-overlay" onClick={togglePlay}>
+            {/* Botón de reproducción/pausa */}
+            {!isPlaying && (
+              <button className="play-button">
+                <i className="fas fa-play"></i>
+              </button>
+            )}
+          </div>
+          
+          {/* Controles personalizados */}
+          <div className="custom-controls">
+            {/* Botón de reproducción/pausa */}
+            <button className="control-button" onClick={togglePlay}>
+              <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+            </button>
+            
+            {/* Barra de progreso */}
+            <div className="progress-container">
+              <input 
+                type="range" 
+                className="progress-slider"
+                min="0"
+                max={duration || 100}
+                value={currentTime}
+                onChange={handleSliderChange}
+              />
+              <div className="time-display">
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </div>
+            </div>
+            
+            {/* Botón de mutear (opcional) */}
+            <button 
+              className="control-button" 
+              onClick={() => {
+                if (videoRef.current) {
+                  videoRef.current.muted = !videoRef.current.muted;
+                }
+              }}
+            >
+              <i className="fas fa-volume-up"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div className="video-info-simple">
+          <h4 className="testimonio-nombre-simple">{testimonio.nombre} 
+            <span className="verified-badge">
+              <i className="fas fa-check-circle"></i>
+            </span>
+          </h4>
+          <p className="testimonio-ubicacion-simple"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
+        </div>
       </div>
-      
-      <div className="video-info-simple">
-        <h4 className="testimonio-nombre-simple">{testimonio.nombre} 
-          <span className="verified-badge">
-            <i className="fas fa-check-circle"></i>
-          </span>
-        </h4>
-        <p className="testimonio-ubicacion-simple"><i className="fas fa-map-marker-alt"></i> {testimonio.ubicacion}</p>
-      </div>
-    </div>
-  );
+    );
+  };
   
   // Componente de tarjeta de foto
   const FotoCard = ({ testimonio }) => (
@@ -442,55 +545,134 @@ const Testimonios = () => {
           position: relative;
         }
         
-        /* Estilos mejorados para el reproductor de video */
-        .custom-video-player {
-          width: 100%;
-          border-radius: 6px;
-          max-height: 225px; /* Limitando la altura */
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-        
-        /* Estilos generales para ocultar controles no deseados */
-        .custom-video-player::-webkit-media-controls-panel {
-          -webkit-appearance: none;
-        }
-        
-        /* Ocultar botones específicos en Chrome/Safari */
-        .custom-video-player::-webkit-media-controls-fullscreen-button,
-        .custom-video-player::-webkit-media-controls-download-button,
-        .custom-video-player::-webkit-media-controls-overflow-button,
-        .custom-video-player::-webkit-media-controls-playback-rate-button,
-        .custom-video-player::-webkit-media-controls-cast-button,
-        .custom-video-player::-webkit-media-controls-toggle-closed-captions-button,
-        .custom-video-player::-webkit-media-controls-current-time-display {
-          display: none !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-          width: 0 !important;
-          height: 0 !important;
-          position: absolute !important;
-          visibility: hidden !important;
-        }
-        
-        /* Ocultar botones específicos en Firefox */
-        .custom-video-player::-moz-media-controls-fullscreen-button,
-        .custom-video-player::-moz-media-controls-playback-rate-button {
-          display: none !important;
-        }
-        
-        /* Sobrescribir para evitar el botón de pantalla completa en todos los navegadores */
-        .custom-video-player:fullscreen {
-          display: none !important;
-        }
-        
-        /* Prevenir opciones de clic derecho */
+        /* Estilos para el reproductor de video personalizado */
         .video-simple-wrapper {
+          width: 100%;
+          margin-bottom: 0.5rem;
+          border-radius: 6px;
+          overflow: hidden;
           position: relative;
         }
         
+        .testimonio-video-simple {
+          width: 100%;
+          border-radius: 6px;
+          max-height: 225px;
+          background-color: #000;
+          display: block;
+        }
+        
+        .video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: calc(100% - 40px); /* Altura menos la de los controles */
+          background: rgba(0, 0, 0, 0.1);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          z-index: 2;
+        }
+        
+        .play-button {
+          background: rgba(230, 198, 25, 0.8);
+          border: none;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #0c0c0c;
+          font-size: 1.5rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .play-button:hover {
+          background: rgba(230, 198, 25, 1);
+          transform: scale(1.1);
+        }
+        
+        .custom-controls {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 40px;
+          background: rgba(12, 12, 12, 0.8);
+          display: flex;
+          align-items: center;
+          padding: 0 10px;
+          z-index: 3;
+        }
+        
+        .control-button {
+          background: transparent;
+          border: none;
+          color: #fff;
+          font-size: 1rem;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 0;
+          margin: 0 5px;
+          transition: color 0.2s ease;
+        }
+        
+        .control-button:hover {
+          color: #e6c619;
+        }
+        
+        .progress-container {
+          flex: 1;
+          margin: 0 10px;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .progress-slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 4px;
+          background: #444;
+          border-radius: 2px;
+          outline: none;
+          margin-bottom: 5px;
+        }
+        
+        .progress-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #e6c619;
+          cursor: pointer;
+        }
+        
+        .progress-slider::-moz-range-thumb {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #e6c619;
+          cursor: pointer;
+          border: none;
+        }
+        
+        .time-display {
+          font-size: 0.7rem;
+          color: rgba(255, 255, 255, 0.8);
+          text-align: right;
+        }
+        
+        /* Prevenir opciones de clic derecho */
         .video-simple-wrapper::after {
           content: "";
           position: absolute;
