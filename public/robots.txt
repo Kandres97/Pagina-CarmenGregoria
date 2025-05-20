@@ -1,0 +1,33 @@
+# robots.txt para Santuario Saberes Ocultos
+
+User-agent: *
+Allow: /
+
+# Páginas Principales
+Allow: /index.html
+Allow: /rituales
+Allow: /amarres
+Allow: /tarot
+Allow: /testimonios
+Allow: /contacto
+
+# Prevenir el rastreo de archivos y directorios específicos
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /assets/raw/
+
+# Permitir rastreo de datos estructurados y directorios importantes
+Allow: /sitemap.xml
+Allow: /assets/images/
+Allow: /assets/css/
+Allow: /assets/js/
+
+# Ubicación del sitemap
+Sitemap: https://amarresdeamorcarmen.com/sitemap.xml
+
+# Directiva de retraso de rastreo (para algunos motores de búsqueda que la respetan)
+Crawl-delay: 10

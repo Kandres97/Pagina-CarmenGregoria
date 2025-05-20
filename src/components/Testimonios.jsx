@@ -81,15 +81,17 @@ const Testimonios = () => {
     console.log("Click en video:", videoId);
   };
   
-  // Componente de tarjeta de video muy simplificado
+  // Componente de tarjeta de video simplificado con controles limitados
   const VideoCard = ({ testimonio }) => (
     <div className="video-card-simple">
       <div className="video-simple-wrapper">
         <video 
           ref={el => videoRefs.current[testimonio.id] = el}
-          className="testimonio-video-simple"
+          className="testimonio-video-simple custom-video-player"
           playsInline
           controls
+          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+          disablePictureInPicture
           poster={testimonio.thumbnail}
           onClick={() => playVideo(testimonio.id)}
         >
@@ -438,6 +440,21 @@ const Testimonios = () => {
           overflow: hidden;
         }
         
+        /* Estilos personalizados para ocultar opciones no deseadas en el reproductor de video */
+        .custom-video-player::-webkit-media-controls-panel {
+          -webkit-appearance: none;
+        }
+        
+        .custom-video-player::-webkit-media-controls-fullscreen-button,
+        .custom-video-player::-webkit-media-controls-download-button,
+        .custom-video-player::-webkit-media-controls-overflow-button,
+        .custom-video-player::-webkit-media-controls-playback-rate-button {
+          display: none !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+        }
+        
+        /* Estilos generales del video */
         .testimonio-video-simple {
           width: 100%;
           border-radius: 6px;

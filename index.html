@@ -1,13 +1,141 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-XXX');
+    </script>
+    
+    <!-- Protección contra inspección -->
+    <script>
+      // Deshabilitar clic derecho
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      // Deshabilitar teclas de inspección
+      document.addEventListener('keydown', function(e) {
+        // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+        if (
+          e.keyCode === 123 || 
+          (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+          (e.ctrlKey && e.keyCode === 85)
+        ) {
+          e.preventDefault();
+          return false;
+        }
+      });
+      
+      // Detectar y prevenir DevTools
+      (function() {
+        const devtools = {
+          isOpen: false,
+          orientation: undefined
+        };
+        
+        const threshold = 160;
+        
+        const emitEvent = (isOpen, orientation) => {
+          devtools.isOpen = isOpen;
+          devtools.orientation = orientation;
+        };
+        
+        setInterval(() => {
+          const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+          const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+          
+          if (
+            widthThreshold || 
+            heightThreshold
+          ) {
+            if (!devtools.isOpen || devtools.orientation !== (widthThreshold ? 'vertical' : 'horizontal')) {
+              emitEvent(true, widthThreshold ? 'vertical' : 'horizontal');
+              window.location.reload();
+            }
+          } else {
+            if (devtools.isOpen) {
+              emitEvent(false, undefined);
+            }
+          }
+        }, 1000);
+      })();
+    </script>
+    
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <style>
+      .circular-logo {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <!-- Favicon y logos -->
+    <link rel="mask-icon" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" color="#6B46C1" />
+    <link rel="icon" type="image/webp" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Santuario Saberes Ocultos | Amarres de Amor y Trabajos Espirituales</title>
+    <meta name="description" content="Expertos en amarres de amor, trabajos de brujería, limpias espirituales y rituales efectivos. Brujos de Catemaco, videntes y tarotistas profesionales a tu servicio." />
+    <meta name="keywords" content="amarres de amor, amarres, limpias espirituales, brujo catemaco, trabajos de brujeria, tarotista, vidente, magia blanca, magia negra" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://amarresdeamorcarmen.com/" />
+    <meta property="og:title" content="Santuario Saberes Ocultos | Especialistas en Trabajos Espirituales" />
+    <meta property="og:description" content="Amarres de amor garantizados, trabajos de brujería efectivos y consultas con videntes expertos. Resultados en poco tiempo." />
+    <meta property="og:image" content="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://amarresdeamorcarmen.com/" />
+    <meta property="twitter:title" content="Santuario Saberes Ocultos | Trabajos Espirituales" />
+    <meta property="twitter:description" content="Especialistas en amarres de amor, rituales de brujería y consultas espirituales. Brujos de Catemaco certificados." />
+    <meta property="twitter:image" content="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" />
+
+    <link rel="canonical" href="https://amarresdeamorcarmen.com/" />
+    <meta name="author" content="Santuario Saberes Ocultos" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Spanish" />
+    
+    <!-- Favicons optimizados -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dhzqf1itl/image/upload/v1747778874/logo_congregacion_resplandor_de_amor_wukxcs.png" />
+    
+    <meta name="theme-color" content="#6B46C1" />
+    
+    <script type="module" src="/src/main.jsx" defer></script>
+    
+    <!-- Protección adicional contra copia de contenido -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Prevenir selección de texto
+        document.body.style.userSelect = 'none';
+        document.body.style.webkitUserSelect = 'none';
+        document.body.style.msUserSelect = 'none';
+        document.body.style.mozUserSelect = 'none';
+        
+        // Prevenir arrastrar imágenes
+        document.addEventListener('dragstart', function(e) {
+          e.preventDefault();
+          return false;
+        });
+      });
+    </script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
