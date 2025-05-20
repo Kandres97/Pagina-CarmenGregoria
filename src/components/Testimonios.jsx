@@ -92,6 +92,7 @@ const Testimonios = () => {
           controls
           controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
           disablePictureInPicture
+          onContextMenu={(e) => e.preventDefault()}
           poster={testimonio.thumbnail}
           onClick={() => playVideo(testimonio.id)}
         >
@@ -438,27 +439,67 @@ const Testimonios = () => {
           margin-bottom: 0.5rem;
           border-radius: 6px;
           overflow: hidden;
+          position: relative;
         }
         
-        /* Estilos personalizados para ocultar opciones no deseadas en el reproductor de video */
+        /* Estilos mejorados para el reproductor de video */
+        .custom-video-player {
+          width: 100%;
+          border-radius: 6px;
+          max-height: 225px; /* Limitando la altura */
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        
+        /* Estilos generales para ocultar controles no deseados */
         .custom-video-player::-webkit-media-controls-panel {
           -webkit-appearance: none;
         }
         
+        /* Ocultar botones específicos en Chrome/Safari */
         .custom-video-player::-webkit-media-controls-fullscreen-button,
         .custom-video-player::-webkit-media-controls-download-button,
         .custom-video-player::-webkit-media-controls-overflow-button,
-        .custom-video-player::-webkit-media-controls-playback-rate-button {
+        .custom-video-player::-webkit-media-controls-playback-rate-button,
+        .custom-video-player::-webkit-media-controls-cast-button,
+        .custom-video-player::-webkit-media-controls-toggle-closed-captions-button,
+        .custom-video-player::-webkit-media-controls-current-time-display {
           display: none !important;
           opacity: 0 !important;
           pointer-events: none !important;
+          width: 0 !important;
+          height: 0 !important;
+          position: absolute !important;
+          visibility: hidden !important;
         }
         
-        /* Estilos generales del video */
-        .testimonio-video-simple {
-          width: 100%;
-          border-radius: 6px;
-          max-height: 225px; /* Limitando la altura */
+        /* Ocultar botones específicos en Firefox */
+        .custom-video-player::-moz-media-controls-fullscreen-button,
+        .custom-video-player::-moz-media-controls-playback-rate-button {
+          display: none !important;
+        }
+        
+        /* Sobrescribir para evitar el botón de pantalla completa en todos los navegadores */
+        .custom-video-player:fullscreen {
+          display: none !important;
+        }
+        
+        /* Prevenir opciones de clic derecho */
+        .video-simple-wrapper {
+          position: relative;
+        }
+        
+        .video-simple-wrapper::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1;
+          pointer-events: none;
         }
         
         .video-info-simple {
