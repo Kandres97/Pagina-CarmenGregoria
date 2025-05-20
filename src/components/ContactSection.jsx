@@ -3,10 +3,7 @@ import React, { useState } from 'react';
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    phone: '',
-    service: 'amarre',
-    message: ''
+    service: 'amarre'
   });
   
   const [formStatus, setFormStatus] = useState({
@@ -25,100 +22,82 @@ const ContactSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar el formulario a un servicio como formspree
-    // o cualquier otro servicio de manejo de formularios
-
-    // Simulamos una respuesta exitosa
-    setFormStatus({
-      submitted: true,
-      error: false,
-      message: 'Gracias por contactarnos. Nos comunicaremos pronto contigo.'
-    });
     
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: 'amarre',
-        message: ''
-      });
-    }, 100);
+    // Construir el mensaje para WhatsApp
+    const message = `Hola deseo realizar una consulta? Mi nombre es ${formData.name}. Me interesa el servicio de ${formData.service}.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/526699201652?text=${encodedMessage}`;
+    
+    // Redireccionar a WhatsApp
+    window.open(whatsappURL, '_blank');
+    
+    // Resetear el formulario
+    setFormData({
+      name: '',
+      service: 'amarre'
+    });
+  };
+
+  // Función para abrir WhatsApp directamente con mensaje predefinido
+  const openWhatsApp = () => {
+    const message = encodeURIComponent('Hola deseo realizar una consulta?');
+    window.open(`https://wa.me/526699201652?text=${message}`, '_blank');
   };
 
   return (
-    <section id="contacto" className="contact-section">
-      <div className="mystical-elements">
-        {[1, 2, 3].map(num => (
-          <div key={num} className={`mystical-element contact-element-${num}`}></div>
-        ))}
-      </div>
-      
-      <div className="container">
-        <div className="section-header">
-          <h2 className="section-subtitle">COMUNÍCATE CON NOSOTROS</h2>
-          <h1 className="section-title">Solicita Tu <span>Consulta Espiritual</span></h1>
-          <div className="section-divider"></div>
+    <>
+      <section id="contacto" className="contact-section">
+        <div className="mystical-elements">
+          {[1, 2, 3].map(num => (
+            <div key={num} className={`mystical-element contact-element-${num}`}></div>
+          ))}
         </div>
         
-        <div className="contact-grid">
-          <div className="contact-info">
-            <div className="contact-card">
-              <div className="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-subtitle">COMUNÍCATE CON NOSOTROS</h2>
+            <h1 className="section-title">Solicita Tu <span>Consulta Espiritual</span></h1>
+            <div className="section-divider"></div>
+          </div>
+          
+          <div className="contact-info-simplified">
+            <div className="contact-info-row">
+              <div className="contact-card">
+                <div className="icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div className="card-content">
+                  <h3>WhatsApp</h3>
+                  <a 
+                    href="https://wa.me/526699201652?text=Hola%20deseo%20realizar%20una%20consulta%3F" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="whatsapp-link"
+                  >
+                    +52 669 920 1652
+                    <p className="card-note">Respuesta inmediata</p>
+                  </a>
+                </div>
               </div>
-              <div className="card-content">
-                <h3>WhatsApp</h3>
-                <p>+52 669 920 1652</p>
-                <p className="card-note">Respuesta inmediata</p>
+              
+              <div className="contact-card">
+                <div className="icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div className="card-content">
+                  <h3>Ubicación</h3>
+                  <p>Catemaco, Veracruz, México</p>
+                  <p className="card-note">Consultas presenciales con cita previa</p>
+                </div>
               </div>
             </div>
             
-            <div className="contact-card">
-              <div className="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                </svg>
-              </div>
-              <div className="card-content">
-                <h3>Correo Electrónico</h3>
-                <p>consultas@santuariosaberesocultos.com</p>
-                <p className="card-note">Para consultas detalladas</p>
-              </div>
-            </div>
-            
-            <div className="contact-card">
-              <div className="icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div className="card-content">
-                <h3>Ubicación</h3>
-                <p>Pitalito, Huila, Colombia</p>
-                <p className="card-note">Consultas presenciales con cita previa</p>
-              </div>
-            </div>
-            
-            <div className="testimonial-highlight">
-              <div className="quote-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 11h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1zm10 0h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1zm-10 10h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1zm10 0h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1z"></path>
-                </svg>
-              </div>
-              <blockquote>
-                Mi ritual cambió mi destino. Llevamos 7 años felizmente juntos gracias a la Maestra Carmen Gregoria.
-              </blockquote>
-              <div className="testimonial-author">
-                <span className="author-name">María L.</span>
-                <span className="star-rating">★★★★★</span>
-              </div>
-            </div>
+            {/* Testimonio eliminado */}
           </div>
           
           <div className="contact-form-container">
@@ -144,34 +123,6 @@ const ContactSection = () => {
                 />
               </div>
               
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="email">Correo Electrónico</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="ejemplo@correo.com"
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="phone">Teléfono / WhatsApp</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tu número telefónico"
-                  />
-                </div>
-              </div>
-              
               <div className="form-group">
                 <label htmlFor="service">Servicio de Interés</label>
                 <select
@@ -190,38 +141,18 @@ const ContactSection = () => {
                 </select>
               </div>
               
-              <div className="form-group">
-                <label htmlFor="message">Mensaje / Situación</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  placeholder="Describe brevemente tu situación..."
-                  rows="4"
-                ></textarea>
-              </div>
-              
-              <div className="form-group">
-                <div className="privacy-consent">
-                  <input type="checkbox" id="privacy" required />
-                  <label htmlFor="privacy">
-                    Acepto la política de privacidad y doy mi consentimiento para el tratamiento de mis datos
-                  </label>
-                </div>
-              </div>
-              
-              <button type="submit" className="submit-button">
-                Enviar Consulta
+              <a 
+                href="#" 
+                onClick={handleSubmit}
+                className="submit-button"
+              >
+                Enviar Consulta por WhatsApp
                 <span className="button-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 2v20h-20"></path>
-                    <path d="M13 16l5.35-5.35"></path>
-                    <path d="M2 9l5.35 5.35"></path>
+                    <path d="M3 3l1.3 5.2c1.8-4 6-6.9 11.5-6.9C21.9 1.3 26 4.4 26 8.2c0 3.7-2.9 6.8-7 8.4v2.8c0 .7-.2 1.3-.7 1.8s-1.1.7-1.8.7c-.3 0-.5 0-.8-.1-1-.3-1.9-.7-2.7-1.3M5.8 18.2c-1.1-.6-2-1.2-2.7-2a9.3 9.3 0 0 1-2-5.7c0-5.2 4.8-9.5 10.7-9.5s10.7 4.3 10.7 9.5c0 5.2-4.8 9.5-10.7 9.5-1.2 0-2.3-.2-3.4-.5l-3.4.9c-.9.2-1.8-.4-1.8-1.3v-1.9z"></path>
                   </svg>
                 </span>
-              </button>
+              </a>
             </form>
             
             <div className="form-decoration">
@@ -229,7 +160,9 @@ const ContactSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      
+      {/* Footer eliminado */}
       
       <style jsx>{`
         .contact-section {
@@ -279,17 +212,17 @@ const ContactSection = () => {
           border-radius: 3px;
         }
         
-        .contact-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.5fr;
-          gap: 3rem;
-          align-items: start;
+        /* Estilo para mostrar las tarjetas de contacto en fila */
+        .contact-info-row {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          gap: 2rem;
+          margin-bottom: 2rem;
         }
         
-        .contact-info {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
+        .contact-info-simplified {
+          margin-bottom: 3rem;
         }
         
         .contact-card {
@@ -336,6 +269,23 @@ const ContactSection = () => {
           margin: 0;
           font-size: 1rem;
           opacity: 0.9;
+        }
+        
+        .card-content a {
+          color: #fff;
+          text-decoration: none;
+          font-size: 1rem;
+          opacity: 0.9;
+          display: block;
+          transition: color 0.3s ease;
+        }
+        
+        .card-content a:hover {
+          color: #e6c619;
+        }
+        
+        .whatsapp-link {
+          cursor: pointer;
         }
         
         .card-note {
@@ -399,6 +349,8 @@ const ContactSection = () => {
         
         .contact-form-container {
           position: relative;
+          max-width: 800px;
+          margin: 0 auto;
         }
         
         .contact-form {
@@ -522,6 +474,8 @@ const ContactSection = () => {
           font-family: 'Playfair Display', serif;
           position: relative;
           overflow: hidden;
+          text-decoration: none;
+          text-align: center;
         }
         
         .submit-button:hover {
@@ -623,6 +577,8 @@ const ContactSection = () => {
           animation: float 9s infinite ease-in-out 2s;
         }
         
+        /* Estilos para los footer eliminados */
+        
         @media (max-width: 768px) {
           .section-title {
             font-size: 2.2rem;
@@ -632,17 +588,10 @@ const ContactSection = () => {
             font-size: 1.1rem;
           }
           
-          .contact-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-          
-          .contact-card {
-            padding: 1.2rem;
-          }
-          
-          .contact-form {
-            padding: 1.8rem;
+          .contact-info-row {
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
           }
           
           .form-row {
@@ -693,12 +642,16 @@ const ContactSection = () => {
             text-align: center;
           }
           
-          .form-title {
-            font-size: 1.3rem;
+          .disclaimer-box {
+            padding: 1rem;
+          }
+          
+          .disclaimer-box h3 {
+            font-size: 1.1rem;
           }
         }
       `}</style>
-    </section>
+    </>
   );
 };
 

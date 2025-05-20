@@ -12,15 +12,15 @@ const Testimonios = () => {
     videos: [
       {
         id: 'video1',
-        nombre: "María Fernanda",
-        ubicacion: "Ciudad de México",
+        nombre: "Angela Torres",
+        ubicacion: "Austin, Texas",
         videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747518981/8_ccu21c.mp4",
         thumbnail: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747518981/8_ccu21c.jpg"
       },
       {
         id: 'video2',
-        nombre: "Roberto Méndez",
-        ubicacion: "Guadalajara",
+        nombre: "Valeria Méndez",
+        ubicacion: "Estado De Guerrero",
         videoUrl: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747519038/videoplayback_vnip2j.mp4",
         thumbnail: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747519038/videoplayback_vnip2j.jpg"
       }
@@ -28,25 +28,25 @@ const Testimonios = () => {
     fotos: [
       {
         id: 'foto1',
-        nombre: "Carlos Jiménez",
+        nombre: "Maria Guadalupe Lazaro",
         ubicacion: "Puebla",
         imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519099/testimonio_1_yrauxg_dkfhoj_ikwihb_souaip.jpg"
       },
       {
         id: 'foto2',
-        nombre: "Diana Ramírez",
+        nombre: "Ruben Perez Novelo",
         ubicacion: "Veracruz",
         imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519100/testimonio_3_cm4qzk_dtwqf6_e4kkoi_tfunrj.jpg"
       },
       {
         id: 'foto3',
-        nombre: "Miguel Ángel",
+        nombre: "Diana Lizeth Chairez",
         ubicacion: "Querétaro",
         imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519102/Testimonio_4_bvpuoh_blaq4c_xwvizf_rbdngs.jpg"
       },
       {
         id: 'foto4',
-        nombre: "Laura Herrera",
+        nombre: "Gloria Patricia Osnaya",
         ubicacion: "Cancún",
         imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519105/Testimonio_2_nfblmg_i3gd4k_wqozch_e7au8y.jpg"
       }
