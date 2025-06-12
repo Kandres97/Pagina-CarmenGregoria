@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // URLs constantes 
 const URLS = {
   backgroundVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747350488/video2142_jfshob.mp4",
-  testimonialVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747351788/Video_de_WhatsApp_2025-02-08_a_las_18.55.36_2d2c4649_jwn0wm_ke4cva_mird6f_pgwzbd.mp4",
+  testimonialVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1749761845/3_e6vfrq.mp4",
   whatsapp: "https://wa.me/526699201652?text=Hola,%20Deseo%20Una%20Consulta.%20"
 };
 
