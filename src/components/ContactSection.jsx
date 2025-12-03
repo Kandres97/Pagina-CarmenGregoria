@@ -24,7 +24,7 @@ const ContactSection = () => {
   const getWhatsAppUrl = () => {
     const message = `Hola, Mi nombre es ${formData.name}. Me interesa el servicio de ${formData.service}.`;
     const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/526699201652?text=${encodedMessage}`;
+    return `https://wa.me/526693329167?text=${encodedMessage}`;
   };
 
   return (
@@ -54,12 +54,12 @@ const ContactSection = () => {
                 <div className="card-content">
                   <h3>WhatsApp</h3>
                   <a 
-                    href="https://wa.me/526699201652?text=Hola%20deseo%20realizar%20una%20consulta%3F" 
+                    href="https://wa.me/526693329167?text=Hola%20deseo%20realizar%20una%20consulta%3F" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="whatsapp-link"
                   >
-                    +52 669 920 1652
+                    +52 669 332 9167
                     <p className="card-note">Respuesta inmediata</p>
                   </a>
                 </div>

@@ -4,7 +4,7 @@ const Amarres = () => {
   const [expandedAmarre, setExpandedAmarre] = useState(null);
   
   // URL base para WhatsApp
-  const whatsappBaseUrl = "https://wa.me/526699201652?text=";
+  const whatsappBaseUrl = "https://wa.me/526693329167?text=Hola%20deseo%20realizar%20una%20consulta%3F";
   
   // URL del video de fondo
   const videoUrl = "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747514270/6_w3j0cp.mp4";

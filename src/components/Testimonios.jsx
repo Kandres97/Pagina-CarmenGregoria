@@ -30,25 +30,25 @@ const Testimonios = () => {
         id: 'foto1',
         nombre: "Maria Guadalupe Lazaro",
         ubicacion: "Puebla",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519099/testimonio_1_yrauxg_dkfhoj_ikwihb_souaip.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1764724318/testimonio_2_h0rvcw.jpg"
       },
       {
         id: 'foto2',
         nombre: "Ruben Perez Novelo",
         ubicacion: "Veracruz",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519100/testimonio_3_cm4qzk_dtwqf6_e4kkoi_tfunrj.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1764724318/testimonio_4_jdybhc.jpg"
       },
       {
         id: 'foto3',
         nombre: "Diana Lizeth Chairez",
         ubicacion: "Querétaro",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519102/Testimonio_4_bvpuoh_blaq4c_xwvizf_rbdngs.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1764724319/Testimonio_5_rppltx.jpg"
       },
       {
         id: 'foto4',
         nombre: "Gloria Patricia Osnaya",
         ubicacion: "Cancún",
-        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1747519105/Testimonio_2_nfblmg_i3gd4k_wqozch_e7au8y.jpg"
+        imagen: "https://res.cloudinary.com/dhzqf1itl/image/upload/v1764724319/testimonio_3_jry2ji.jpg"
       }
     ]
   };
@@ -167,7 +167,7 @@ const Testimonios = () => {
           ))}
           
           <a 
-            href="https://wa.me/526699201652?text=Hola,%20Deseo%20Una%20Consulta"
+            href="https://wa.me/526693329167?text=Hola,%20Deseo%20Una%20Consulta%20Vi%20Los%20Testimonios%20Deseo%20Ayuda"
             className="consulta-button"
             target="_blank"
             rel="noopener noreferrer"

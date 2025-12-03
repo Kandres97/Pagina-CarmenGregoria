@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const URLS = {
   backgroundVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1747350488/video2142_jfshob.mp4",
   testimonialVideo: "https://res.cloudinary.com/dhzqf1itl/video/upload/v1749761845/3_e6vfrq.mp4",
-  whatsapp: "https://wa.me/526699201652?text=Hola,%20Deseo%20Una%20Consulta.%20"
+  whatsapp: "https://wa.me/526693329167?text=Hola,%20Deseo%20Una%20Consulta.%20"
 };
 
 // Mapa de IDs para las secciones - aseguramos que coincidan con los IDs de las secciones
